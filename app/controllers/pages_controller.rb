@@ -57,6 +57,7 @@ class PagesController < ApplicationController
   end
 # Show Jobseeker, Recruiter, Blog, FAQ for admin  
   def manage_jobseeker
+    @job_seekers = User.all
   end
 
   def manage_recruiter
