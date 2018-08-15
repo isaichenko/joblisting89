@@ -16,7 +16,7 @@
         <% @job_seekers.each.with_index(1) do |job_seeker, key| %>
             <tr>
                 <th scope="row"><%= key %></th>
-                <td class="text-center"><%= link_to job_seeker.name, resume_path(job_seeker.id) %></td>
+                <td class="text-center"><%= link_to job_seeker.name, resume_path(job_seeker.resumes.ids) %></td>
                 <td class="text-center"><%= job_seeker.created_at.to_date %></td>
                 <td class="text-center"><%= job_seeker.created_at.to_date %></td>
                 <td class="text-center">
