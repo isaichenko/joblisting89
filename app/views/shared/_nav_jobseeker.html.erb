@@ -9,7 +9,7 @@
     </li>
   <% else %>
     <li class="nav-item">
-      <%= link_to 'View your Resume', resume_path(current_user.resumes.ids), class: "nav-link #{active? resume_path(current_user.resumes)}" %>
+      <%= link_to 'View your Resume', resume_path(current_user.resumes.ids), class: "nav-link #{active? resume_path(current_user.resumes.ids)}" %>
     </li>
   <% end %>
 
