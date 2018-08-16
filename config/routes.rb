@@ -31,8 +31,8 @@ Rails.application.routes.draw do
   resources :keywords,  except: :index
 
 # FAQ and Blog
-  resource :faqs
-  resource :blogs
+  resources :faqs
+  resources :blogs
 
   get     '/alljobs',           to: 'pages#alljobs'
   get     '/allcompanies',      to: 'pages#allcompanies'
