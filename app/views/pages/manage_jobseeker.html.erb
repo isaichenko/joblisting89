@@ -16,7 +16,7 @@
         <% @job_seekers.each.with_index(1) do |job_seeker, key| %>
             <tr>
                 <th scope="row"><%= key %></th>
-                <% if job_seeker.resumes.count > 0 
+                <% if job_seeker.resume_exist?
                     job_applied = job_seeker.number_of_jobs_applied;
                 %>
                     <td class="text-center"><%= link_to job_seeker.name, resume_path(job_seeker.resumes.ids) %></td>
