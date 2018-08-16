@@ -97,7 +97,7 @@ class User < ApplicationRecord
   end
 
   def number_of_jobs_applied 
-    self.resumes[0].applied_jobs.count
+    self.resumes.first.applied_jobs.count
   end
 
   def number_of_jobs_post
