@@ -61,6 +61,14 @@ class User < ApplicationRecord
     	user.name = auth.info.name
   	end
 	end
+# Check
+  def resume_exist?
+    return self.resumes.count > 0 
+  end
+
+  def company_exist?
+    return self.companies.count
+  end
 
   def bookmark_resume!(resume)
     self.bookmarked_resumes.create(resume_id: resume.id)
@@ -93,12 +101,9 @@ class User < ApplicationRecord
   end
 # Get company name of recruiter
   def company_name
-    self.companies.count > 0 ? self.companies.first.title : ''
+    self.company_exist? ? self.companies.first.title : ''
   end
 
-  def resume_exist?
-    self.resumes.count > 0
-  end
   def number_of_jobs_applied 
     self.resume_exist? ? self.resumes.first.applied_jobs.count : 0 
   end
