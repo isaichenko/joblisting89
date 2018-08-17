@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 20180817181820) do
     t.string "title"
     t.text "content"
     t.text "featured_image"
+    t.datetime "published_at"
+    t.integer "status", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
