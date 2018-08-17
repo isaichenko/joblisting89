@@ -1,7 +1,15 @@
 <div class="row">
     <div class="col-md-12">
+        <%#= show published or draft %>
+        <% if @blog.present? %>
+            <% if @blog.status == 1 %>
+                <span class="badge badge-primary">Published</span>
+            <% else %>
+                <span class="badge badge-danger">Draft</span>
+            <% end %>
+        <% end %>
+        <br>
         <%= form_for(blog) do |form| %>
-
             <div class="form-group">
                 <%= form.label :Title %>
                 <%= form.text_field :title, class: 'form-control', placeholder: 'Title' %>
@@ -9,52 +17,54 @@
             
             <div class="form-group">
                 <%= form.label :Content %>
-                <%= form.cktext_area :content, class: 'form-control', ckeditor: { language: 'en'} %>
+                <%= form.cktext_area :content, class: 'form-control', ckeditor: { language: 'en'}, placeholder: 'Content' %>
             </div>
-            
+
             <div class="form-group">
                 <%= form.label :Publish %>
-            </div>
-            
-            <div class="form-group">
                 <div class="row">
-                    <div class="col-md-1">
-                        <%= form.label :Publish %>
-                    </div>
-                    <div class="col-md-2">
+                    <div class="col-md-2 offset-md-1">
+                        <%= radio_button_tag 'publish-type', '1', true %>
                         <span class="badge badge-primary">Immmediately</span>
+                            <br>
+                        <%= radio_button_tag 'publish-type', '0' %>
+                        <span class="badge badge-success">Edit</span>
                     </div>
-                    <div class="col-md-3">
-                        <%= form.date_field :created_at, class: 'form-control' %>
+                    <div class="col-md-4">
+                        <%= form.datetime_field :created_at, :value =>  Time.now.strftime("%d-%m-%Y %H:%M:%S") , class: 'form-control d-none publish-date' %>
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
                 <%= form.label :Categories %>
-                <% if @categories.count > 0 %>
-                    <table class="table table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">All</th>
-                                <th scope="col" class="text-center" >Category Name</th>
-                                <th scope="col" class="text-center">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                <% end %>
-            </div>
-
-            <div class="form-group">
                 <div class = "row">
-                    <div class="col-md-3 offset-md-7">
+                    <div class = "col-md-6">
+                        <% if @categories.count > 0 %>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">All</th>
+                                        <th scope="col" class="text-center" >Category Name</th>
+                                        <th scope="col" class="text-center">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% @categories.each do |category| %>
+                                    <tr>
+                                        <td class="text-center"></td>
+                                        <td class="text-center"><%= category.name %></td>
+                                        <td class="text-center">
+                                            <%= link_to '', category_path(category), class: 'fa fa-edit fa-lg admin_icons' %>
+                                            <%= link_to '', faq_path(category), method: :delete, class: 'fa fa-trash fa-lg admin_icons', data: { confirm: 'Are you sure?' } %>
+                                        </td>
+                                    </tr>
+                                    <% end %>
+                                </tbody>
+                            </table>
+                        <% end %>
+                    </div>
+                    <div class = "col-md-4">    
                         <%= text_field :category, :name, class: 'form-control', placeholder: 'New Category Name' %>
                     </div>
                     <div class="col-md-2">
@@ -66,18 +76,28 @@
             </div>
 
             <div class="form-group">
-                <%= form.label :Tags %>
                 <div class="row">
                     <div class="col-md-6">
-                        <%= form.text_field :title, class: 'form-control', placeholder: 'Show tags added' %>
+                        <%= form.label :Tags %>
+                    </div>
+                    <div class="col-md-6">
+                        <%= form.label "Featured" %>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <%= text_field :tag, :name, class: 'form-control', placeholder: 'Show Tags added' %>
+                    </div>
+                    <div class="col-md-6">
+                        <%= form.file_field :profile_pic, class: 'form-control' %>
                     </div>
                 </div>
             </div> 
             
             <div class="form-group">
                 <div class = "row">
-                    <div class="col-md-6">
-                        <%= text_field :tag, :name, class: 'form-control', placeholder: 'New tag Name' %>
+                    <div class="col-md-4">
+                        <%= text_field :tag, :name, class: 'form-control', placeholder: 'New Tag Name' %>
                     </div>
                     <div class="col-md-2">
                         <%= button_tag class:'btn btn-primary float-right' do %>
@@ -87,18 +107,11 @@
                 </div>
             </div>
 
-            <div class="form-group">
-                <%= form.label "Featured" %>
-                <div class="row">
-                    <div class="col-md-6">
-                        <%= form.file_field :profile_pic, class: 'form-control' %>
-                    </div>
-                </div>
-            </div>
-
             <div class="form-group float-right">
-                <%= form.submit "Publish", class: 'btn btn-primary' %> 
-                <%= form.submit "Save Draft", class: 'btn btn-primary' %> 
+                <%#= clear a form  %>
+                <%#= f.submit "clear", :type => "reset" %>
+                <%= form.submit "Publish", class: 'btn btn-success' %> 
+                <%= form.submit "Save as Draft", class: 'btn btn-danger' %> 
             </div>
         <% end %>
     </div>

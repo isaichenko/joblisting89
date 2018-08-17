@@ -1,4 +1,5 @@
 class BlogsController < ApplicationController
+  #access all: { except: [:new, :edit] }, user: { except: [:new, :edit] }, superadmin: :all
   before_action :set_blog, only: [:edit, :show, :update, :destroy]
 
   def new
@@ -11,11 +12,11 @@ class BlogsController < ApplicationController
 
   def create
     @blog = Blog.new(blog_params)
-    puts "*********"
-    puts blog_params.to_json
-    puts "*********"
+
     respond_to do |format|
       if @blog.save
+        @blog.update(published_at: Time.zone.now, status: 'active') if publishing?
+        @blog.update(status: 'non_active') if saving_as_draft?
         format.html { redirect_to allblogs_path, notice: 'Your Blog was created.' }
       else
         format.html { render :new}
@@ -23,6 +24,24 @@ class BlogsController < ApplicationController
     end
   end
 
+  def edit
+    @categories = Category.all
+    @tags = Tag.all
+  end
+
+  def update
+    respond_to do |format|
+      if @blog.update(blog_params)
+        format.html { redirect_to allblogs_path, notice: 'Your Blog was successfully updated.' }
+      else
+        format.html { render :edit}
+      end
+    end
+  end
+  
+  def show
+  end
+  
   def destroy
     @blog.destroy
     respond_to do |format|
@@ -36,6 +55,14 @@ class BlogsController < ApplicationController
     end
 
     def blog_params
-      params.require(:blog).permit(:title, :content)
+      params.require(:blog).permit(:title, :content, :created_at)
+    end
+
+    def publishing?
+        params[:commit] == "Publish"
+    end
+
+    def saving_as_draft?
+        params[:commit] == "Save as Draft"
     end
 end

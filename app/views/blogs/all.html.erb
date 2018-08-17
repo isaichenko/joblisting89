@@ -3,7 +3,9 @@
     <% if @role == 'admin' %>
         <div class="row">
             <div class="col-md-3">
-                <%= link_to 'Add New Blog', new_blog_path, class: 'btn btn-success btn-block' %>
+                <%= link_to new_blog_path, class: 'btn btn-primary btn-block' do %>
+                    <i class="fa fa-plus"></i> Add New Blog    
+                <% end %>
             </div>
         </div>
         <br>
