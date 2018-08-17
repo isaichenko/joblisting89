@@ -27,7 +27,7 @@
                                 <td class="text-center"><%=  %></td>
                                 <td class="text-center"><%= %></td>
                                 <td class="text-center">
-                                    <%= blog.created_at %>
+                                    <%= blog.created_at.to_date %>
                                 </td>
                                 <td class="text-center">
                                     <%= link_to '', edit_blog_path(blog), class: 'fa fa-edit fa-lg admin_icons' %>
