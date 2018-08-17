@@ -22,7 +22,7 @@
                 </td>
                 <td class="text-center"><%= recruiter.created_at.to_date %></td>
                 <td class="text-center">
-                    <%= link_to_if recruiter.resumes.any? , recruiter.number_of_jobs_post, show_jobs_path(recruiter.id) %>
+                    <%= link_to_if recruiter.jobs.count > 0 , recruiter.number_of_jobs_post, show_jobs_path(recruiter.id) %>
                 </td>
                 <td class="text-center"><%= recruiter.status == 'active' ? 'Active' : 'Suspended' %></td>
                 <td class="text-center">
