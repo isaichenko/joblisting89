@@ -36,9 +36,19 @@
                 <td class="text-center"><%= job_seeker.status == 'active' ? 'Active' : 'Suspended' %></td>
                 <td class="text-center">
                     <% if job_seeker.status == 'active' %>
-                        <%= select("status", "", ["Suspend", "Delete"], { include_blank: true }) %>
+                        <%#= select("status", "", ["Suspend", "Delete"], { include_blank: true }) %>
+                        <select class="change-action">
+                            <option value=""></option>
+                            <option value="<%= change_action_path(:id => job_seeker.id, :status => 'suspend', :path => 'job_seeker') %>">Suspend</option>
+                            <option value="<%= change_action_path(:id => job_seeker.id, :status => 'delete' :path => 'job_seeker') %>">Delete</option>
+                        </select>
                     <% else %>
-                        <%= select("status", "", ["Lift suspension", "Delete"], { include_blank: true }) %>
+                        <%#= select("status", "", ["Lift suspension", "Delete"], { include_blank: true }) %>
+                        <select class="change-action">
+                            <option value=""></option>
+                            <option value="<%= change_action_path(:id => job_seeker.id, :status => 'lift_suspend', :path => 'job_seeker') %>">Lift suspension</option>
+                            <option value="<%= change_action_path(:id => job_seeker.id, :status => 'delete', :path => 'job_seeker') %>">Delete</option>
+                        </select>
                     <% end %>
                 </td>
             </tr>
