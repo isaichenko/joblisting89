@@ -14,24 +14,26 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @status = params[:status]
     @path = params[:path]
-    @redirect_path = (@path == 'job_seeker') ? manage_jobseeker_path : manage_recruiter_path 
     if @status == 'delete'
       @user.destroy
-      respond_to do |format|
-        format.html { redirect_to @redirect_path, notice: 'The User was removed.' }
-      end
+      @notice = 'The User was removed.'
     elsif @status == 'suspend'
       if @user.update(:status => 'suspended')
-        format.html { redirect_to @redirect_path, notice: 'The User was suspended.' }
+        @notice = 'The User was suspended.'
       else
-        format.html { redirect_to @redirect_path, notice: 'The User status is not updated.' }
+        @notice = 'The User status is not updated.'
       end
     elsif @status == 'lift_suspend'
       if @user.update(:status => 'active')
-        format.html { redirect_to @redirect_path, notice: 'The User status was active.' }
+        @notice = 'The User was active.'
       else
-        format.html { redirect_to @redirect_path, notice: 'The User status is not updated.' }
+        @notice = 'The User status is not updated.'
       end
     end
+
+    respond_to do |format|
+      format.js { render inline: "location.reload();", notice: @notice }
+    end
+
   end
 end
