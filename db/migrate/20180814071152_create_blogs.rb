@@ -6,7 +6,7 @@ class CreateBlogs < ActiveRecord::Migration[5.1]
       t.text   :content
       t.text :featured_image
 
-      t.timestamps
+      t.timestamps null: false
     end
   end
 end

@@ -34,6 +34,10 @@ Rails.application.routes.draw do
   resources :faqs
   resources :blogs
 
+# Categories, Tags
+  resources :categories
+  resources :tags
+
   get     '/alljobs',           to: 'pages#alljobs'
   get     '/allcompanies',      to: 'pages#allcompanies'
   get     '/allresumes',        to: 'pages#allresumes'
