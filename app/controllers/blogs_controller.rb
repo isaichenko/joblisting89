@@ -4,9 +4,7 @@ class BlogsController < ApplicationController
 
   def new
     @blog = Blog.new
-    @category = Category.new
     @categories = Category.all
-    @tag = Tag.new
     @tags = Tag.all
   end
 
@@ -19,6 +17,7 @@ class BlogsController < ApplicationController
         @blog.update(status: 'non_active') if saving_as_draft?
         format.html { redirect_to allblogs_path, notice: 'Your Blog was created.' }
       else
+        @categories = Category.all
         format.html { render :new}
       end
     end

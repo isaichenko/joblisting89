@@ -1,4 +1,7 @@
 class Blog < ApplicationRecord
+    validates :title, :presence => { :message => 'cannot be blank' }
+    validates :content, :presence => { :message => 'cannot be blank' }
+
     enum status: { active: 1, non_active: 0}
 
     has_and_belongs_to_many :categories
