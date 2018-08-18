@@ -55,8 +55,8 @@
                                         <td class="text-center"></td>
                                         <td class="text-center"><%= category.name %></td>
                                         <td class="text-center">
-                                            <%= link_to '', category_path(category), class: 'fa fa-edit fa-lg admin_icons' %>
-                                            <%= link_to '', faq_path(category), method: :delete, class: 'fa fa-trash fa-lg admin_icons', data: { confirm: 'Are you sure?' } %>
+                                            <%= link_to '', edit_category_path(category), class: 'fa fa-edit fa-lg text-success' %>
+                                            <%= link_to '', category_path(category), method: :delete, class: 'fa fa-trash fa-lg text-danger', data: { confirm: 'Are you sure?' } %>
                                         </td>
                                     </tr>
                                     <% end %>

@@ -55,7 +55,7 @@ class BlogsController < ApplicationController
     end
 
     def blog_params
-      params.require(:blog).permit(:title, :content, :created_at)
+      params.require(:blog).permit(:title, :content)
     end
 
     def publishing?
