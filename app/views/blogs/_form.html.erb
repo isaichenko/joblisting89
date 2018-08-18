@@ -89,7 +89,12 @@
                         <%= text_field :tag, :name, class: 'form-control', placeholder: 'Show Tags added' %>
                     </div>
                     <div class="col-md-6">
-                        <%= form.file_field :profile_pic, class: 'form-control' %>
+                        <%= form.file_field :featured_image, class: 'form-control' %>
+                        <% if @blog.featured_image? %>
+                            <%= image_tag @blog.featured_image.url %>
+                            <%= form.label :remove_image %>
+                            <%= form.check_box :remove_featured_image %>
+                        <% end %>
                     </div>
                 </div>
             </div> 

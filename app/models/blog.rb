@@ -3,4 +3,8 @@ class Blog < ApplicationRecord
 
     has_and_belongs_to_many :categories
     has_and_belongs_to_many :tags
+
+    #image upload
+    mount_uploader :featured_image, ImageUploader
+
 end
