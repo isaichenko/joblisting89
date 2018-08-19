@@ -2,6 +2,8 @@
 @import "gritter";
 @import "font-awesome";
 
+@import "select2";
+
 // @import "faqs";
 
 .custom-nav {
@@ -137,3 +139,13 @@ select.change-action {
 .faq-section {
 	font-size: 17px;
 }
+
+/*
+ ===================================
+	Blog
+ ===================================
+ */
+
+ .blog-content p {
+	 margin-bottom: 0;
+ }

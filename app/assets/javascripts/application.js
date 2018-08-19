@@ -21,6 +21,10 @@
 //= require cocoon
 //= require jquery.raty
 //= require turbolinks
+
+//= require select2-full
+
 //= require_tree .
+
 
 

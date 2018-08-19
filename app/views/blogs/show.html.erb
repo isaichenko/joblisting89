@@ -1,0 +1,23 @@
+<div class="blog">
+    <div class="row">
+        <div class="col-md-12">
+            <h3 class="text-primary"><%= @blog.title %></h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-10">
+            <p>Posted on <span class="text-danger"><%= @blog.created_at.to_date %></span></p>
+        </div>
+        <div class="col-md-2">
+            
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="blog-content border border-primary p-3">
+                <%= @blog.content.html_safe %>
+            </div>
+        </div>
+    </div>
+    <br>
+</div>
