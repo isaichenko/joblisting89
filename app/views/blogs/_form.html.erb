@@ -41,7 +41,7 @@
                         <span class="badge badge-success">Edit</span>
                     </div>
                     <div class="col-md-4">
-                        <%= form.datetime_field :published_at, :value =>  Time.now.strftime("%d-%m-%Y %H:%M:%S") , class: 'form-control d-none publish-date' %>
+                        <%= form.datetime_field :published_at, :value =>  Time.now.strftime("yyyy-MM-ddThh:mm") , class: 'form-control d-none publish-date' %>
                     </div>
                 </div>
             </div>
@@ -54,15 +54,17 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">All</th>
-                                        <th scope="col" class="text-center" >Category Name</th>
+                                        <th scope="col" class="text-center">All</th>
+                                        <th scope="col" class="text-center">Category Name</th>
                                         <th scope="col" class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <% @categories.each do |category| %>
                                     <tr>
-                                        <td class="text-center"></td>
+                                        <td class="text-center">
+                                            <%= check_box_tag :check_category %>
+                                        </td>
                                         <td class="text-center"><%= category.name %></td>
                                         <td class="text-center">
                                             <%= link_to '', edit_category_path(category), class: 'fa fa-edit fa-lg text-success' %>
@@ -96,15 +98,10 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <%= text_field :tag, :name, class: 'form-control', placeholder: 'Show Tags added' %>
+                        <%= text_field_tag "tags[]", "", class: 'form-control tags_added', placeholder: 'Show Tags added'  %>
                     </div>
                     <div class="col-md-6">
                         <%= form.file_field :featured_image, class: 'form-control' %>
-                        <% if @blog.featured_image? %>
-                            <%= image_tag @blog.featured_image.url %>
-                            <%= form.label :remove_image %>
-                            <%= form.check_box :remove_featured_image %>
-                        <% end %>
                     </div>
                 </div>
             </div> 
@@ -115,8 +112,15 @@
                         <%= text_field :tag, :name, class: 'form-control', placeholder: 'New Tag Name' %>
                     </div>
                     <div class="col-md-2">
-                        <%= button_tag class:'btn btn-primary float-right' do %>
+                        <%= link_to '', class:'btn btn-primary float-right' do %>
                             <i class="fa fa-plus"></i> Add New Tag
+                        <% end %>
+                    </div>
+                    <div class="col-md-6">
+                        <% if @blog.featured_image? %>
+                            <%= image_tag @blog.featured_image.url %>
+                            <%= form.label :remove_image %>
+                            <%= form.check_box :remove_featured_image %>
                         <% end %>
                     </div>
                 </div>

@@ -51,3 +51,7 @@ gem 'petergate', '~> 1.8', '>= 1.8.1'
 
 #ckeditor
 gem 'ckeditor'
+#select2
+gem 'select2-rails'
+#social share
+gem 'social-share-button'
