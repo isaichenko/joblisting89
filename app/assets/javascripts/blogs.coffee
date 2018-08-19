@@ -4,7 +4,7 @@
 
 $(document).on "turbolinks:load", ->
     
-    $("input[name=publish-type]").on "change", (event) ->
+    $("input[name=publish_type]").on "change", (event) ->
         type = parseInt($(this).val())
         if type
             $(".publish-date").addClass 'd-none'

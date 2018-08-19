@@ -3,4 +3,7 @@ class Category < ApplicationRecord
 
     default_scope { order(name: :ASC) }
     
+    def checked?(blog)
+        self.blogs.any? && (self.blogs.first.id == blog.id)
+    end
 end
