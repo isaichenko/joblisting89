@@ -23,6 +23,7 @@
 //= require turbolinks
 
 //= require select2-full
+//= require social-share-button
 
 //= require_tree .
 
