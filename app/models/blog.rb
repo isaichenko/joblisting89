@@ -1,4 +1,5 @@
 class Blog < ApplicationRecord
+    default_scope { order(published_at: 'DESC') }
     validates :title, :presence => { :message => 'cannot be blank' }
     validates :content, :presence => { :message => 'cannot be blank' }
 
@@ -9,5 +10,4 @@ class Blog < ApplicationRecord
 
     #image upload
     mount_uploader :featured_image, ImageUploader
-
 end
