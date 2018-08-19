@@ -9,6 +9,7 @@
             <p>Posted on <span class="text-danger"><%= @blog.created_at.to_date %></span></p>
         </div>
         <div class="col-md-2">
+            <%= social_share_button_tag(@blog.title) %>
             
         </div>
     </div>
