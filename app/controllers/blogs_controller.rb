@@ -11,16 +11,13 @@ class BlogsController < ApplicationController
 
   def create
     @publish_type = params[:publish_type]
-    puts "/////////////////"
-    puts blog_params
-    puts "/////////////////"
     @blog = Blog.new(blog_params)
 
     respond_to do |format|
       if @blog.save
         @blog.update(published_at: Time.zone.now) if publish_immediately?
         publishing? ? @blog.update(status: 'active') : @blog.update(status: 'non_active')
-        format.html { redirect_to allblogs_path, notice: 'Your Blog was created.' }
+        format.html { render :new}
       else
         @categories = Category.all
         format.html { render :new}

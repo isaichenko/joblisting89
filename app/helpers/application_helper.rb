@@ -61,6 +61,14 @@ module ApplicationHelper
     time.strftime("%Y-%m-%dT%H:%M")
   end
   
+  # def previous_url
+  #   URI(request.referer || '').path
+  # end
+
+  # def save_my_previous_url
+  #   session[:my_previous_url] = URI(request.referer || '').path
+  # end
+
   private
 
     def status_span_generator status

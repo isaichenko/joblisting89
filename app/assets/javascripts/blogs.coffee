@@ -45,4 +45,23 @@ $(document).on "turbolinks:load", ->
     #null
     $(".tags_added").val(null).trigger('change');
 
+    #add new category
+    $(".add-new-category").on "click", (e) ->
+        e.preventDefault()
+        $.ajax({
+            url: '/categories/add', 
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                category: {
+                    name: $('#category_name').val()
+                }
+            }, 
+            complete: () -> 
+                    
+            success: (data, textStatus, xhr) ->
+                console.log(data)
+            error: () -> 
+                
+        })
         

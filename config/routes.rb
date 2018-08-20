@@ -82,6 +82,8 @@ Rails.application.routes.draw do
   get     'jobs/:id/applicants/', to: 'jobs#applicants', as: 'job_applicants'
   get     'jobs/:id/invites/',    to: 'jobs#invites', as: 'job_invites'
 
+  #
+  post    '/categories/add',      to: 'categories#add'
   root to: 'pages#index'
 
 end

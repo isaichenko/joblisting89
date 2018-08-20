@@ -30,9 +30,11 @@
             </div>
 
             <div class="form-group">
-                <%= form.label :Publish %>
                 <div class="row">
-                    <div class="col-md-2 offset-md-1">
+                    <div class="col-md-12">
+                        <%= form.label :Publish %>
+                    </div>
+                    <div class="col-md-2">
                         <%= radio_button_tag 'publish_type', '1' %>
                         <span class="badge badge-primary">Immmediately</span>
                             <br>
@@ -48,7 +50,6 @@
             </div>
 
             <div class="form-group">
-                <%= form.label :Categories %>
                 <%= render 'categories/list', categories: @categories %>
             </div>
 
@@ -77,7 +78,7 @@
                         <%= text_field :tag, :name, class: 'form-control', placeholder: 'New Tag Name' %>
                     </div>
                     <div class="col-md-2">
-                        <%= link_to '', class:'btn btn-primary float-right' do %>
+                        <%= link_to '', class:'btn btn-primary float-right add-new-tag' do %>
                             <i class="fa fa-plus"></i> Add New Tag
                         <% end %>
                     </div>
@@ -92,8 +93,6 @@
             </div>
 
             <div class="form-group float-right">
-                <%#= clear a form  %>
-                <%#= f.submit "clear", :type => "reset" %>
                 <%= form.submit "Publish", class: 'btn btn-success' %> 
                 <%= form.submit "Save as Draft", class: 'btn btn-danger' %> 
             </div>
