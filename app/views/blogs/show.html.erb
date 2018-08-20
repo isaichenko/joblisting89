@@ -5,12 +5,18 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-md-12">
+            <% @blog.categories.each do |c| %>
+                <span class="badge badge-primary"><%= c.name %></span>
+            <% end %>
+        </div>
+    </div>
+    <div class="row py-1">
         <div class="col-md-10">
-            <p>Posted on <span class="text-danger"><%= @blog.created_at.to_date %></span></p>
+            <p class="m-0">Posted on <span class="text-danger"><%= @blog.created_at.to_date %></span></p>
         </div>
         <div class="col-md-2">
             <%= social_share_button_tag(@blog.title) %>
-            
         </div>
     </div>
     <div class="row">
@@ -20,5 +26,13 @@
             </div>
         </div>
     </div>
-    <br>
+    <div class="row py-1">
+        <div class="col-md-12">
+            <% @blog.tags.each do |t| %>
+                <span class="badge badge-success"><%= t.name %></span>
+            <% end %>
+        </div>
+    </div>
 </div>
+<br>
+<%= link_to 'Back', allblogs_path, class: '' %>

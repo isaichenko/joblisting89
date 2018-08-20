@@ -1,5 +1,8 @@
 class CategoriesController < ApplicationController
+    include ApplicationHelper
+
     before_action :set_category, only: [:edit, :show, :update, :destroy]
+    after_action :save_my_previous_url, only: [:edit, :show, :update, :destroy]
 
     def new
     end
@@ -13,7 +16,7 @@ class CategoriesController < ApplicationController
     def update
         respond_to do |format|
             if @category.update(category_params)
-              format.html { redirect_to allblogs_path, notice: 'Your Category was successfully updated.' }
+              format.html { redirect_to session[:my_previous_url], notice: 'Your Category was successfully updated.' }
             else
               format.html { render :edit}
             end
@@ -26,7 +29,17 @@ class CategoriesController < ApplicationController
     def destroy
         @category.destroy
         respond_to do |format|
-            format.html { redirect_to allblogs_path, notice: 'Your Category was removed.' }
+            format.html { redirect_to session[:my_previous_url], notice: 'Your Category was removed.' }
+        end
+    end
+
+    def add
+        @category = Category.new(category_post_parmas)
+        respond_to do |format|
+            if @category.save
+                format.html { redirect_to session[:my_previous_url], notice: 'Your Category was created.' }
+            else
+            end
         end
     end
 
@@ -37,5 +50,13 @@ class CategoriesController < ApplicationController
 
         def category_params
             params.require(:category).permit(:name)
+        end
+
+        def category_post_parmas
+            params.require(:category).permit(:name)
+        end
+
+        def save_my_previous_url
+            session[:my_previous_url] = URI(request.referer || '').path
         end
 end
