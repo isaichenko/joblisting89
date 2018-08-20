@@ -37,10 +37,12 @@ class CategoriesController < ApplicationController
         @category = Category.new(category_post_parmas)
         respond_to do |format|
             if @category.save
-                format.html { redirect_to session[:my_previous_url], notice: 'Your Category was created.' }
+                format.html
+                format.json {render json: @category}
             else
             end
         end
+
     end
 
     private

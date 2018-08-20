@@ -11,39 +11,39 @@ $(document).on "turbolinks:load", ->
         else
             $(".publish-date").removeClass 'd-none'
     
-    $(".tags_added").select2
-        multiple: true,
-        tags: true,
-        data: ["most","popular"]
-        # tokenSeparators: [',', ' '],
+    # $(".tags_added").select2
+    #     multiple: true,
+    #     tags: true,
+    #     data: ["most","popular"]
+    #     # tokenSeparators: [',', ' '],
 
-        # createTag: (params) ->
-        #     term = $.trim(params.term)
+    #     # createTag: (params) ->
+    #     #     term = $.trim(params.term)
 
-        #     if term == ''
-        #         return null
+    #     #     if term == ''
+    #     #         return null
 
-        #     return {
-        #         id: term,
-        #         text: term,
-        #         newTag: true 
-        #     }
+    #     #     return {
+    #     #         id: term,
+    #     #         text: term,
+    #     #         newTag: true 
+    #     #     }
 
-        # insertTag: (data, tag) -> 
-        #     data.push(tag)
-    data = {
-        id: 1,
-        text: 'A'
-    }
+    #     # insertTag: (data, tag) -> 
+    #     #     data.push(tag)
+    # data = {
+    #     id: 1,
+    #     text: 'A'
+    # }
 
-    newOption = new Option(data.text, data.id, false, false);
-    $('.tags_added').append(newOption).trigger('change');
+    # newOption = new Option(data.text, data.id, false, false);
+    # $('.tags_added').append(newOption).trigger('change');
 
-    $('.tags_added').val(['most', 'popular']);
-    $('.tags_added').trigger('change'); 
+    # $('.tags_added').val(['most', 'popular']);
+    # $('.tags_added').trigger('change'); 
 
-    #null
-    $(".tags_added").val(null).trigger('change');
+    # #null
+    # $(".tags_added").val(null).trigger('change');
 
     #add new category
     $(".add-new-category").on "click", (e) ->
@@ -60,8 +60,17 @@ $(document).on "turbolinks:load", ->
             complete: () -> 
                     
             success: (data, textStatus, xhr) ->
-                console.log(data)
+                $(".category-list").append('<tr><td>1</td>
+                                                <td>1</td>
+                                                <td>1</td></tr>')
             error: () -> 
                 
         })
         
+
+    $('.tag-ids').select2({
+      tags: true,
+      tokenSeparators: [','],
+      placeholder: 'Separated by comma',
+      data: ["most","popular"]
+    });
