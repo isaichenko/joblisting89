@@ -64,7 +64,8 @@
                 </div>
                 <div class="row">
                     <div class="col-md-6">
-                        <%= text_field_tag 'tags[]', '', class: 'form-control tags_added', placeholder: 'Show Tags added'  %>
+                        <%#= text_field_tag 'tag[]', '', class: 'form-control tags_added', placeholder: 'Show Tags added'  %>
+                        <%= form.text_field :tag_ids, :class => 'multiple-input form-control tag-ids', :multiple => "multiple"  %>
                     </div>
                     <div class="col-md-6">
                         <%= form.file_field :featured_image, class: 'form-control' %>
@@ -74,15 +75,20 @@
             
             <div class="form-group">
                 <div class = "row">
-                    <div class="col-md-4">
-                        <%= text_field :tag, :name, class: 'form-control', placeholder: 'New Tag Name' %>
-                    </div>
-                    <div class="col-md-2">
-                        <%= link_to '', class:'btn btn-primary float-right add-new-tag' do %>
-                            <i class="fa fa-plus"></i> Add New Tag
-                        <% end %>
-                    </div>
-                    <div class="col-md-6">
+                    
+                    <% comment do %>
+                        <div class="col-md-4">
+                            <%= text_field :tag, :name, class: 'form-control', placeholder: 'New Tag Name' %>
+                        </div>
+
+                        <div class="col-md-2">
+                            <%= link_to '', class:'btn btn-primary float-right add-new-tag' do %>
+                                <i class="fa fa-plus"></i> Add New Tag
+                            <% end %>
+                        </div>
+                    <% comment end %>
+
+                    <div class="col-md-6 offset-md-6">
                         <% if @blog.featured_image? %>
                             <%= image_tag @blog.featured_image.url %>
                             <%= form.label :remove_image %>

@@ -12,7 +12,9 @@ class BlogsController < ApplicationController
   def create
     @publish_type = params[:publish_type]
     @blog = Blog.new(blog_params)
-
+    puts "======================"
+    puts blog_params
+    puts "======================"
     respond_to do |format|
       if @blog.save
         @blog.update(published_at: Time.zone.now) if publish_immediately?
@@ -63,7 +65,7 @@ class BlogsController < ApplicationController
     end
 
     def blog_params
-      params.require(:blog).permit(:title, :content, :published_at, :status, :featured_image, :remove_featured_image, :category_ids => [])
+      params.require(:blog).permit(:title, :content, :published_at, :status, :featured_image, :remove_featured_image, :category_ids => [], :tag_ids => [])
     end
 
     def publishing?
