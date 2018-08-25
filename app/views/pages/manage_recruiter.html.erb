@@ -5,6 +5,7 @@
         <tr>
         <th scope="col">#</th>
         <th scope="col" class="text-center" >Name</th>
+        <th scope="col" class="text-center" >Email</th>
         <th scope="col" class="text-center">Company Name</th>
         <th scope="col" class="text-center">Joined Date</th>
         <th scope="col" class="text-center">Number of Job Posts</th>
@@ -17,6 +18,7 @@
             <tr>
                 <th scope="row"><%= key %></th>
                 <td class="text-center"><%= recruiter.name %></td>
+                <th scope="col" class="text-center" ><%= recruiter.email %></th>
                 <td class="text-center">
                     <% if recruiter.companies.count > 0 %>
                         <%= link_to recruiter.company_name, company_path(recruiter.companies.first) %>
