@@ -96,8 +96,8 @@ class User < ApplicationRecord
     self.companies.count > 0 ? self.companies.first.title : ''
   end
 
-  def number_of_jobs_applied 
-    self.resumes.count >0 ? self.resumes.first.applied_jobs.count : 0 
+  def number_of_jobs_applied
+    self.resumes.count >0 ? self.resumes.first.applied_jobs.count : 0
   end
 
   def number_of_jobs_post
@@ -134,7 +134,15 @@ class User < ApplicationRecord
     return if self.resumes.size.zero? && self.jobseeker?
     true
   end
-  
+
+  def active_for_authentication?
+    super && !suspended?
+  end
+
+  def inactive_message
+    suspended? ? :suspended : super
+  end
+
 # add scope
   scope :job_seekers,  -> { where(interface: 1).order(created_at: :DESC) }
   scope :recruiters, -> { where(interface: 0).order(created_at: :DESC) }
