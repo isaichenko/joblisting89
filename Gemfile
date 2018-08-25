@@ -50,7 +50,7 @@ gem 'cocoon', '~> 1.2', '>= 1.2.11'
 gem 'petergate', '~> 1.8', '>= 1.8.1'
 
 #ckeditor
-gem 'ckeditor'
+gem 'ckeditor', github: 'galetahub/ckeditor'
 #select2
 gem 'select2-rails'
 #social share
