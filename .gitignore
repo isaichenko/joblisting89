@@ -22,3 +22,5 @@
 # Ignore VSCode Settings
 /.VSCode
 /public/uploads
+.idea
+.DS_Store
