@@ -2,14 +2,24 @@
   <div class="job-info__head">
     <span style="font-weight: bold; font-size: 24px; line-height: 0px;"><%= job.title %></span>
     <br />Company: <%= link_to job.user.companies[0].title, company_path(job.user.companies[0]) %>
-    <p style="margin: 10px 0;"><%= link_to 'Show more about job', job_path(job), class: "btn btn-success", target: "_blank" %></p>
+    <p style="margin: 10px 0;">
+
+    <div class="row">
+      <div class="col-md-6">
+        <%= link_to 'Show more about job', job_path(job), class: "btn btn-success", target: "_blank" %>
+      </div>
+      <div class="col-md-6 big-icons">
+        <%= social_share_button_tag(job.title) %>
+      </div>
+    </div>
+    </p>
     <hr />
   </div>
   <div class="job-info__body">
     <div><b>Number of hires for this position:</b> <%= job.hires %></div>
     <div><b>Requires level of Education:</b> <br />
-        <%= job.education.title %>
-      </div>
+      <%= job.education.title %>
+    </div>
     <div><b>Salary:</b> USD<%= job.salary_min %>-<%= job.salary_max %></div>
 
     <div><b>Type of Job:</b> <%= job.job_type.title %></div>
@@ -23,9 +33,9 @@
       <hr />
       <strong>Description:</b> </strong><%= job.description %>
       <br /><br />
-        <% unless current_user&.applied_job?(job) %>
+      <% unless current_user&.applied_job?(job) %>
         <%= link_to 'Apply Job', apply_by_self_job_path(job_id: job.id), class: 'btn btn-primary btn-block', data: { confirm: 'Do you want to submit your resume?' } %>
-        <% end %>
+      <% end %>
     </div>
   </div>
 </div>
