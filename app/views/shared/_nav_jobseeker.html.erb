@@ -3,6 +3,10 @@
     <%= link_to 'Homepage', root_path, class: "nav-link #{active? root_path}" %>
   </li>
 
+  <li class="nav-item">
+    <%= link_to 'NewsFeed', news_feed_path, class: "nav-link #{active? news_feed_path}" %>
+  </li>
+
   <% if current_user.resumes.count == 0 %>
     <li class="nav-item">
       <%= link_to 'Build your Resume', new_resume_path, class: "nav-link #{active? new_resume_path}" %>
@@ -23,6 +27,10 @@
 
   <li class="nav-item">
     <%= link_to 'Subscribed Jobs', subscribed_jobs_path, class: "nav-link #{active? subscribed_jobs_path}" %>
+  </li>
+
+  <li class="nav-item">
+    <%= link_to 'Following List', following_list_path, class: "nav-link #{active? following_list_path}" %>
   </li>
 
   <li class="nav-item">

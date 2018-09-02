@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  acts_as_follower
+
   ############################################################################################
   ## PeterGate Roles                                                                        ##
   ## The :user role is added by default and shouldn't be included in this list.             ##

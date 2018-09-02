@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   mount Ckeditor::Engine => '/ckeditor'
   get 'faq/new'
 
@@ -24,6 +25,9 @@ Rails.application.routes.draw do
 
   resources :companies do
     resources :reviews
+    member do
+      get :follow_unfollow
+    end
   end
 
   resources :jobs
@@ -87,6 +91,11 @@ Rails.application.routes.draw do
   post    '/categories/add',      to: 'categories#add'
   #
   post    '/tags/add',            to: 'tags#add'
+
+  get     'following_list',       to: 'followers#following_list'
+  get     'follow_unfollow',      to: 'followers#follow_unfollow'
+
+  get     'news_feed',            to: 'news_feed#news_feed'
 
   root to: 'pages#index'
 

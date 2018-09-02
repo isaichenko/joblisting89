@@ -7,7 +7,10 @@
       <% if current_user.interface == "jobseeker" %>
         <h1>Jobseeker Dashboard</h1>
       <% else %>
-        <h1>Recruiter Dashboard</h1>
+        <h1>
+          Recruiter Dashboard
+          <span class="badge badge-info"><%= company_followers %></span>
+        </h1>
       <% end %>
     <li class="nav-item dropdown ml-auto">
       <%= link_to "I am #{interface_button}", toggle_interface_user_path(current_user), class: 'btn btn-primary'  %>
