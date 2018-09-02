@@ -1,4 +1,6 @@
 class Company < ApplicationRecord
+  acts_as_followable
+
   belongs_to :user
   has_many :photos
   has_many :reviews
