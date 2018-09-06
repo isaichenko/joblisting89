@@ -1,3 +1,9 @@
+/* ...
+*= require base
+*= require font-awesome
+*= require responsive
+*= require style
+*/
 @import "bootstrap";
 @import "gritter";
 @import "font-awesome";
@@ -126,7 +132,7 @@
 
 /*
  ===================================
-	Manage JobSeekers and Recruiter 
+	Manage JobSeekers and Recruiter
  ===================================
  */
 select.change-action {
@@ -135,7 +141,7 @@ select.change-action {
 
 /*
  ===================================
-	Manage JobSeekers and Recruiter 
+	Manage JobSeekers and Recruiter
  ===================================
  */
 .faq-section {
