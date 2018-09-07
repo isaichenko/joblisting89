@@ -27,5 +27,8 @@ module ListingApp
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Add fonts in pipline
+    config.assets.paths << Rails.root.join("app", "assets", "fonts")
   end
 end
