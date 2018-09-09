@@ -12,7 +12,7 @@ jQuery(document).ready(function($) {
 	
 		// Color Changer
 		$("#style-switcher .green" ).click(function(){
-			$("#colors" ).attr("href", "css/colors/green.css" );
+			$("#colors" ).attr("href", "<%= asset_path 'colors/green.css' %>" );
 			return false;
 		});
 		
