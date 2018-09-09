@@ -15,9 +15,9 @@
 //= require ckeditor/init
 
 //= require rails-ujs
-//= require popper
+// require popper
 //= require gritter
-//= require bootstrap-sprockets
+// require bootstrap-sprockets
 //= require cocoon
 //= require jquery.raty
 //= require turbolinks
