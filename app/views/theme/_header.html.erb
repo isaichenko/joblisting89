@@ -1,7 +1,11 @@
-<header class="transparent sticky-header">
+<% if current_page?(root_path) %>
+	<header class="transparent sticky-header">
+<% else %>
+	<header class="sticky-header">
+<% end %>
 <div class="container">
 	<div class="sixteen columns">
-	
+
 		<!-- Logo -->
 		<div id="logo">
 			<h1><%= link_to image_tag("logo2.png", alt: "Work Scout"), root_path %><h1>
