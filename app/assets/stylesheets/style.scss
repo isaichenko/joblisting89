@@ -7,9 +7,9 @@
 /* ------------------------------------------------------------------- */
 /* Import Section
 ---------------------------------------------------------------------- */
-@import url("base.css");				/* Default Reset, Typography, Forms, etc. */
-@import url("responsive.css");			/* Responsive Grid */
-@import url("font-awesome.css");		/* Font Awesome Icons */
+@import url("base.scss");				/* Default Reset, Typography, Forms, etc. */
+@import url("responsive.scss");			/* Responsive Grid */
+@import url("font-awesome.scss");		/* Font Awesome Icons */
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,500,600");
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700,300");
 
@@ -7712,3 +7712,4 @@ a.reply { margin: 15px 15px 0 0; border-radius: 3px; }
 body ul.tabs-nav-o li:first-child a, body ul.tabs-nav li:first-child a { border-radius: 3px 0 0 3px; }
 body ul.tabs-nav-o li:last-child a, body ul.tabs-nav li:last-child a { border-radius: 0 3px 3px 0;}
 /* BORDER RADIUS - END */
+
