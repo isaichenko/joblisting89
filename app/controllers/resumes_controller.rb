@@ -31,6 +31,12 @@ class ResumesController < ApplicationController
     @resume.user_id = current_user.id
 
     if @resume.save
+      @resume.work_experiences.each do |work_exp|
+        # send the new job titlew for admin approval
+        if !JobTitle.where(title: work_exp.job_title).present?
+          JobTitle.create(title: work_exp.job_title, status: false, user_id: current_user.id)
+        end
+      end
       redirect_to @resume, notice: 'Resume was successfully created.'
     else
       render :new
@@ -46,6 +52,12 @@ class ResumesController < ApplicationController
 
   def update
     if @resume.update(resume_params)
+      @resume.work_experiences.each do |work_exp|
+        # send the new job titlew for admin approval
+        if !JobTitle.where(title: work_exp.job_title).present?
+          JobTitle.create(title: work_exp.job_title, status: false, user_id: current_user.id)
+        end
+      end
       redirect_to @resume, notice: 'Resume was successfully updated.'
     else
       render :edit
@@ -71,6 +83,7 @@ class ResumesController < ApplicationController
       redirect_to resumes_path, notice: 'You do not have permission for this action!'
     end
   end
+
 
   private
     def set_resume
