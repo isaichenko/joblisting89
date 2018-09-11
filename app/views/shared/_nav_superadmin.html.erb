@@ -4,6 +4,10 @@
   </li>
 
   <li class="nav-item">
+    <%= link_to 'Job Statistics Settings', manage_job_stats_path, class: "nav-link #{active? manage_job_stats_path}" %>
+  </li>
+
+  <li class="nav-item">
     <%= link_to 'Job Posting Settings', settings_path, class: "nav-link #{active? settings_path}" %>
   </li>
 <%# Add Jobseeker, Recruiter, Blog, FAQ for admin %>
