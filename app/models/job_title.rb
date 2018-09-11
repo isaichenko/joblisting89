@@ -9,7 +9,7 @@ class JobTitle < ApplicationRecord
   validates_presence_of :title
   validates :title, uniqueness: true
   
-  scope :getMainTitles, -> { where(status: true) }
+  scope :getMainTitles, -> { where(status: true, ancestry: nil) }
   
 
   
