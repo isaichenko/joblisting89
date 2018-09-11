@@ -2,8 +2,11 @@
 	<div class="row">
 		<div class="col-md-6">
 			<div class="form-group">
+				<%- array = JobTitle.where(status: true).map{|j| [j.title, j.title]}%>
+				<%- array = array << [f.object.job_title, f.object.job_title] if f.object.present? && f.object.job_title.present?%>
 			  <%= f.label :job_title %>
-			  <%= f.text_field :job_title, class: 'form-control' %>
+	      <%= f.select :job_title, options_for_select(array, :selected => f.object.job_title), {:prompt => "-- Select Job Title --"}, class: "form-control job_title_tags" %>
+				
 			</div>
 
 			<div class="form-group">
@@ -106,4 +109,44 @@
        details_div.style['display'] = 'block';
      }
   };
+	
+	$(".job_title_tags").select2({
+	  tags: true,
+	  createTag: function (params) {
+	    return {
+	      id: params.term,
+	      text: params.term,
+	      newOption: true
+	    }
+	  },
+	   templateResult: function (data) {
+	    var $result = $("<span></span>");
+
+	    $result.text(data.text);
+
+	    if (data.newOption) {
+	      $result.append(" <em>(new)</em>");
+	    }
+
+	    return $result;
+	  }
+	});
 </script>
+
+<style type="text/css">
+	.select2-selection{
+		display: block !important;
+	    width: 100%;
+	    height: calc(2.25rem + 2px) !important;
+	    padding: 0.375rem 0.75rem !important;
+	    font-size: 1rem !important;
+	    line-height: 1.5 !important;
+	    color: #495057 !important;
+	    background-color: #fff !important;
+	    background-clip: padding-box !important;
+	    border: 1px solid #ced4da !important;
+	    border-radius: 0.25rem !important;
+	    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+	}
+</style>
+
