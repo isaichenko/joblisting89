@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  access all: { except: [:settings, :manage_jobseeker, :manage_recruiter] }, user: { except: [:settings, :manage_jobseeker, :manage_recruiter] }, superadmin: :all
+  access all: { except: [:settings, :manage_jobseeker, :manage_recruiter, :manage_job_stats] }, user: { except: [:settings, :manage_jobseeker, :manage_recruiter, :manage_job_stats] }, superadmin: :all
 
   def index; end
 
@@ -48,6 +48,14 @@ class PagesController < ApplicationController
     render :template => 'blogs/all', :locals => {:blogs => @blogs, :role => @role}
   end
 
+  def allsalaries
+    @all_salaries = JobTitle.getMainTitles.order(created_at: :DESC).all
+    if params[:query].present?
+      @all_salaries = @all_salaries.where('title like ?', "%#{params[:query]}%")
+    end
+    @all_salaries = @all_salaries.page params[:page]
+  end
+
   def find_resume; end
 
   def find_company; end
@@ -63,6 +71,11 @@ class PagesController < ApplicationController
     @job_types = JobType.all
     @job_areas = JobArea.all
   end
+
+  def manage_job_stats
+    @job_titles = JobTitle.where(status: true).all
+  end
+
 # Show Jobseeker, Recruiter, Blog, FAQ for admin  
   def manage_jobseeker
     # @job_seekers = User.where(interface: 1).order(created_at: :DESC).all

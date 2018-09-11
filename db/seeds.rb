@@ -37,6 +37,12 @@ User.create!(name:"admin", email: "admin@test.com", password: "123123", password
 User.create!(name:"recruiter2", email: "recruiter2@gmail.com", password: "123123", password_confirmation: "123123", interface: 0)
 
 #
+
+JobTitle.create(title:'Ruby on Rails programmer', user_id: 2)
+JobTitle.create(title:'Finance Manager', user_id: 7)
+JobTitle.create(title:'Interesting', user_id: 1)
+
+#
 Category.create(name:'Service')
 Category.create(name:'Payment')
 Category.create(name:'Job_Seeker')

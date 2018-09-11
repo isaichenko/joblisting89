@@ -15,6 +15,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
   has_many :jobs, dependent: :destroy
+  has_many :job_titles, dependent: :destroy
   has_many :companies, dependent: :destroy
   has_many :resumes, dependent: :destroy
 
