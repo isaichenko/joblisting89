@@ -1,0 +1,34 @@
+<br>
+<div style="width: 40%">
+	<%= form_with method: :get, local: true, url: allsalaries_path do |f| %>
+		<div class="input-group mb-3">
+			<%= f.text_field :query, class: "form-control", placeholder: "Job Title", value: nil %>
+		  <div class="input-group-append">
+				<%= f.submit "Search", class: "btn btn-primary", name: nil %>
+		  </div>
+		</div>
+	<% end %>
+</div>
+
+<h2>Salaries List</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Job Title</th>
+      <th scope="col">Min Salary</th>
+      <th scope="col">Max Salary</th>
+      <th scope="col">Avergae Salary</th>
+    </tr>
+  </thead>
+  <tbody id="jobs">
+		<% if @all_salaries.size > 0 %>
+			<%= render partial: 'all_salary', collection: @all_salaries %>
+		<% else %>
+		  No results Found
+		<% end %>
+  </tbody>
+</table>
+<br>
+<div class="float-right">
+<%= paginate @all_salaries %>
+</div>
