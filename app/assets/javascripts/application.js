@@ -20,7 +20,6 @@
 // require bootstrap-sprockets
 //= require cocoon
 //= require jquery.raty
-//= require turbolinks
 
 //= require select2-full
 //= require social-share-button
@@ -45,5 +44,6 @@
 //= require scripts/switcher
 //= require scripts/waypoints.min
 //= require scripts/custom
+// require turbolinks
 
 //= require_tree .
