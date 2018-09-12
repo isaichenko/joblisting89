@@ -68,7 +68,11 @@
 						<% end %>
 					</li>
 				<% else %>
-					<li><a href="my-account.html#tab2"><i class="fa fa-user"></i> Sign Up</a></li>
+					<li>
+						<%= link_to "#{new_user_session_path}#tab2" do %>
+							<i class="fa fa-user"></i> Sign Up
+						<% end %>
+					</li>
 					<li>
 						<%= link_to new_user_session_path do %>
 							<i class="fa fa-lock"></i> Log In
