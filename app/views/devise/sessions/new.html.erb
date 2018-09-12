@@ -50,13 +50,15 @@
           <%= f.submit "Login", class: "button border fw margin-top-10" %>
 
             <% if devise_mapping.rememberable? -%>
-              <%= f.label :remember_me, class: "rememberme" %>
-              <%= f.check_box :remember_me, id: "rememberme", value: "forever" %>
+              <label for="rememberme" class="rememberme">
+              <%= f.check_box :remember_me, id: "rememberme", value: "forever" %> Remember Me</label>
             <% end -%>
           </p>
 
           <p class="lost_password">
-            <a href="#" >Lost Your Password?</a>
+            <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+              <%= link_to "Lost Your Password?", new_password_path(resource_name) %><br />
+            <% end -%>
           </p>
 
           <%# render "devise/shared/links" %>
