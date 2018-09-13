@@ -1,16 +1,35 @@
-<div class="px-3">
-    <h2>Frequently Asked Questions</h2>
-    <% if @role == 'admin' %>
-        <div class="row">
-            <div class="col-md-3">
-                <%= link_to new_faq_path, class: 'btn btn-primary btn-block' do %>
-                    <i class="fa fa-plus"></i> Add New FAQ    
-                <% end %>
-            </div>
-        </div>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="single" style="margin-bottom: 20px;">
+  <div class="container">
+    <div class="sixteen columns">
+      <h2>Frequently Asked Questions</h2>
+        <nav id="breadcrumbs">
+          <ul>
+            <li>You are here:</li>
+            <li><%= link_to "Home", root_path %></li>
+            <li>FAQ</li>
+          </ul>
+        </nav>
+      </div>
+  </div>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="container">
+  <!-- Table -->
+  <div class="sixteen columns">
+    <table class="manage-table responsive-table">
+      <% if @role == 'admin' %>
+        <%= link_to new_faq_path, class: 'button border fw margin-top-10' do %>
+          <i class="fa fa-plus"></i> Add New FAQ
+        <% end %>
         <br>
         <%= render 'faqs/list_table', faqs: @faqs %>
-    <% else %>
+      <% else %>
         <%= render 'faqs/list', faqs: @faqs %>
-    <% end %>
+      <% end %>
+    </table>
+  </div>
 </div>
