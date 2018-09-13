@@ -12,17 +12,21 @@
     <% hidden_counter += 1 if is_hidden %>
 
     <div class="form-check <% if is_hidden %>hidden-filter<% end %>">
+      <ul class="checkboxes">
+        <li>
     <%= form.check_box name_inp, { multiple: true, checked: (true if is_checked), id: item['key'].parameterize, class: "form-check-input"}, item['key'], false %>
     <%= form.label name_inp, for: item['key'].parameterize, class: "form-check-label" do %>
 
         <%= item['key'].upcase_first %> (<%= item['doc_count'] %>)
       <% end %>
+    </li>
+      </ul>
     </div>
   <% end %>
   <div class="showed-block"></div>
   <% unless hidden_counter.zero? %>
     <div class="filter-block__bottom">
-      <a href="javascript:void(0)" class="show-more">show more</a>
+      <h6><a href="javascript:void(0)" class="show-more">show more</a></h6>
     </div>
   <% end %>
 <% end %>
