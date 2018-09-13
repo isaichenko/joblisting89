@@ -1,44 +1,22 @@
-<div class="row">
-  <div class="col">
-    <div class="info-cards__card">
-    <div class="row">
-      <div class="col-10"><b><u><%= link_to all_job.title, job_url(all_job), { remote: true, class: "card__title" } %></u></b></div>
-      <div class="col" style="text-align: right;">
-        <% if all_job.user_id != current_user&.id %>
-          <% if current_user&.bookmark_job?(all_job) %>
-            <%= link_to '', unbookmark_job_path(job_id: all_job.id), class: 'fa fa-star fa-2x unbookmark small', title: 'Unbookmark!', method: :delete %>
-          <% else %>
-            <%= link_to '', bookmark_job_path(job_id: all_job.id), class: 'fa fa-star fa-2x bookmark small', title: 'Bookmark!' %>
-          <% end %>
+<%= link_to job_url(all_job), class: "listing #{all_job.job_type.title}" do %>
+  <div class="listing-logo">
+    <%= image_tag("job-list-logo-01.png") %>
+  </div>
+  <div class="listing-title">
+    <h4>
+      <%= all_job.title %> <span class="listing-type"><%= all_job.job_type.title %></span>
+    </h4>
+    <ul class="listing-icons">
+      <li><i class="ln ln-icon-Management"></i> <%= pluralize(all_job.experience, 'year') %></li>
+      <li><i class="ln ln-icon-Map2"></i> <%= all_job.first_company.city %></li>
+      <li><i class="ln ln-icon-Money-2"></i> USD <%= all_job.salary_min %>-<%= all_job.salary_max %></li>
+      <li><div class="listing-date new">
+        <% if all_job.updated_at < (Time.now - 1.days) %>
+          <%= all_job.updated_at.strftime("%B %d, %Y")%>
+        <% else %>
+          new
         <% end %>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <%= link_to all_job.first_company.title, company_path(all_job.first_company.id) %>
-        <span class="star-rating col-md-7" data-score="<%= all_job.first_company.avg_rating %>" align="left"></span>
-      </div>
-      <div class="w-100"></div>
-      <div class="col">
-        <%= all_job.first_company.city %>
-      </div>
-      <div class="w-100"></div>
-      <div class="col">
-        <%= truncate(all_job.description, length: 50) %>
-      </div>
-       <div class="w-100"></div>
-      <div class="col">
-        Salary: USD<%= all_job.salary_min %>-<%= all_job.salary_max %>
-        <hr/>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-4">Years of Experience:<br /><%= pluralize(all_job.experience, 'year') %></div>
-      <div class="col-5">Job Area:<br/><%= all_job.job_area.title %></div>
-      <div class="col-3">Posted Date:<br/><%= all_job.updated_at.strftime("%B %d, %Y")%></div>
-    </div>
+      </div></li>
+    </ul>
   </div>
-  </div>
-</div>
-
-
+<% end %>

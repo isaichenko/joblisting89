@@ -8,7 +8,7 @@
 
 		<!-- Logo -->
 		<div id="logo">
-			<h1><%= link_to image_tag("logo2.png", alt: "Work Scout"), root_path %><h1>
+			<h1><%= link_to image_tag("logo.png", alt: "Work Scout"), root_path %><h1>
 		</div>
 
 		<!-- Menu -->
@@ -16,6 +16,7 @@
 			<ul id="responsive">
 
 				<li><%= link_to "Home", root_path, id: "current" %>
+					<!--
 					<ul>
 						<li><%= link_to "Home #1", root_path %></li>
 						<li><a href="index-2.html">Home #2</a></li>
@@ -23,6 +24,7 @@
 						<li><a href="index-4.html">Home #4</a></li>
 						<li><a href="index-5.html">Home #5</a></li>
 					</ul>
+					-->
 				</li>
 
 				<li><a href="#">Pages</a>
@@ -39,7 +41,7 @@
 
 				<li><a href="#">For Candidates</a>
 					<ul>
-						<li><a href="browse-jobs.html">Browse Jobs</a></li>
+						<li><%= link_to 'Browse Jobs', alljobs_path %></li>
 						<li><a href="browse-categories.html">Browse Categories</a></li>
 						<li><a href="add-resume.html">Add Resume</a></li>
 						<li><a href="manage-resumes.html">Manage Resumes</a></li>
