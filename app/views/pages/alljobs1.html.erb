@@ -1,0 +1,167 @@
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+  <div class="container">
+    <div class="ten columns">
+      <span>We have <%= Job.all.count %> jobs:</span>
+      <h2>All Jobs List</h2>
+    </div>
+
+    <div class="six columns">
+      <%= link_to 'Post a Job, It’s Free!', new_job_path, class: 'button' %>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+  <!-- Recent Jobs -->
+  <div class="eleven columns">
+  <div class="padding-right">
+
+    <div class="listings-container">
+
+      <!-- Listing -->
+
+
+
+<% if params[:q].present? %><h6>Results for: <i><%= params[:q] %></i></h6><% end %>
+<h2>All Jobs List</h2>
+
+
+    <% if @all_jobs.size > 0 %>
+      <%= render partial: 'all_job', collection: @all_jobs %>
+    <% else %>
+      No results
+    <% end %>
+
+
+  <%= paginate @all_jobs %>
+
+</div>
+
+
+    <div class="clearfix"></div>
+
+    <div class="pagination-container">
+      <nav class="pagination">
+        <ul>
+          <li><a href="#" class="current-page">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li class="blank">...</li>
+          <li><a href="#">22</a></li>
+        </ul>
+      </nav>
+
+      <nav class="pagination-next-prev">
+        <ul>
+          <li><a href="#" class="prev">Previous</a></li>
+          <li><a href="#" class="next">Next</a></li>
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+  </div>
+
+
+
+
+
+<!-- Widgets -->
+<div class="five columns">
+    <!-- Sort by -->
+    <div class="widget sidebar">
+
+    <%= form_with method: :get, local: true, url: alljobs_path, id: "filter-auto" do |f| %>
+      <h4>Sort by</h4>
+
+      <%= f.select :sort_by, options_for_select(Job::SORT_PARAMS.keys.collect{ |t| [t.humanize, t] }, params[:sort_by]), {}, class: "chosen-select-no-single" %>
+
+
+      <hr />
+      <!-- Filter -->
+    <div class="widget">
+      <h4>Filter:
+        <% if @filter_active %>
+          <span style="font-size: 15px;">
+            <%= link_to "(clear)", alljobs_path %>
+          </span>
+        <% end %>
+      </h4>
+    </div>
+
+      <!-- Job title -->
+    <div class="widget">
+      <h4><%= render "pages/partials/filter", arr: @all_jobs.aggs['title'], form: f, title: "Job title", name_inp: :job_title %></h4>
+      </div>
+
+      <!-- Experience level -->
+    <div class="widget">
+      <h4>Experience level</h4>
+      <% Job::EXPERIENCE_LEVELS.keys.each do |exp| %>
+        <div class="form-check">
+          <ul class="checkboxes">
+          <li>
+          <%= f.check_box :experience, { multiple: true, checked: (true if params[:experience]&.include?(exp)), id: exp, class: "form-check-input"}, exp, nil %>
+        <%= f.label :experience, for: exp, class: "form-check-label" do %>
+          <% counter = experience_counter(@all_jobs.aggs, exp) %>
+          <%= exp.humanize %> <% if counter %>(<%= counter %>)<% end %>
+</li>
+</ul>
+        <% end %>
+    </div>
+      <% end %>
+      </div>
+
+
+      <!-- Education -->
+    <div class="widget">
+      <h4>
+        <%= render "pages/partials/filter", arr: @all_jobs.aggs['education.title'], form: f, title: "Education", name_inp: :education, more_btn: false %>
+      </h4>
+    </div>
+
+    <!-- Job type -->
+    <div class="widget">
+      <h4>
+        <%= render "pages/partials/filter", arr: @all_jobs.aggs['job_type.title'], form: f, title: "Job type", name_inp: :job_type %>
+      </h4>
+    </div>
+
+    <!-- City -->
+    <div class="widget">
+      <h4>
+        <%= render "pages/partials/filter", arr: @all_jobs.aggs['city'], form: f, title: "City", name_inp: :city %>
+      </h4>
+    </div>
+
+
+      <%= f.hidden_field :q, value: params[:q] %>
+      <!--<%= f.submit "Update", class: "btn btn-primary", name: nil %>-->
+    <% end %>
+
+    </div>
+  <!-- Widgets / End -->
+</div>
+</div>
+
+
+
+
+
+<script>
+$(document).on("turbolinks:load", function(){
+  $('.star-rating').raty({
+      path: '/assets/',
+      readOnly: true,
+      score: function() {
+            return $(this).attr('data-score');
+    }
+  });
+})
+</script>
