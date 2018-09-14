@@ -69,16 +69,15 @@
   <div class="five columns">
 
     <!-- Sort by -->
-    <div class="widget">
+    <div class="widget sidebar">
 
       <!-- Select -->
       <%= form_with method: :get, local: true, url: alljobs_path, id: "filter-auto" do |f| %>
       <h4>Sort by</h4>
-      <div>
+      <div class="form-group">
       <%= f.select :sort_by, options_for_select(Job::SORT_PARAMS.keys.collect{ |t| [t.humanize, t] }, params[:sort_by]), {}, class: "chosen-select-no-single" %>
       </div>
 
-    </div>
 
 
     <!-- Filter -->
@@ -142,12 +141,16 @@
 
   </div>
   <!-- Widgets / End -->
+</div>
 
 </div>
 
+
+<!--
 <div class="col d-none d-lg-block">
   <div id="job_info"></div>
 </div>
+-->
 
 <script>
 $(document).on("turbolinks:load", function(){
@@ -217,21 +220,21 @@ $(document).on("turbolinks:load", function(){
 <div class="col-md-5">
   <% if params[:q].present? %><h6>Results for: <i><%= params[:q] %></i></h6><% end %>
 <h2>All Jobs List</h2>
-	<div class="info-cards">
-		<% if @all_jobs.size > 0 %>
-			<%= render partial: 'all_job', collection: @all_jobs %>
-		<% else %>
-		  No results
-		<% end %>
-	</div>
-	<%= paginate @all_jobs %>
+  <div class="info-cards">
+    <% if @all_jobs.size > 0 %>
+      <%= render partial: 'all_job', collection: @all_jobs %>
+    <% else %>
+      No results
+    <% end %>
+  </div>
+  <%= paginate @all_jobs %>
 </div>
 <div class="col d-none d-lg-block">
-	<div id="job_info"></div>
+  <div id="job_info"></div>
 </div>
 <script>
 $(document).on("turbolinks:load", function(){
-	$('.star-rating').raty({
+  $('.star-rating').raty({
       path: '/assets/',
       readOnly: true,
       score: function() {

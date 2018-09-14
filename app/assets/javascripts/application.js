@@ -21,7 +21,6 @@
 //= require cocoon
 //= require jquery.raty
 
-//= require select2-full
 //= require social-share-button
 
 //= require scripts/jquery-2.1.3.min
@@ -44,6 +43,7 @@
 //= require scripts/switcher
 //= require scripts/waypoints.min
 //= require scripts/custom
-// require turbolinks
+//= require turbolinks
+//= require select2-full
 
 //= require_tree .
