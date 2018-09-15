@@ -1,84 +1,150 @@
-<div class="row">
-  <div class="col-md-3">
-    <%= image_tag placeholder_img(@job.user.companies[0].logo, 'logo'), width: '100%' %>
-    <br>
-    <br>
-    <%= render 'apply_button' %>
-    <div class="big-icons mt-3">
-      <%= social_share_button_tag(@job.title) %>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="photo-bg" style="background: url(<%= asset_path 'job-page-photo.jpg' %>)">
+  <div class="container">
+    <div class="ten columns">
+      <span><%= link_to @job.job_area.title, alljobs_path %></span>
+      <h2><%= @job.title %> <span class="<%= @job.job_type.title %>"><%= @job.job_type.title %></span></h2>
     </div>
-  </div>
 
-  <div class="col-md-9">
-    <div class="row">
-      <div class="col-md-10">
-        <h1><%= @job.title %></h1>
-      </div>
-      <div class="col-md-2">
-        <% if user_signed_in? && @job.user_id != current_user.id %>
-          <% if current_user.bookmark_job?(@job) %>
-            <%= link_to '', unbookmark_job_path(job_id: @job.id), class: 'fa fa-star fa-2x unbookmark', title: 'Unbookmark!', method: :delete %>
-          <% else %>
-            <%= link_to '', bookmark_job_path(job_id: @job.id), class: 'fa fa-star fa-2x bookmark', title: 'Bookmark!' %>
+    <div class="six columns">
+      <% if user_signed_in? && @job.user_id != current_user.id %>
+        <% if current_user.bookmark_job?(@job) %>
+          <%= link_to unbookmark_job_path(job_id: @job.id), class: 'button white', title: 'Unbookmark!', method: :delete do %>
+            <i class="fa fa-star"></i> Unbookmark This Job
+          <% end %>
+        <% else %>
+          <%= link_to bookmark_job_path(job_id: @job.id), class: 'button white', title: 'Bookmark!' do %>
+            <i class="fa fa-star"></i> Bookmark This Job
           <% end %>
         <% end %>
-      </div>
+      <% end %>
     </div>
-    <table class="table">
-      <tbody>
-        <tr>
-          <th scope="row">Company Name:</th>
-          <td><%= link_to @job.user.companies[0].title, company_path(@job.user.companies[0]) %></td>
-        </tr>
-        <tr>
-          <th scope="row">Date Posted:</th>
-          <td><%= @job.created_at.strftime("%B %d, %Y") %></td>
-        </tr>
-        <tr>
-          <th scope="row">Type of Job</th>
-          <td><%= @job.job_type.title %></td>
-        </tr>
-        <tr>
-          <th scope="row">Job Area</th>
-          <td><%= @job.job_area.title %></td>
-        </tr>
-        <tr>
-          <th scope="row">Years of experience:</th>
-          <td><%= @job.experience %></td>
-        </tr>
-        <tr>
-          <th scope="row">Salary range USD</th>
-          <td><%= @job.salary_min %> - <%= @job.salary_max %></td>
-        </tr>
-        <tr>
-          <th scope="row">Number of hires for this position</th>
-          <td><%= @job.hires %></td>
-        </tr>
-        <tr>
-          <th scope="row">Requires level of Education</th>
-          <td><%= @job.education.title %></td>
-        </tr>
-        <tr>
-          <th scope="row">Expiry Date</th>
-          <td><%= @job.expiry_date.strftime("%B %d, %Y") if !@job.expiry_date.blank? %></td>
-        </tr>
-      </tbody>
-    </table>
+
   </div>
 </div>
 
-<div class="card">
-  <div class="card-body">
-    <strong>Description: </strong><%= @job.description %>
+<!-- Content
+================================================== -->
+<div class="container">
+  
+  <!-- Recent Jobs -->
+  <div class="eleven columns">
+  <div class="padding-right">
+    
+    <!-- Company Info -->
+    <div class="company-info">
+      <%= image_tag placeholder_img(@job.user.companies[0].logo, 'logo'), width: '100%' %>
+      <div class="content">
+        <h4><%= link_to @job.user.companies[0].title, company_path(@job.user.companies[0]) %></h4>
+        <span>
+          <%= link_to "http://#{@job.user.companies[0].website}" do %>
+            <i class="fa fa-link"></i> Website</a>
+          <% end %>
+        </span>
+        <span>
+          <i class="fa fa-envelope-o"></i> <%= @job.email %>
+        </span>
+        <span>
+          <i class="fa fa-map-marker"></i> <%= @job.address %>
+        </span>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+    <p class="margin-reset">
+      <%= @job.description %>
+    </p>
+
   </div>
-</div>
-<br>
-<h5 align="center">Contact: (<%= @job.email %> / <%= @job.address %>)</h5>
-<%= link_to 'Edit Job', edit_job_path(@job), class: 'btn btn-primary' if user_signed_in? && @job.user_id == current_user.id %>
-<div class="row">
-  <div class="col-md-9">
   </div>
-  <div class="col-md-3">
-    <%= render 'apply_button' %>
+
+
+  <!-- Widgets -->
+  <div class="five columns">
+
+    <!-- Sort by -->
+    <div class="widget">
+      <h4>Overview</h4>
+
+      <div class="job-overview">
+        
+        <ul>
+          <li>
+            <i class="fa fa-calendar-o"></i>
+            <div>
+              <strong>Date Posted:</strong>
+              <span><%= @job.created_at.strftime("%B %d, %Y") %></span>
+            </div>
+          </li>
+          <li>
+            <i class="fa fa-user"></i>
+            <div>
+              <strong>Job Title:</strong>
+              <span><%= @job.title %></span>
+            </div>
+          </li>
+          <li>
+            <i class="fa fa-clock-o"></i>
+            <div>
+              <strong>Years of experience:</strong>
+              <span><%= @job.experience %></span>
+            </div>
+          </li>
+          <li>
+            <i class="fa fa-money"></i>
+            <div>
+              <strong>Salary range USD:</strong>
+              <span><%= @job.salary_min %> - <%= @job.salary_max %></span>
+            </div>
+          </li>
+          <li>
+            <i class="fa fa-users"></i>
+            <div>
+              <strong>Number of hires for this position:</strong>
+              <span><%= @job.hires %></span>
+            </div>
+          </li>
+          <li>
+            <i class="fa fa-folder-open-o"></i>
+            <div>
+              <strong>Requires level of Education:</strong>
+              <span><%= @job.education.title %></span>
+            </div>
+          </li>
+          <li>
+            <i class="fa fa-calendar-o"></i>
+            <div>
+              <strong>Expiry Date:</strong>
+              <span><%= @job.expiry_date.strftime("%B %d, %Y") if !@job.expiry_date.blank? %></span>
+            </div>
+          </li>
+        </ul>
+
+        <% unless current_user&.applied_job?(@job) %>
+
+          <a href="#small-dialog" class="popup-with-zoom-anim button">Apply For This Job</a>
+
+          <div id="small-dialog" class="zoom-anim-dialog mfp-hide apply-popup">
+            <div class="small-dialog-headline">
+              <h2>Apply For This Job</h2>
+            </div>
+
+            <div class="small-dialog-content">
+              <p>Do you want to submit your resume?</p>
+              
+              <%= link_to 'Apply Job', apply_by_self_job_path(job_id: @job.id), class: 'button send' %>
+            </div>
+            
+          </div>
+        <% end %>
+
+      </div>
+
+    </div>
+
   </div>
+  <!-- Widgets / End -->
+
+
 </div>
