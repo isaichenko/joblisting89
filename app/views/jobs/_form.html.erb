@@ -1,87 +1,104 @@
-<%= form_for(job) do |form| %>
-  <% if job.errors.any? %>
-    <ul>
-      <% job.errors.full_messages.each do |error| %>
-        <li><%= error %><li>
+<!-- Content
+================================================== -->
+<div class="container">  
+
+  <!-- Submit Page -->
+  <div class="sixteen columns">
+    <div class="submit-page">
+
+      <%= form_for(job) do |form| %>
+
+        <!-- Errors Notice -->
+        <% if job.errors.any? %>
+          <ul>
+            <% job.errors.full_messages.each do |error| %>
+              <li><%= error %></li>
+            <% end %>
+          </ul>
+        <% end %>
+
+
+        <!-- Job title -->
+        <div class="form">
+          <h5>Job Title</h5>
+          <%= form.text_field :title, class: 'search-field' %>
+        </div>
+
+        <!-- Type of Job -->
+        <div class="form">
+          <h5>Type of Job</h5>
+          <%= form.collection_select(:job_type_id, JobType.all, :id, :title, {selected: job.job_type_id}, class: 'chosen-select-no-single') %>
+        </div>
+
+        <!-- Job Area -->
+        <div class="form">
+          <h5>Job Area</h5>
+          <%= form.collection_select(:job_area_id, JobArea.all, :id, :title, {selected: job.job_area_id}, class: 'chosen-select-no-single') %>
+        </div>
+
+        <!-- Salary -->
+        <div class="form">
+          <h5>What is the salary for this job per month (USD)</h5>
+          <div class="container">
+            <div class="five columns">
+              <%= form.number_field :salary_min, class: 'search-field', placeholder: 'min' %>
+            </div>
+            <div class="five columns">
+              <%= form.number_field :salary_max, class: 'search-field', placeholder: 'max' %>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Hires -->
+        <div class="form">
+          <h5>How many hires do you want to make for this position</h5>
+          <%= form.number_field :hires, class: 'search-field' %>
+        </div>
+
+        <!-- Experience -->
+        <div class="form">
+          <h5>Requires Years of experience</h5>
+          <%= form.number_field :experience, class: 'search-field' %>
+        </div>
+
+        <!-- Education -->
+        <div class="form">
+          <h5>Requires level of education</h5>
+          <%= form.collection_select(:education_id, Education.all, :id, :title, {selected: job.education_id}, class: 'chosen-select-no-single') %>
+        </div>
+        
+        <!-- Description -->
+        <div class="form">
+          <h5>Description (responsibilities of this job, work experience, skills and education)</h5>
+          <%= form.text_area :description, rows:6, class: 'search-field' %>
+        </div>
+
+        <!-- Applicants will send to which emails -->
+        <div class="form">
+          <h5>Applicants will send to which emails</h5>
+          <%= form.text_field :email, class: 'search-field' %>
+        </div>
+
+        <!-- Applicants will send to which address -->
+        <div class="form">
+          <h5>Applicants will send to which address</h5>
+          <%= form.text_area :address, rows:2, class: 'search-field' %>
+        </div>
+
+        <!-- Expiry Date -->
+        <div class="form">
+          <h5>Expiry Date</h5>
+          <%= form.date_field :expiry_date, class: 'search-field' %>
+          <p class="note">Deadline for new applicants.</p>
+        </div>
+
+        <div class="form-group">
+          <%= form.submit "Submit", class: 'button big margin-top-5' %>
+        </div>
+
       <% end %>
-    </ul>
-  <% end %>
-
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= form.label :"Job title" %>
-        <%= form.text_field :title, class: 'form-control' %>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <%= form.label :"Type of Job" %>
-            <%= form.collection_select(:job_type_id, JobType.all, :id, :title, {selected: job.job_type_id}, class: 'form-control') %>
-          </div>
-        </div>
-
-        <div class="col-md-6">
-          <div class="form-group">
-            <%= form.label :"Job Area" %>
-            <%= form.collection_select(:job_area_id, JobArea.all, :id, :title, {selected: job.job_area_id}, class: 'form-control') %>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= form.label "What is the salary for this job per month (USD)" %>
-        <div class="row">
-          <div class="col-md-6">
-            <%= form.number_field :salary_min, class: 'form-control', placeholder: 'min' %>
-          </div>
-          <div class="col-md-6">
-            <%= form.number_field :salary_max, class: 'form-control', placeholder: 'max' %>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :"How many hires do you want to make for this position" %>
-        <%= form.number_field :hires, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :"Requires Years of experience" %>
-        <%= form.number_field :experience, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :"Requires level of education" %>
-        <%= form.collection_select(:education_id, Education.all, :id, :title, {selected: job.education_id}, class: 'form-control') %>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= form.label :"Description (responsibilities of this job, work experience, skills and education)" %>
-        <%= form.text_area :description, rows:6, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :"Applicants will send to which emails" %>
-        <%= form.text_field :email, class: 'form-control', placeholder: 'E-mails separated by commas' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :"Applicants will send to which address" %>
-        <%= form.text_area :address, rows:2, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :expiry_date %>
-        <%= form.date_field :expiry_date, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.submit "Submit", class: 'btn btn-primary btn-block' %>
-      </div>
     </div>
   </div>
-<% end %>
+
+</div>

@@ -1,25 +1,51 @@
-<% if current_user.has_roles?(:superadmin) %>
-  <h2><span class="text-primary"><%= @company %></span>'s Jobs List</h2>
-<% else %>
-  <h2>Your Jobs List</h2>
-<% end %>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="single submit-page">
+  <div class="container">
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Title</th>
-      <th scope="col">Type of Job</th>
-      <th scope="col">Job Area</th>
-      <th scope="col">Applicants</th>
-      <th scope="col">Invites</th>
-      <th scope="col">Posted</th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody id="jobs">
-    <%= render @jobs %>
-  </tbody>
-</table>
+    <div class="sixteen columns">
+      <% if current_user.has_roles?(:superadmin) %>
+        <h2><span class="text-primary"><%= @company %></span>'s Jobs List</h2>
+      <% else %>
+        <h2><i class="fa fa-list"></i> Your Jobs List</h2>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="container">
+  
+  <!-- Table -->
+  <div class="sixteen columns">
+
+    <p class="margin-bottom-25">Your jobs can be viewed, edited or removed below.</p>
+
+    <table class="manage-table resumes responsive-table">
+
+      <tr>
+        <th></th>
+        <th><i class="fa fa-file-text"></i> Title</th>
+        <th>Type of Job</th>
+        <th>Job Area</th>
+        <th>Applicants</th>
+        <th>Invites</th>
+        <th><i class="fa fa-calendar"></i> Date Posted</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+
+      <%= render @jobs %>
+
+    </table>
+
+    <br>
+
+    <%= link_to "Add Job", new_job_path, class: "button" %>
+
+  </div>
+
+</div>
