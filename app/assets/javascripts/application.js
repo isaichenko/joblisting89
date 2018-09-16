@@ -16,7 +16,6 @@
 
 //= require rails-ujs
 // require popper
-//= require gritter
 // require bootstrap-sprockets
 //= require cocoon
 //= require jquery.raty
@@ -45,5 +44,6 @@
 //= require scripts/custom
 //= require turbolinks
 //= require select2-full
+//= require gritter
 
 //= require_tree .
