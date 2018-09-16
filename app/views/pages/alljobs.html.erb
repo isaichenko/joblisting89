@@ -69,15 +69,11 @@
   <div class="five columns">
 
     <!-- Sort by -->
-    <div class="widget sidebar">
 
       <!-- Select -->
       <%= form_with method: :get, local: true, url: alljobs_path, id: "filter-auto" do |f| %>
       <h4>Sort by</h4>
-      <div class="form-group">
       <%= f.select :sort_by, options_for_select(Job::SORT_PARAMS.keys.collect{ |t| [t.humanize, t] }, params[:sort_by]), {}, class: "chosen-select-no-single" %>
-      </div>
-
 
 
     <!-- Filter -->
