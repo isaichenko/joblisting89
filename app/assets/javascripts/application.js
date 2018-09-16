@@ -42,8 +42,8 @@
 //= require scripts/switcher
 //= require scripts/waypoints.min
 //= require scripts/custom
-//= require turbolinks
 //= require select2-full
 //= require gritter
+//= require turbolinks
 
 //= require_tree .
