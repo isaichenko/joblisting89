@@ -1,383 +1,273 @@
-<%= form_for(resume) do |form| %>
-  <% if resume.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(resume.errors.count, "error") %> prohibited this resume from being saved:</h2>
+<!-- Content
+================================================== -->
+<div class="container">
+  
+  <!-- Submit Page -->
+  <div class="sixteen columns">
+    <div class="submit-page">
 
-      <ul>
-      <% resume.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+      <%= form_for(resume) do |form| %>
+        <% if resume.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(resume.errors.count, "error") %> prohibited this resume from being saved:</h2>
 
-  <hr>
-
-  <h3>Personal details</h3>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= form.label :first_name %>
-        <%= form.text_field :first_name, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :last_name %>
-        <%= form.text_field :last_name, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :country %>
-        <%= form.text_field :country, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :city %>
-        <%= form.text_field :city, class: 'form-control' %>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= form.label :contact_information %>
-        <%= form.text_area :contact_information, rows: 5, class: 'form-control', placeholder: "email:  etc." %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :phone %>
-        <%= form.text_field :phone, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.radio_button :status, 'private_resume' %>
-        <%= form.label :status, 'Private Resume' %>
-      <br>
-        <%= form.radio_button :status, 'public_resume' %>
-        <%= form.label :status, 'Public Resume' %>
-      </div>
-    </div>
-  </div>
-
-  <hr>
-
-  <h3>Education</h3>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= form.label :degree %>
-        <%= form.text_field :degree, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :school %>
-        <%= form.text_field :school, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :field_of_study %>
-        <%= form.text_field :field_of_study, class: 'form-control' %>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= form.label :education_country %>
-        <%= form.text_field :education_country, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label :education_city %>
-        <%= form.text_field :education_city, class: 'form-control' %>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <%= form.label :education_start_date %>
-            <%= form.date_field :education_start_date, class: 'form-control' %>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <%= form.label :education_end_date %>
-            <%= form.date_field :education_end_date, class: 'form-control' %>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <hr>
-
-  <h3>Work Experience</h3>
-  <div>
-    <%= form.fields_for :work_experiences do |work_experience_form| %>
-      <%= render 'work_experience_fields', f: work_experience_form %>
-    <% end %>
-    <div>
-      <%= link_to_add_association 'Add Work Experience', form, :work_experiences %>
-    </div>
-  </div>
-
-  <hr>
-
-  <h3>Additional information</h3>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= form.label :desired_job_title %>
-        <%= form.text_field :desired_job_title, class: 'form-control' %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label "Desired job types" %><br />
-        <%= form.collection_check_boxes :job_type_ids, JobType.all, :id, :title do |b| %>
-          <div class="collection-check-box">
-            <%= b.check_box %>
-            <%= b.label %>
+            <ul>
+            <% resume.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
           </div>
         <% end %>
-      </div>
 
-      <h5>Desired salary USD</h5>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form-group">
-            <%= form.label "per month" %>
-            <%= form.number_field :desired_salary_per_month, class: 'form-control' %>
+        <!-- Personal details -->
+        <h3>Personal details</h3>
+        <div class="form">
+          <h5>First name</h5>
+          <%= form.text_field :first_name %>
+        </div>
+
+        <div class="form">
+          <h5>Last Name</h5>
+          <%= form.text_field :last_name %>
+        </div>
+
+        <div class="form">
+          <h5>Country</h5>
+          <%= form.text_field :country %>
+        </div>
+
+        <div class="form">
+          <h5>City</h5>
+          <%= form.text_field :city %>
+        </div>
+
+        <div class="form">
+          <h5>Contact information</h5>
+          <%= form.text_area :contact_information, placeholder: "email:  etc." %>
+        </div>
+
+        <div class="form">
+          <h5>Phone</h5>
+          <%= form.text_field :phone %>
+        </div>
+
+        <div class="form">
+          <div class="container">
+            <div class="columns">
+              <%= form.radio_button :status, 'private_resume' %>
+              <%= form.label :status, 'Private Resume' %>
+            </div>
+        
+            <div class="columns">
+              <%= form.radio_button :status, 'public_resume' %>
+              <%= form.label :status, 'Public Resume' %>
+            </div>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <%= form.label "per year" %>
-            <%= form.number_field :desired_salary_per_year, class: 'form-control' %>
+
+        <!-- Education -->
+        <h3>Education</h3>
+
+        <div class="form">
+          <h5>Degree</h5>
+          <%= form.text_field :degree %>
+        </div>
+
+        <div class="form">
+          <h5>School</h5>
+          <%= form.text_field :school %>
+        </div>
+
+        <div class="form">
+          <h5>Field of Study</h5>
+          <%= form.text_field :field_of_study %>
+        </div>
+
+        <div class="form">
+          <h5>Education Country</h5>
+          <%= form.text_field :education_country %>
+        </div>
+
+        <div class="form">
+          <h5>Education City</h5>
+          <%= form.text_field :education_city %>
+        </div>
+
+        <div class="form">
+          <div class="container">
+            <div class="columns">
+              <h5>Education start date</h5>
+              <%= form.date_field :education_start_date %>
+            </div>
+        
+            <div class="columns">
+              <h5>Education end date</h5>
+              <%= form.date_field :education_end_date %>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="col-md-6">
-      <h5>Employment eligibility</h5>
-      <div class="form-group">
-        <%= form.radio_button :employment_eligibility, 'authorized' %>
-        <%= form.label :employment_eligibility, 'Authorized to work in the country where you located' %>
-          <br>
-        <%= form.radio_button :employment_eligibility, 'sponsorship' %>
-        <%= form.label :employment_eligibility, 'Sponsorship required to work in the country' %>
-      </div>
+        <!-- Work Experience -->
+        <h3>Work Experience</h3>
 
-      <div class="form-group">
-        <%= form.label "I am willing to relocate" %>
-        <%= form.check_box :relocation %>
-      </div>
-
-      <div class="form-group">
-        <%= form.label "Additional information (text)" %>
-        <%= form.text_area :additional_information_step_4, rows: 8, class: 'form-control' %>
-      </div>
-    </div>
-  </div>
-  <hr>
-
-  <h3>Add more fields</h3>
-  <div class="row">
-    <div class="col-md-6">
-      <div class="accordion" id="accordionExample">
-        <div class="card">
-          <div class="card-header" id="headingOne">
-            <h5 class="mb-0">
-              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Skills
-              </button>
-            </h5>
+        <div class="form">
+          <%= form.fields_for :work_experiences do |work_experience_form| %>
+            <%= render 'work_experience_fields', f: work_experience_form %>
+          <% end %>
+          <div>
+            <%= link_to_add_association form, :work_experiences, class: 'button gray add-url add-box' do %>
+              <i class="fa fa-plus-circle"></i> Add Work Experience
+            <% end %>
           </div>
+        </div>
 
-          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-            <div class="card-body">
-                <%= form.fields_for :skills do |skills_form| %>
-                  <%= render "/resumes/skill_fields", f: skills_form %>
-                <% end %>
-                <div>
-                  <%= link_to_add_association 'Add Skill', form, :skills %>
+        <!-- Additional information -->
+        <h3>Additional information</h3>
+
+        <div class="form">
+          <h5>Desired Job Title</h5>
+          <%= form.text_field :desired_job_title %>
+        </div>
+
+        <div class="form">
+          <h5>Desired job types</h5>
+          <div class="container">
+            <%= form.collection_check_boxes :job_type_ids, JobType.all, :id, :title do |b| %>
+              <div class="collection-check-box">
+                <div class="columns">
+                  <%= b.check_box %>
+                  <%= b.label %>
                 </div>
-            </div>
+              </div>
+            <% end %>
           </div>
         </div>
-        <div class="card">
-          <div class="card-header" id="headingTwo">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Certifications / Licenses
-              </button>
-            </h5>
-          </div>
-          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-            <div class="card-body">
-              <%= form.fields_for :certifications do |certifications_form| %>
-                <%= render "certification_fields", f: certifications_form %>
-              <% end %>
-              <div>
-                <%= link_to_add_association 'Add Certification / License', form, :certifications %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header" id="headingThree">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Links
-              </button>
-            </h5>
-          </div>
-          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-            <div class="card-body">
-              <div class="form-group">
-                <%= form.label :blog_url %>
-                <%= form.text_field :blog_url, class: 'form-control' %>
-              </div>
 
-              <div class="form-group">
-                <%= form.label :personal_homepage %>
-                <%= form.text_field :personal_homepage, class: 'form-control' %>
-              </div>
-
-              <div class="form-group">
-                <%= form.label :facebook %>
-                <%= form.text_field :facebook, class: 'form-control' %>
-              </div>
-
-              <div class="form-group">
-                <%= form.label :twitter %>
-                <%= form.text_field :twitter, class: 'form-control' %>
-              </div>
+        <div class="form">
+          <h5>Desired salary USD</h5>
+          <div class="container">
+            <div class="columns">
+              <%= form.number_field :desired_salary_per_month, placeholder: 'per month', class: 'form-control' %>
+            </div>
+            <div class="columns">
+              <%= form.number_field :desired_salary_per_year, placeholder: 'per year', class: 'form-control' %>
             </div>
           </div>
         </div>
-        <div class="card">
-          <div class="card-header" id="headingFour">
-            <h5 class="mb-0">
-              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                Military service
-              </button>
-            </h5>
-          </div>
 
-          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-            <div class="card-body">
-              <%= form.fields_for :militaries do |militaries_form| %>
-                <%= render "military_fields", f: militaries_form %>
-              <% end %>
-              <div>
-                <%= link_to_add_association 'Add Military Service', form, :militaries %>
-              </div>
+        <div class="form">
+          <h5>Employment eligibility</h5>
+          <div class="container">
+            <div class="columns">
+              <%= form.radio_button :employment_eligibility, 'authorized' %>
+              <%= form.label :employment_eligibility, 'Authorized to work in the country where you located' %>
+            </div>
+          
+            <div class="columns">
+              <%= form.radio_button :employment_eligibility, 'sponsorship' %>
+              <%= form.label :employment_eligibility, 'Sponsorship required to work in the country' %>
             </div>
           </div>
         </div>
-      </div>
-    </div>
 
-    <div class="col-md-6">
-      <div class="accordion" id="accordionExample2">
-        <div class="card">
-          <div class="card-header" id="headingFive">
-            <h5 class="mb-0">
-              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
-                Awards
-              </button>
-            </h5>
-          </div>
+        <div class="form">
+          <h5>I am willing to relocate</h5>
+          <%= form.check_box :relocation %>
+        </div>
 
-          <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordionExample2">
-            <div class="card-body">
-              <%= form.fields_for :awards do |awards_form| %>
-                <%= render "award_fields", f: awards_form %>
-              <% end %>
-              <div>
-                <%= link_to_add_association 'Add Award', form, :awards %>
-              </div>
-            </div>
-          </div>
+        <div class="form">
+          <h5>Additional information (text)</h5>
+          <%= form.text_area :additional_information_step_4 %>
         </div>
-        <div class="card">
-          <div class="card-header" id="headingSix">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                Groups
-              </button>
-            </h5>
-          </div>
-          <div id="collapseSix" class="collapse" aria-labelledby="headingSix" data-parent="#accordionExample2">
-            <div class="card-body">
-              <%= form.fields_for :groups do |groups_form| %>
-                <%= render "group_fields", f: groups_form %>
-              <% end %>
-              <div>
-                <%= link_to_add_association 'Add Group', form, :groups %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header" id="headingSeven">
-            <h5 class="mb-0">
-              <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                Patents
-              </button>
-            </h5>
-          </div>
-          <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordionExample2">
-            <div class="card-body">
-              <%= form.fields_for :patents do |patents_form| %>
-                <%= render "patent_fields", f: patents_form %>
-              <% end %>
-              <div>
-                <%= link_to_add_association 'Add Patent', form, :patents %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-header" id="headingEight">
-            <h5 class="mb-0">
-              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                Publications
-              </button>
-            </h5>
-          </div>
 
-          <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordionExample2">
-            <div class="card-body">
-              <%= form.fields_for :publications do |publications_form| %>
-                <%= render "publication_fields", f: publications_form %>
-              <% end %>
-              <div>
-                <%= link_to_add_association 'Add Publication', form, :publications %>
-              </div>
+
+        <!-- Add more fields -->
+        <h3>Add more fields</h3>
+
+        <!-- Logo -->
+        <div class="form">
+          <h5>Photo <span>(optional)</span></h5>
+          <label class="upload-btn">
+              <input type="file" multiple />
+              <i class="fa fa-upload"></i> Browse
+          </label>
+          <span class="fake-input">No file selected</span>
+        </div>
+
+        <!-- Email -->
+        <div class="form">
+          <h5>Video <span>(optional)</span></h5>
+          <input class="search-field" type="text" placeholder="A link to a video about you" value=""/>
+        </div>
+
+        <!-- Description -->
+        <div class="form">
+          <h5>Resume Content</h5>
+          <textarea class="WYSIWYG" name="summary" cols="40" rows="3" id="summary" spellcheck="true"></textarea>
+        </div>
+
+
+        <!-- Add URLs -->
+        <div class="form with-line">
+          <h5>URL(s) <span>(optional)</span></h5>
+          <div class="form-inside">
+            
+            <!-- Adding URL(s) -->
+            <div class="form boxed box-to-clone url-box">
+              <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
+              <input class="search-field" type="text" placeholder="Name" value=""/>
+              <input class="search-field" type="text" placeholder="http://" value=""/>
             </div>
+
+            <a href="#" class="button gray add-url add-box"><i class="fa fa-plus-circle"></i> Add URL</a>
+            <p class="note">Optionally provide links to any of your websites or social network profiles.</p>
           </div>
         </div>
-      </div>
+
+
+        <!-- Education -->
+        <div class="form with-line">
+          <h5>Education <span>(optional)</span></h5>
+          <div class="form-inside">
+
+            <!-- Add Education -->
+            <div class="form boxed box-to-clone education-box">
+              <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
+              <input class="search-field" type="text" placeholder="School Name" value=""/>
+              <input class="search-field" type="text" placeholder="Qualification(s)" value=""/>
+              <input class="search-field" type="text" placeholder="Start / end date" value=""/>
+              <textarea name="desc" id="desc" cols="30" rows="10" placeholder="Notes (optional)"></textarea>
+            </div>
+
+            <a href="#" class="button gray add-education add-box"><i class="fa fa-plus-circle"></i> Add Education</a>
+          </div>
+        </div>
+
+
+        <!-- Experience  -->
+        <div class="form with-line">
+          <h5>Experience <span>(optional)</span></h5>
+          <div class="form-inside">
+
+            <!-- Add Experience -->
+            <div class="form boxed box-to-clone experience-box">
+              <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
+              <input class="search-field" type="text" placeholder="Employer" value=""/>
+              <input class="search-field" type="text" placeholder="Job Title" value=""/>
+              <input class="search-field" type="text" placeholder="Start / end date" value=""/>
+              <textarea name="desc1" id="desc1" cols="30" rows="10" placeholder="Notes (optional)"></textarea>
+            </div>
+
+            <a href="#" class="button gray add-experience add-box"><i class="fa fa-plus-circle"></i> Add Experience</a>
+          </div>
+        </div>
+
+
+        <div class="divider margin-top-0 padding-reset"></div>
+        <a href="#" class="button big margin-top-5">Preview <i class="fa fa-arrow-circle-right"></i></a>
+
+      <% end %>
     </div>
   </div>
-  <br>
 
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= form.label "Additional information (text)" %>
-        <%= form.text_area :additional_information_step_5, class: 'form-control' %>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <div class="form-group">
-          <%= form.label "Profile Picture" %>
-          <%= form.file_field :profile_pic, class: 'form-control' %>
-      </div>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= form.submit "Submit", class: 'btn btn-primary' %>
-  </div>
-<% end %>
+</div>
