@@ -18,7 +18,6 @@
 // require popper
 // require bootstrap-sprockets
 //= require cocoon
-//= require jquery.raty
 
 //= require social-share-button
 
@@ -44,6 +43,7 @@
 //= require scripts/custom
 //= require select2-full
 //= require gritter
+//= require jquery.raty
 //= require turbolinks
 
 //= require_tree .
