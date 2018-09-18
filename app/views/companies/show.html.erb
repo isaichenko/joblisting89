@@ -1,128 +1,169 @@
-<div class="row">
-  <div class="col-md-3">
-    <%= image_tag placeholder_img(@company.logo, 'logo'), width: '100%' %><br><br>
-
-    <div class="reviews" align="center">
-      <div class="row">
-        <div class="col-md-5" align="right"><h4><%= @avg_rating %></h4></div>
-        <div class="star-rating col-md-7" data-score= <%= @avg_rating %> align="left"></div>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+  <div class="container">
+    <div class="ten columns">
+      <h2><%= @company.title %> <span class="full-time"><%= @company.industry %></span></h2>
+      <span>
+        <div class="container">
+        <div class="column"><h4><%= @avg_rating %></h4></div>
+        <div class="star-rating column" data-score= <%= @avg_rating %> ></div>
       </div>
+      </span>
+      <span><em><%= link_to (@company.reviews.count.to_s + " reviews"), company_reviews_path(@company), class: '' %></em></span>
     </div>
 
-    <%= link_to 'Edit Company', edit_company_path(@company), class: 'btn btn-primary btn-block' if user_signed_in? && current_user.company_ids[0] == @company.id %><br>
-    <em><%= link_to (@company.reviews.count.to_s + " reviews"), company_reviews_path(@company), class: 'btn btn-primary btn-block' %></em><br>
-    <%= link_to "Review this Company", new_company_review_path(@company), class: 'btn btn-primary btn-block' %>
+    <div class="six columns">
+      <%= link_to new_company_review_path(@company), class: 'button dark' do %>
+        <i class="fa fa-star"></i> Review this Company</a>
+      <% end %>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+  
+  <!-- Recent Jobs -->
+  <div class="eleven columns">
+  <div class="padding-right">
+    
+    <!-- Company Info -->
+    <div class="company-info">
+      <%= image_tag placeholder_img(@company.logo, 'logo'), width: '100%' %>
+      <div class="content">
+        <h4><%= @company.title %></h4>
+        <span>
+          <%= link_to "http://#{@company.website}", target: :_blank do %>
+            <i class="fa fa-link"></i> Website
+          <% end %>
+        </span>
+        <span><i class="fa fa-phone"></i> <%= @company.phone %></span>
+        <span><i class="fa fa-map-marker"></i> <%= @company.country %> / <%= @company.city %> / <%= @company.postal_code %></span>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+    <h5>About us:</h5>
+    <p class="margin-reset">
+      <%= @company.about %>
+    </p>
+
+    <br>
+    <h5>Why join us:</h5>
+    <p><%= @company.why_join_us %></p>
+
+    <h5>Photos:</h5>
+    <div class="container">
+      <% @company.photos.each do |photo| %>
+        <div class="column">
+          <%= image_tag photo.source, width: '100%' %>
+          <br>
+          <br>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
   </div>
 
-  <div class="col-md-9">
-    <h1><%= @company.title %></h1>
-    <table class="table">
-      <tbody>
+
+  <!-- Widgets -->
+  <div class="five columns">
+
+    <!-- Sort by -->
+    <div class="widget">
+      <h4>Overview</h4>
+
+      <div class="job-overview">
+        
+        <ul>
+          <li>
+            <i class="fa fa-map-marker"></i>
+            <div>
+              <strong>Hires per year</strong>
+              <span><%= @company.hires_per_year %></span>
+            </div>
+          </li>
+          <li>
+            <i class="fa fa-user"></i>
+            <div>
+              <strong>Number of employee</strong>
+              <span><%= @company.number_of_employee %></span>
+            </div>
+          </li>
+          <li>
+            <i class="fa fa-clock-o"></i>
+            <div>
+              <strong>Name</strong>
+              <span><%= @company.name %></span>
+            </div>
+          </li>
+          <li>
+            <i class="fa fa-money"></i>
+            <div>
+              <strong>Payment info</strong>
+              <span><%= @company.payment_info %></span>
+            </div>
+          </li>
+        </ul>
+
+        <%= link_to 'Edit Company', edit_company_path(@company), class: 'button' if user_signed_in? && current_user.company_ids[0] == @company.id %>
+
+      </div>
+
+    </div>
+
+  </div>
+  <!-- Widgets / End -->
+
+
+</div>
+
+<div class="container">
+  
+  <!-- Jobs, available for this company -->
+  <h3>Jobs, available for this company:</h3>
+  <div class="sixteen columns">
+    <table class="manage-table resumes responsive-table">
+      <thead>
         <tr>
-          <th scope="row">Hires per year</th>
-          <td><%= @company.hires_per_year %></td>
+          <th scope="col">Title</th>
+          <th scope="col">Type of Job</th>
+          <th scope="col">Job Area</th>
+          <th scope="col">Pay range USD</th>
+          <th scope="col">Posted at</th>
+          <th scope="col">Expiry Date</th>
+          <% if user_signed_in? %>
+            <th></th>
+          <% end %>
         </tr>
-        <tr>
-          <th scope="row">Name</th>
-          <td><%= @company.name %></td>
-        </tr>
-        <tr>
-          <th scope="row">Phone number</th>
-          <td><%= @company.phone %></td>
-        </tr>
-        <tr>
-          <th scope="row">Country</th>
-          <td><%= @company.country %></td>
-        </tr>
-        <tr>
-          <th scope="row">City / postal code</th>
-          <td><%= @company.city %> / <%= @company.postal_code %></td>
-        </tr>
-        <tr>
-          <th scope="row">Payment info</th>
-          <td><%= @company.payment_info %></td>
-        </tr>
-        <tr>
-          <th scope="row">Website</th>
-          <td><%= @company.website %></td>
-        </tr>
-        <tr>
-          <th scope="row">Industry</th>
-          <td><%= @company.industry %></td>
-        </tr>
-        <tr>
-          <th scope="row">Number of employee</th>
-          <td><%= @company.number_of_employee %></td>
-        </tr>
+      </thead>
+      <tbody id="jobs">
+        <% @company.user.jobs.each do |job| %>
+          <tr>
+            <td><%= link_to job.title, job %></td>
+            <td><%= job.job_type.title %></td>
+            <td><%= job.job_area.title %></td>
+            <td><%= job.salary_min %> - <%= job.salary_max %></td>
+            <td><%= job.updated_at.strftime("%B %d, %Y") %></td>
+            <td><%= job.expiry_date.strftime("%B %d, %Y") if !job.expiry_date.blank? %></td>
+            <% if user_signed_in? %>
+              <td>
+                <% if current_user.bookmark_job?(job) %>
+                  <%= link_to '', unbookmark_job_path(job_id: job.id), class: 'fa fa-star fa-lg unbookmark', title: 'Unbookmark!', method: :delete %>
+                <% else %>
+                  <%= link_to '', bookmark_job_path(job_id: job.id), class: 'fa fa-star fa-lg bookmark', title: 'Bookmark!' %>
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
-</div>
 
-<h4>Why join us:</h4>
-<div class="card">
-  <div class="card-body">
-    <%= @company.why_join_us %>
-  </div>
 </div>
-<br>
-<h4>About us:</h4>
-<div class="card">
-  <div class="card-body">
-    <%= @company.about %>
-  </div>
-</div>
-<br>
-<h4>Photos:</h4>
-<div class="row">
-  <% @company.photos.each do |photo| %>
-    <div class="col-md-4">
-      <%= image_tag photo.source, width: '100%' %>
-      <br>
-      <br>
-    </div>
-  <% end %>
-</div>
-<br>
-
-<h3>Jobs, available for this company:</h3>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Title</th>
-      <th scope="col">Type of Job</th>
-      <th scope="col">Job Area</th>
-      <th scope="col">Pay range USD</th>
-      <th scope="col">Posted at</th>
-      <th scope="col">Expiry Date</th>
-      <% if user_signed_in? %>
-        <th></th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody id="jobs">
-    <% @company.user.jobs.each do |job| %>
-      <tr>
-        <td><%= link_to job.title, job %></td>
-        <td><%= job.job_type.title %></td>
-        <td><%= job.job_area.title %></td>
-        <td><%= job.salary_min %> - <%= job.salary_max %></td>
-        <td><%= job.updated_at.strftime("%B %d, %Y") %></td>
-        <td><%= job.expiry_date.strftime("%B %d, %Y") if !job.expiry_date.blank? %></td>
-        <% if user_signed_in? %>
-          <td>
-            <% if current_user.bookmark_job?(job) %>
-              <%= link_to '', unbookmark_job_path(job_id: job.id), class: 'fa fa-star fa-lg unbookmark', title: 'Unbookmark!', method: :delete %>
-            <% else %>
-              <%= link_to '', bookmark_job_path(job_id: job.id), class: 'fa fa-star fa-lg bookmark', title: 'Bookmark!' %>
-            <% end %>
-          </td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-<%= link_to 'Edit Company', edit_company_path(@company), class: 'btn btn-primary' if user_signed_in? && current_user.company_ids[0] == @company.id %>
-<hr>

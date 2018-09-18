@@ -7,98 +7,94 @@
     </ul>
   <% end %>
 
-  <div class="row">
-    <div class="col-md-6">
-      <div class="form-group">
-        <label class="btn btn-primary btn-block">
+      <div class="form">
+        <label class="button gray">
           Upload Company Logo <%= form.file_field :logo, style: 'display:none;' %>
         </label>
       </div>
 
-      <div class="form-group">
-        <%= form.label :"Company name" %>
-        <%= form.text_field :title, class: 'form-control' %>
+      <div class="form">
+        <h5>Company name</h5>
+        <%= form.text_field :title, class: '' %>
       </div>
 
-      <div class="form-group">
-        <%= form.label :hires_per_year %>
-        <%= form.number_field :hires_per_year, class: 'form-control' %>
+      <div class="form">
+        <h5>Hires per year</h5>
+        <%= form.number_field :hires_per_year, class: '' %>
       </div>
 
-      <div class="form-group">
-        <%= form.label :name %>
-        <%= form.text_field :name, class: 'form-control' %>
+      <div class="form">
+        <h5>Name</h5>
+        <%= form.text_field :name, class: '' %>
       </div>
 
-      <div class="form-group">
-        <%= form.label :phone %>
-        <%= form.text_field :phone, class: 'form-control' %>
+      <div class="form">
+        <h5>Phone</h5>
+        <%= form.text_field :phone, class: '' %>
       </div>
 
-      <div class="form-group">
-        <%= form.label :country %>
-        <%= form.text_field :country, class: 'form-control' %>
+      <div class="form">
+        <h5>Country</h5>
+        <%= form.text_field :country, class: '' %>
       </div>
 
-      <div class="form-group">
-        <%= form.label :"City / postal code" %>
-        <div class="row">
-          <div class="col-md-6">
-            <%= form.text_field :city, class: 'form-control' %>
+      <div class="form">
+        <h5>City / postal code</h5>
+        <div class="container">
+          <div class="column">
+            <%= form.text_field :city, class: '' %>
           </div>
-          <div class="col-md-6">
-            <%= form.number_field :postal_code, class: 'form-control' %>
+          <div class="column">
+            <%= form.number_field :postal_code, class: '' %>
           </div>
         </div>
       </div>
 
-      <div class="form-group">
-        <%= form.label :payment_info %>
-        <%= form.text_area :payment_info, rows:2, class: 'form-control' %>
+      <div class="form">
+        <h5>Payment info</h5>
+        <%= form.text_area :payment_info, rows:2, class: '' %>
       </div>
 
-      <div class="form-group">
-        <%= form.label :about %>
-        <%= form.text_area :about, rows:2, class: 'form-control' %>
-      </div>
-    </div>
-
-    <div class="col-md-6">
-      <div class="form-group">
-        <%= form.label :why_join_us %>
-        <%= form.text_area :why_join_us, rows:2, class: 'form-control' %>
+      <div class="form">
+        <h5>About</h5>
+        <%= form.text_area :about, rows:2, class: '' %>
       </div>
 
-      <div class="form-group">
-        <%= form.label :website %>
-        <%= form.text_field :website, class: 'form-control' %>
+      <div class="form">
+        <h5>Why join us</h5>
+        <%= form.text_area :why_join_us, rows:2, class: '' %>
       </div>
 
-      <div class="form-group">
-        <%= form.label :industry %>
-        <%= form.text_field :industry, class: 'form-control' %>
+      <div class="form">
+        <h5>Website</h5>
+        <%= form.text_field :website, class: '' %>
       </div>
 
-      <div class="form-group">
-        <%= form.label :number_of_employee %>
-        <%= form.number_field :number_of_employee, class: 'form-control' %>
+      <div class="form">
+        <h5>Industry</h5>
+        <%= form.text_field :industry, class: '' %>
       </div>
 
-      <div class="col-md-12">
+      <div class="form">
+        <h5>Number of employee</h5>
+        <%= form.number_field :number_of_employee, class: '' %>
+      </div>
+
+      <div>
         <h4>Photos:</h4>
         <div>
           <%= form.fields_for :photos do |photo_form| %>
             <%= render 'photo_fields', f: photo_form %>
           <% end %>
           <div>
-            <%= link_to_add_association 'Add Photo', form, :photos %>
+            <%= link_to_add_association form, :photos, class: 'button gray add-url add-box' do %>
+              <i class="fa fa-plus-circle"></i> Add Photo
+            <% end %>
           </div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <div class="form-group">
-    <%= form.submit "Submit", class: 'btn btn-primary' %>
+  <div class="form">
+    <%= form.submit "Submit", class: 'button' %>
   </div>
 <% end %>

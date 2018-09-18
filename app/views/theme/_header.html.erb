@@ -53,7 +53,9 @@
 				<li><a href="#">For Employers</a>
 					<ul>
 						<li><%= link_to 'Add Job', new_job_path %></li>
-						<li><a href="manage-jobs.html">Manage Jobs</a></li>
+						<li><%= link_to 'Manage Jobs', jobs_path %></li>
+						<li><%= link_to 'Add Company', new_company_path %></li>
+						<li><%= link_to 'Manage Companies', companies_path %></li>
 						<li><a href="manage-applications.html">Manage Applications</a></li>
 						<li><%= link_to "Browse Resumes", allresumes_path %></li>
 					</ul>

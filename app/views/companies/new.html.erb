@@ -1,5 +1,31 @@
-<h1>Create new Company</h1>
-<div class="alert alert-info" role="alert">
-  <h4>You have to setup your company profile before proceed to post your first job!</h4>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="single submit-page">
+	<div class="container">
+
+		<div class="sixteen columns">
+			<h2><i class="fa fa-plus-circle"></i> Add Company</h2>
+		</div>
+
+	</div>
 </div>
-<%= render 'form', company: @company %>
+
+<!-- Content
+================================================== -->
+<div class="container">
+	
+	<!-- Submit Page -->
+	<div class="sixteen columns">
+		<div class="submit-page">
+
+			<!-- Notice -->
+			<div class="notification notice closeable margin-bottom-40">
+				<p><span>Have an company?</span> You have to setup your company profile before proceed to post your first job!</p>
+			</div>
+			
+			<%= render 'form', company: @company %>
+		
+		</div>
+	</div>
+</div>
+

@@ -1,6 +1,10 @@
-<div class="form-group nested-fields">
-  <label class="btn btn-primary">
+<div class="form nested-fields">
+	<div class="form boxed box-to-clone education-box">
+  <label class="button gray">
     Upload Company Photo <%= f.file_field :source, style: 'display: none;' %>
   </label>
-  <%= link_to_remove_association 'Remove Photo', f %>
+  <%= link_to_remove_association f, class: "close-form remove-box button" do %>
+		<i class="fa fa-close"></i>
+	<% end %>
+</div>
 </div>
