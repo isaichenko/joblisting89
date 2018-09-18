@@ -1,27 +1,25 @@
-<div class="row">
-  <div class="col-7">
-    <div class="info-cards__card company">
-    <div class="row">
-      <div class="col"><b><u><%= link_to all_company.title, all_company, { remote: true, class: "card__title" } %></u></b>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        Industry: <%= all_company.industry %>
-      </div>
-      <div class="w-100"></div>
-      <div class="col">
-        <div>
-        	<div class="star-rating" data-score="<%= all_company.avg_rating %>"></div>
-        	<span> - <%= pluralize(all_company.reviews.size, 'review') %></span>
+<%= link_to company_url(all_company), class: "listing full-time" do %>
+  <div class="listing-logo">
+    <%= image_tag("job-list-logo-01.png") %>
+  </div>
+  <div class="listing-title">
+    <h4>
+      <%= all_company.title %> <span class="listing-type"><%= all_company.industry %></span>
+    </h4>
+    <ul class="listing-icons">
+      <li>
+        <div class="col">
+
+          <div class="star-rating-new" data-score="<%= all_company.avg_rating %>" style="display:inline;"></div>
+          <span><%= pluralize(all_company.reviews.size, 'review') %></span>
         </div>
-      </div>
-      <div class="w-100"></div>
-      <div class="col">
+      </li>
+      <li><i class="ln ln-icon-User"></i> <%= all_company.number_of_employee %></li>
+      <li><i class="ln ln-icon-Map2"></i> <%= all_company.city %></li>
+      <li><i class="ln ln-icon-Phone"></i> <%= all_company.phone %></li>
+      <li><div class="listing-date new">
         <%= pluralize(all_company.user.jobs.size, 'Job')%> available
-      </div>
-    </div>
+      </div></li>
+    </ul>
   </div>
-  </div>
-  <div class="col"></div>
-</div>
+<% end %>

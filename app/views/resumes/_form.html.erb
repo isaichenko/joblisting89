@@ -1,7 +1,7 @@
 <!-- Content
 ================================================== -->
 <div class="container">
-  
+
   <!-- Submit Page -->
   <div class="sixteen columns">
     <div class="submit-page">
@@ -54,17 +54,20 @@
         <div class="form">
           <div class="container">
             <div class="columns">
-              <%= form.radio_button :status, 'private_resume' %>
-              <%= form.label :status, 'Private Resume' %>
+              <label for="status" class="rememberme">
+                <%= form.radio_button :status, 'private_resume' %> Private Resume
+              </label>
             </div>
-        
+
             <div class="columns">
-              <%= form.radio_button :status, 'public_resume' %>
-              <%= form.label :status, 'Public Resume' %>
+              <label for="status" class="rememberme">
+                <%= form.radio_button :status, 'public_resume' %> Public Resume
+              </label>
             </div>
           </div>
         </div>
 
+<hr>
         <!-- Education -->
         <h3>Education</h3>
 
@@ -99,7 +102,7 @@
               <h5>Education start date</h5>
               <%= form.date_field :education_start_date %>
             </div>
-        
+
             <div class="columns">
               <h5>Education end date</h5>
               <%= form.date_field :education_end_date %>
@@ -108,13 +111,13 @@
         </div>
 
         <!-- Work Experience -->
-        <h3>Work Experience</h3>
 
-        <div class="form">
+        <div class="form with-line">
+        <h3>Work Experience</h3>
           <%= form.fields_for :work_experiences do |work_experience_form| %>
             <%= render 'work_experience_fields', f: work_experience_form %>
           <% end %>
-          <div>
+          <div class="form-inside">
             <%= link_to_add_association form, :work_experiences, class: 'button gray add-url add-box' do %>
               <i class="fa fa-plus-circle"></i> Add Work Experience
             <% end %>
@@ -135,8 +138,8 @@
             <%= form.collection_check_boxes :job_type_ids, JobType.all, :id, :title do |b| %>
               <div class="collection-check-box">
                 <div class="columns">
-                  <%= b.check_box %>
-                  <%= b.label %>
+                    <%= b.check_box %>
+                    <%= b.label %>
                 </div>
               </div>
             <% end %>
@@ -147,10 +150,10 @@
           <h5>Desired salary USD</h5>
           <div class="container">
             <div class="columns">
-              <%= form.number_field :desired_salary_per_month, placeholder: 'per month', class: 'form-control' %>
+              <%= form.number_field :desired_salary_per_month, placeholder: 'per month', class: '' %>
             </div>
             <div class="columns">
-              <%= form.number_field :desired_salary_per_year, placeholder: 'per year', class: 'form-control' %>
+              <%= form.number_field :desired_salary_per_year, placeholder: 'per year', class: '' %>
             </div>
           </div>
         </div>
@@ -159,20 +162,23 @@
           <h5>Employment eligibility</h5>
           <div class="container">
             <div class="columns">
-              <%= form.radio_button :employment_eligibility, 'authorized' %>
-              <%= form.label :employment_eligibility, 'Authorized to work in the country where you located' %>
+              <label for="employment_eligibility" class="rememberme">
+                <%= form.radio_button :employment_eligibility, 'authorized' %> Authorized to work in the country where you located
+              </label>
             </div>
-          
+
             <div class="columns">
-              <%= form.radio_button :employment_eligibility, 'sponsorship' %>
-              <%= form.label :employment_eligibility, 'Sponsorship required to work in the country' %>
+              <label for="employment_eligibility" class="rememberme">
+                <%= form.radio_button :employment_eligibility, 'sponsorship' %> Sponsorship required to work in the country
+              </label>
             </div>
           </div>
         </div>
 
         <div class="form">
-          <h5>I am willing to relocate</h5>
-          <%= form.check_box :relocation %>
+          <label for="employment_eligibility" class="rememberme">
+            <%= form.check_box :relocation %> I am willing to relocate
+          </label>
         </div>
 
         <div class="form">
@@ -184,87 +190,140 @@
         <!-- Add more fields -->
         <h3>Add more fields</h3>
 
+        <!-- Skills -->
+        <div class="form with-line">
+        <h3>Skills</h3>
+          <%= form.fields_for :skills do |skills_form| %>
+            <%= render "/resumes/skill_fields", f: skills_form %>
+          <% end %>
+          <div class="form-inside">
+            <%= link_to_add_association form, :skills, class: 'button gray add-url add-box' do %>
+              <i class="fa fa-plus-circle"></i> Add Skill
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Certifications / Licenses -->
+        <div class="form with-line">
+        <h3>Certifications / Licenses</h3>
+          <%= form.fields_for :certifications do |certifications_form| %>
+            <%= render "certification_fields", f: certifications_form %>
+          <% end %>
+          <div class="form-inside">
+            <%= link_to_add_association form, :certifications, class: 'button gray add-url add-box' do %>
+              <i class="fa fa-plus-circle"></i> Add Certification / License
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Links -->
+        <div class="form with-line">
+        <h3>Links</h3>
+
+          <div class="form-group">
+            <h5>Blog URL</h5>
+            <%= form.text_field :blog_url %>
+          </div>
+
+          <div class="form-group">
+            <h5>Personal Homepage</h5>
+            <%= form.text_field :personal_homepage %>
+          </div>
+
+          <div class="form-group">
+            <h5>Facebook</h5>
+            <%= form.text_field :facebook %>
+          </div>
+
+          <div class="form-group">
+            <h5>Twitter</h5>
+            <%= form.text_field :twitter %>
+          </div>
+
+        </div>
+
+        <!-- Military service -->
+        <div class="form with-line">
+        <h3>Military service</h3>
+          <%= form.fields_for :militaries do |militaries_form| %>
+            <%= render "military_fields", f: militaries_form %>
+          <% end %>
+          <div class="form-inside">
+            <%= link_to_add_association form, :militaries, class: 'button gray add-url add-box' do %>
+              <i class="fa fa-plus-circle"></i> Add Military service
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Awards -->
+        <div class="form with-line">
+        <h3>Awards</h3>
+          <%= form.fields_for :awards do |awards_form| %>
+            <%= render "award_fields", f: awards_form %>
+          <% end %>
+          <div class="form-inside">
+            <%= link_to_add_association form, :awards, class: 'button gray add-url add-box' do %>
+              <i class="fa fa-plus-circle"></i> Add Award
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Groups -->
+        <div class="form with-line">
+        <h3>Groups</h3>
+          <%= form.fields_for :groups do |groups_form| %>
+            <%= render "group_fields", f: groups_form %>
+          <% end %>
+          <div class="form-inside">
+            <%= link_to_add_association form, :groups, class: 'button gray add-url add-box' do %>
+              <i class="fa fa-plus-circle"></i> Add Group
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Patents -->
+        <div class="form with-line">
+        <h3>Patents</h3>
+          <%= form.fields_for :patents do |patents_form| %>
+            <%= render "patent_fields", f: patents_form %>
+          <% end %>
+          <div class="form-inside">
+            <%= link_to_add_association form, :patents, class: 'button gray add-url add-box' do %>
+              <i class="fa fa-plus-circle"></i> Add Patent
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Publications -->
+        <div class="form with-line">
+        <h3>Publications</h3>
+          <%= form.fields_for :publications do |publications_form| %>
+            <%= render "publication_fields", f: publications_form %>
+          <% end %>
+          <div class="form-inside">
+            <%= link_to_add_association form, :publications, class: 'button gray add-url add-box' do %>
+              <i class="fa fa-plus-circle"></i> Add Publication
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Additional information (text) -->
+        <div class="form">
+          <h5>Additional information (text)</h5>
+          <%= form.text_area :additional_information_step_5 %>
+        </div>
+
         <!-- Logo -->
-        <div class="form">
-          <h5>Photo <span>(optional)</span></h5>
-          <label class="upload-btn">
-              <input type="file" multiple />
-              <i class="fa fa-upload"></i> Browse
-          </label>
-          <span class="fake-input">No file selected</span>
-        </div>
-
-        <!-- Email -->
-        <div class="form">
-          <h5>Video <span>(optional)</span></h5>
-          <input class="search-field" type="text" placeholder="A link to a video about you" value=""/>
-        </div>
-
-        <!-- Description -->
-        <div class="form">
-          <h5>Resume Content</h5>
-          <textarea class="WYSIWYG" name="summary" cols="40" rows="3" id="summary" spellcheck="true"></textarea>
-        </div>
-
-
-        <!-- Add URLs -->
-        <div class="form with-line">
-          <h5>URL(s) <span>(optional)</span></h5>
-          <div class="form-inside">
-            
-            <!-- Adding URL(s) -->
-            <div class="form boxed box-to-clone url-box">
-              <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
-              <input class="search-field" type="text" placeholder="Name" value=""/>
-              <input class="search-field" type="text" placeholder="http://" value=""/>
-            </div>
-
-            <a href="#" class="button gray add-url add-box"><i class="fa fa-plus-circle"></i> Add URL</a>
-            <p class="note">Optionally provide links to any of your websites or social network profiles.</p>
+        <div class="col-md-6">
+          <div class="form-group">
+            <h5>Photo <span>(optional)</span></h5>
+            <%= form.file_field :profile_pic, class: 'fake-input' %>
           </div>
         </div>
 
-
-        <!-- Education -->
-        <div class="form with-line">
-          <h5>Education <span>(optional)</span></h5>
-          <div class="form-inside">
-
-            <!-- Add Education -->
-            <div class="form boxed box-to-clone education-box">
-              <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
-              <input class="search-field" type="text" placeholder="School Name" value=""/>
-              <input class="search-field" type="text" placeholder="Qualification(s)" value=""/>
-              <input class="search-field" type="text" placeholder="Start / end date" value=""/>
-              <textarea name="desc" id="desc" cols="30" rows="10" placeholder="Notes (optional)"></textarea>
-            </div>
-
-            <a href="#" class="button gray add-education add-box"><i class="fa fa-plus-circle"></i> Add Education</a>
-          </div>
+        <div class="form">
+          <%= form.submit "Submit", class: 'button' %>
         </div>
-
-
-        <!-- Experience  -->
-        <div class="form with-line">
-          <h5>Experience <span>(optional)</span></h5>
-          <div class="form-inside">
-
-            <!-- Add Experience -->
-            <div class="form boxed box-to-clone experience-box">
-              <a href="#" class="close-form remove-box button"><i class="fa fa-close"></i></a>
-              <input class="search-field" type="text" placeholder="Employer" value=""/>
-              <input class="search-field" type="text" placeholder="Job Title" value=""/>
-              <input class="search-field" type="text" placeholder="Start / end date" value=""/>
-              <textarea name="desc1" id="desc1" cols="30" rows="10" placeholder="Notes (optional)"></textarea>
-            </div>
-
-            <a href="#" class="button gray add-experience add-box"><i class="fa fa-plus-circle"></i> Add Experience</a>
-          </div>
-        </div>
-
-
-        <div class="divider margin-top-0 padding-reset"></div>
-        <a href="#" class="button big margin-top-5">Preview <i class="fa fa-arrow-circle-right"></i></a>
 
       <% end %>
     </div>

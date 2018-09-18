@@ -1,13 +1,16 @@
 <div class="nested-fields">
-  <div class="form-group">
+  <div class="form boxed box-to-clone education-box">
+  <div class="form">
     <%= f.label :title %>
-    <%= f.text_field :title, class: 'form-control' %>
+    <%= f.text_field :title, class: '' %>
   </div>
 
-  <div class="form-group">
+  <div class="form">
     <%= f.label "Years of experience" %>
-    <%= f.number_field :experience, class: 'form-control' %>
+    <%= f.number_field :experience, class: '' %>
   </div>
-  <%= link_to_remove_association 'Remove Skill', f, class: "badge badge-danger" %>
+  <%= link_to_remove_association f, class: "close-form remove-box button" do %>
+    <i class="fa fa-close"></i>
+  <% end %>
 </div>
-<hr>
+</div>
