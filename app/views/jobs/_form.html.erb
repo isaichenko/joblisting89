@@ -1,32 +1,32 @@
 <!-- Content
 ================================================== -->
-<div class="container">  
+<div class="container">
 
   <!-- Submit Page -->
   <div class="sixteen columns">
     <div class="submit-page">
-
       <%= form_for(job) do |form| %>
 
-        <!-- Errors Notice -->
-        <% if job.errors.any? %>
-          <ul>
-            <% job.errors.full_messages.each do |error| %>
-              <li><%= error %></li>
-            <% end %>
-          </ul>
-        <% end %>
-
+      <!-- Errors Notice -->
+      <% if job.errors.any? %>
+        <ul>
+          <% job.errors.full_messages.each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+        </ul>
+      <% end %>
 
         <!-- Job title -->
         <div class="form">
-          <h5>Job Title</h5>
-          <%= form.text_field :title, class: 'search-field' %>
+				  <%- array = JobTitle.where(status: true).map{|j| [j.title, j.title]}%>
+				  <%- array = array << [job.title, job.title] if job.title.present?%>
+          <%= form.label :"Job title" %>
+        	<%= form.select :title, options_for_select(array, :selected => job.title), {:prompt => "-- Select or Type a new Job Title --"}, class: "form-control", id: "job_title_recruiter" %>
         </div>
 
         <!-- Type of Job -->
         <div class="form">
-          <h5>Type of Job</h5>
+          <%= form.label :"Type of Job" %>
           <%= form.collection_select(:job_type_id, JobType.all, :id, :title, {selected: job.job_type_id}, class: 'chosen-select-no-single') %>
         </div>
 
@@ -67,7 +67,7 @@
           <h5>Requires level of education</h5>
           <%= form.collection_select(:education_id, Education.all, :id, :title, {selected: job.education_id}, class: 'chosen-select-no-single') %>
         </div>
-        
+
         <!-- Description -->
         <div class="form">
           <h5>Description (responsibilities of this job, work experience, skills and education)</h5>
@@ -100,5 +100,47 @@
       <% end %>
     </div>
   </div>
-
 </div>
+
+
+<script type="text/javascript">
+
+	$("#job_title_recruiter").select2({
+  tags: true,
+  createTag: function (params) {
+    return {
+      id: params.term,
+      text: params.term,
+      newOption: true
+    }
+  },
+   templateResult: function (data) {
+    var $result = $("<span></span>");
+
+    $result.text(data.text);
+
+    if (data.newOption) {
+      $result.append(" <em>(new)</em>");
+    }
+
+    return $result;
+  }
+});
+</script>
+
+<style type="text/css">
+	.select2-selection{
+		display: block !important;
+	    width: 100%;
+	    height: calc(2.25rem + 2px) !important;
+	    padding: 0.375rem 0.75rem !important;
+	    font-size: 1rem !important;
+	    line-height: 1.5 !important;
+	    color: #495057 !important;
+	    background-color: #fff !important;
+	    background-clip: padding-box !important;
+	    border: 1px solid #ced4da !important;
+	    border-radius: 0.25rem !important;
+	    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !important;
+	}
+</style>

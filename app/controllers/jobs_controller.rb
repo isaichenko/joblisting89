@@ -84,6 +84,10 @@ class JobsController < ApplicationController
 
     respond_to do |format|
       if @job.save
+        # send the new job titlew for admin approval
+        if !JobTitle.where(title: @job.title).present?
+          JobTitle.create(title: @job.title, status: false, user_id: current_user.id)
+        end
         format.html { redirect_to jobs_path, notice: 'Your Job was created.' }
       else
         format.html { render :new }
@@ -101,6 +105,10 @@ class JobsController < ApplicationController
   def update
     respond_to do |format|
       if @job.update(job_params)
+        # send the new job titlew for admin approval
+        if !JobTitle.where(title: @job.title).present?
+          JobTitle.create(title: @job.title, status: false, user_id: current_user.id)
+        end
         format.html { redirect_to jobs_path, notice: 'The Job was successfully updated.' }
       else
         format.html { render :edit }
