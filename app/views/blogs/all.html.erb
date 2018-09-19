@@ -1,16 +1,81 @@
-<div class="px-3">
-    <h2>Blogs</h2>
-    <% if @role == 'admin' %>
-        <div class="row">
-            <div class="col-md-3">
-                <%= link_to new_blog_path, class: 'btn btn-primary btn-block' do %>
-                    <i class="fa fa-plus"></i> Add New Blog    
-                <% end %>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="single">
+    <div class="container">
+
+        <div class="sixteen columns">
+            <h2>Blog</h2>
+            <span>Keep up to date with the latest news</span>
+        </div>
+
+    </div>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="container">
+    <!-- Blog Posts -->
+    <div class="eleven columns">
+        <div class="padding-right">
+
+            <% if @role == 'admin' %>
+                <%= render 'blogs/list_table', blogs: @blogs %>
+            <% else %>
+                <%= render 'blogs/list', blogs: @blogs %>
+            <% end %>
+
+        </div>
+    </div>
+    <!-- Blog Posts / End -->
+
+<% if @role != 'admin' %>
+    <!-- Widgets -->
+    <div class="five columns blog">
+
+        <div class="widget">
+            <h4>Got any questions?</h4>
+            <div class="widget-box">
+                <p>If you are having any questions, please see our FAQ.</p>
+                <%= link_to "FAQ", allfaqs_path, class: 'button widget-btn' %>
             </div>
         </div>
-        <br>
-        <%= render 'blogs/list_table', blogs: @blogs %>
-    <% else %>
-        <%= render 'blogs/list', blogs: @blogs %>
-    <% end %>
+
+        <!-- Tabs -->
+        <div class="widget">
+
+            <h4>Recent</h4>
+
+            <!-- Tabs Content -->
+            <div class="tabs-container">
+
+                <div class="tab-content" id="tab3">
+
+                    <!-- Recent Posts -->
+                    <ul class="widget-tabs">
+                        <%= render 'blogs/recent' %>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="widget">
+            <h4>Social</h4>
+                <ul class="social-icons">
+                    <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+                    <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
+                    <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
+                    <li><a class="linkedin" href="#"><i class="icon-linkedin"></i></a></li>
+                </ul>
+
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="margin-bottom-40"></div>
+
+    </div>
+    <!-- Widgets / End -->
+<% end %>
+
 </div>

@@ -1,7 +1,14 @@
-<div class="panel panel-primary">
-<div class="panel-body">
-    <div class="blog-section pl-3">
-        <table class="table table-striped">
+<!-- Table -->
+    <div class="sixteen columns">
+
+        <%= link_to new_blog_path, class: 'button' do %>
+            <i class="fa fa-plus"></i> Add New Blog
+        <% end %>
+
+        <br>
+        <br>
+        <table class="manage-table resumes responsive-table">
+
         <thead>
             <tr>
                 <th scope="col" class="text-left" >Title</th>
@@ -34,11 +41,11 @@
                         <%= link_to '', blog_path(blog), class: 'fa fa-eye fa-lg text-primary' %>
                         <%= link_to '', edit_blog_path(blog), class: 'fa fa-edit fa-lg text-success' %>
                         <%= link_to '', blog_path(blog), method: :delete, class: 'fa fa-trash fa-lg text-danger', data: { confirm: 'Are you sure?' } %>
-                    </td>  
+                    </td>
                 </tr>
             <% end %>
         </tbody>
         </table>
+        <br>
     </div>
-</div>
-</div>
+

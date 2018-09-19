@@ -1,38 +1,107 @@
-<div class="blog">
-    <div class="row">
-        <div class="col-md-12">
-            <h3 class="text-primary"><%= @blog.title %></h3>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="single">
+    <div class="container">
+
+        <div class="sixteen columns">
+            <h2>Blog</h2>
+            <span>Keep up to date with the latest news</span>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <% @blog.categories.each do |c| %>
-                <span class="badge badge-primary"><%= c.name %></span>
-            <% end %>
-        </div>
-    </div>
-    <div class="row py-1">
-        <div class="col-md-10">
-            <p class="m-0">Posted on <span class="text-danger"><%= @blog.created_at.to_date %></span></p>
-        </div>
-        <div class="col-md-2">
-            <%= social_share_button_tag(@blog.title) %>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <div class="blog-content border border-primary p-3">
-                <%= @blog.content.html_safe %>
-            </div>
-        </div>
-    </div>
-    <div class="row py-1">
-        <div class="col-md-12">
-            <% @blog.tags.each do |t| %>
-                <span class="badge badge-success"><%= t.name %></span>
-            <% end %>
-        </div>
+
     </div>
 </div>
-<br>
-<%= link_to 'Back', allblogs_path, class: '' %>
+
+<!-- Content
+================================================== -->
+<div class="container">
+
+    <!-- Blog Posts -->
+    <div class="eleven columns">
+        <div class="padding-right">
+
+            <!-- Post -->
+            <div class="post-container">
+                <div class="post-img">
+                    <%= link_to blog_path(@blog) do %>
+                        <% if @blog.featured_image? %>
+                            <%= image_tag @blog.featured_image.url, width: '100%' %>
+                        <% else %>
+                            <%= image_tag image_generator(height: '840', width: '430'), width: '100%' %>
+                        <% end %>
+                    <% end %>
+                </div>
+                <div class="post-content">
+                    <%= link_to blog_path(@blog) do %>
+                        <h3><%= @blog.title %></h3>
+                    <% end %>
+                    <div class="meta-tags">
+                        <span><%= @blog.created_at.strftime("%B %d, %Y") %></span>
+                        <% @blog.categories.each do |c| %>
+                            <span class="badge badge-primary"><%= c.name %></span>
+                        <% end %>
+                        <% @blog.tags.each do |t| %>
+                            <span class="badge badge-success"><%= t.name %></span>
+                        <% end %>
+                        <span><%= social_share_button_tag(@blog.title) %></span>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="margin-bottom-25"></div>
+
+                    <%= @blog.content.html_safe %>
+
+                </div>
+            </div>
+            <%= link_to 'Back to blogs', allblogs_path, class: 'button' %>
+        </div>
+    </div>
+    <!-- Blog Posts / End -->
+
+    <!-- Widgets -->
+    <div class="five columns blog">
+
+        <div class="widget">
+            <h4>Got any questions?</h4>
+            <div class="widget-box">
+                <p>If you are having any questions, please see our FAQ.</p>
+                <%= link_to "FAQ", allfaqs_path, class: 'button widget-btn' %>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="widget">
+
+            <h4>Recent</h4>
+
+            <!-- Tabs Content -->
+            <div class="tabs-container">
+
+                <div class="tab-content" id="tab3">
+
+                    <!-- Recent Posts -->
+                    <ul class="widget-tabs">
+                        <%= render 'blogs/recent' %>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="widget">
+            <h4>Social</h4>
+                <ul class="social-icons">
+                    <li><a class="facebook" href="#"><i class="icon-facebook"></i></a></li>
+                    <li><a class="twitter" href="#"><i class="icon-twitter"></i></a></li>
+                    <li><a class="gplus" href="#"><i class="icon-gplus"></i></a></li>
+                    <li><a class="linkedin" href="#"><i class="icon-linkedin"></i></a></li>
+                </ul>
+
+        </div>
+
+        <div class="clearfix"></div>
+        <div class="margin-bottom-40"></div>
+
+    </div>
+    <!-- Widgets / End -->
+
+</div>
