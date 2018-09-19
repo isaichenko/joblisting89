@@ -1,0 +1,23 @@
+<% @recent.each do |post| %>
+    <li>
+        <div class="widget-thumb">
+            <%= link_to blog_path(post) do %>
+                <% if post.featured_image? %>
+                    <%= image_tag post.featured_image.url, width: '100%' %>
+                <% else %>
+                    <%= image_tag image_generator(height: '90', width: '90'), width: '100%' %>
+                <% end %>
+            <% end %>
+        </div>
+
+        <div class="widget-text">
+            <h5>
+                <%= link_to blog_path(post) do %>
+                    <%= post.title %>
+                <% end %>
+            </h5>
+            <span><%= post.created_at.strftime("%B %d, %Y") %></span>
+        </div>
+        <div class="clearfix"></div>
+    </li>
+<% end %>

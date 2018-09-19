@@ -40,14 +40,15 @@ class BlogsController < ApplicationController
       end
     end
   end
-  
+
   def show
+    @recent = Blog.last(3)
     respond_to do |format|
       format.html {}
       format.js
     end
   end
-  
+
   def destroy
     @blog.destroy
     respond_to do |format|
@@ -74,8 +75,8 @@ class BlogsController < ApplicationController
     # end
 
     def publish_immediately?
-        params[:publish_type].to_i > 0 
+        params[:publish_type].to_i > 0
     end
 
-    
+
 end

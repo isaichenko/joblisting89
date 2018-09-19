@@ -43,9 +43,11 @@ class PagesController < ApplicationController
 
   def allblogs
     @blogs = Blog.all()
+    @recent = Blog.last(3)
     @role = user_signed_in? ? (current_user.interface.nil? ? 'admin' : 'user') : 'user'
 
     render :template => 'blogs/all', :locals => {:blogs => @blogs, :role => @role}
+
   end
 
   def allsalaries
@@ -76,7 +78,7 @@ class PagesController < ApplicationController
     @job_titles = JobTitle.where(status: true).all
   end
 
-# Show Jobseeker, Recruiter, Blog, FAQ for admin  
+# Show Jobseeker, Recruiter, Blog, FAQ for admin
   def manage_jobseeker
     # @job_seekers = User.where(interface: 1).order(created_at: :DESC).all
     @job_seekers = User.job_seekers
@@ -92,7 +94,7 @@ class PagesController < ApplicationController
 # Add FAQ
   def add_faq
   end
-  
+
   def alert
     @keywords = Keyword.set_by(current_user)
   end

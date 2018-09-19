@@ -146,3 +146,7 @@ Resume.create!(first_name: "Some name", last_name: "Good", country: "Poland", ci
   certifications_attributes: [{title: "Cert 4", start_date: "2017-02-01", end_date: "2018-09-04", description: "Certificate of everything"}],
   blog_url:" blog3.com", personal_homepage: "personal3.com", facebook: "fecebook3.com", twitter: "twitter3.com",
   additional_information_step_5: "Many interesting about me and more and more", user_id: 5)
+
+Blog.create!(title: "First Post", content: "Many interesting leters")
+Blog.create!(title: "Second Post", content: "Many interesting leters")
+Blog.create!(title: "One More Post", content: "Many interesting leters")
