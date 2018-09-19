@@ -27,9 +27,10 @@ Rails.application.routes.draw do
   end
 
   resources :jobs
-  resources :job_types, except: :index
-  resources :job_areas, except: :index
-  resources :keywords,  except: :index
+  resources :job_types,   except: :index
+  resources :job_areas,   except: :index
+  resources :keywords,    except: :index
+  resources :job_titles,  except: :index
 
 # FAQ and Blog
   resources :faqs
@@ -42,6 +43,7 @@ Rails.application.routes.draw do
   get     '/alljobs',           to: 'pages#alljobs'
   get     '/allcompanies',      to: 'pages#allcompanies'
   get     '/allresumes',        to: 'pages#allresumes'
+  get     '/allsalaries',      to: 'pages#allsalaries', as: :allsalaries
 # show fag and blogs
   get     '/allfaqs',           to: 'pages#allfaqs'
   get     '/allblogs',          to: 'pages#allblogs'
@@ -57,6 +59,10 @@ Rails.application.routes.draw do
 # Add Fag page
   get     '/add_faq',           to: 'pages#add_faq'
   get     '/add_blog',          to: 'pages#add_blog'
+  
+# manage job stats settings
+  get     '/manage_job_stats',     to: 'pages#manage_job_stats'
+
 # Show jobs
   get     '/jobs/show_jobs/:id',     to: 'jobs#show_jobs',  as: :show_jobs
 # Shange status
@@ -87,6 +93,11 @@ Rails.application.routes.draw do
   post    '/categories/add',      to: 'categories#add'
   #
   post    '/tags/add',            to: 'tags#add'
+  
+  # job titles approvals
+  
+  get '/approve_action/:id/:status', to: 'job_titles#approve_action', as: :approve_action
+  post '/job_titles/:id/link_title/', to: 'job_titles#link_title', as: :link_title
 
   root to: 'pages#index'
 
