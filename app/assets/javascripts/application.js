@@ -10,16 +10,15 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery3
+
+// require jquery3
 
 //= require ckeditor/init
 
 //= require rails-ujs
-// require popper
-// require bootstrap-sprockets
-//= require cocoon
+//= require popper
 
-//= require social-share-button
+
 
 //= require scripts/jquery-2.1.3.min
 //= require scripts/chosen.jquery.min
@@ -41,9 +40,14 @@
 //= require scripts/switcher
 //= require scripts/waypoints.min
 //= require scripts/custom
-//= require select2-full
+
 //= require gritter
+//= require bootstrap-sprockets
+//= require cocoon
 //= require jquery.raty
 //= require turbolinks
+
+//= require select2-full
+//= require social-share-button
 
 //= require_tree .

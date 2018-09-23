@@ -3,8 +3,7 @@
 (function($){
     "use strict";
 
-    $(document).ready(function(){
-
+    $(document).on("turbolinks:load", function(){
 
     /*----------------------------------------------------*/
     /*  Navigation
@@ -692,20 +691,23 @@
     });
 
     // disabling on mobile
-    $(window).bind("load resize",function(e){
-        $( ".sticky-header.cloned" ).removeClass('transparent alternative');
+    $(window).on("turbolinks:load resize", function(){
+       
+            $( ".sticky-header.cloned" ).removeClass('transparent alternative');
 
-        var winWidth = $(window).width();
+            var winWidth = $(window).width();
 
-        if(winWidth>1290) {
-            headroom.init();
-            }
+            if(winWidth>1290) {
+                headroom.init();
+                }
 
-            else if(winWidth<1290) {
-                headroom.destroy();
-                $(".sticky-header.cloned").remove();
-            }
-    });
+                else if(winWidth<1290) {
+                    headroom.destroy();
+                    $(".sticky-header.cloned").remove();
+                }
+        
+    })
+    
 
 // ------------------ End Document ------------------ //
 });

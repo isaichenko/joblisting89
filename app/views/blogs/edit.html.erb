@@ -1,4 +1,16 @@
-<div class="px-3">
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="single submit-page">
+	<div class="container">
+
+		<div class="sixteen columns">
+			<h2><i class="fa fa-edit"></i> Edit Blog</h2>
+		</div>
+
+	</div>
+</div>
+
+<div class="container">
     <h2>Edit Blog</h2>
     <%= render 'form', blog: @blog %>
     <%= link_to 'Back', allblogs_path, class: '' %>
