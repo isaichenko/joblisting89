@@ -3867,7 +3867,7 @@ body .job-spotlight .fa-calendar:before { content: "\e770"; }
 	font-size: 14px;
 }
 
-.testimonial-box .star-rating {
+.testimonial-box .star-ratingg {
 	height: 30px;
 	display: inline-block;
 	margin-bottom: -10px;
@@ -7028,7 +7028,7 @@ ul.footer-links { margin: 0 0 15px 0; }
 	display: block;
 }
 
-.rating .star-rating {
+.rating .star-ratingg {
 	position: relative;
 	width: inherit;
 	display: block;
@@ -7036,15 +7036,15 @@ ul.footer-links { margin: 0 0 15px 0; }
 	margin: 0;
 }
 
-.rating.five-stars .star-rating:after { width: 100%; }
-.rating.four-stars .star-rating:after { width: 80%; }
-.rating.three-stars .star-rating:after { width: 60%; }
-.rating.two-stars .star-rating:after { width: 40%; }
-.rating.one-stars .star-rating:after { width: 20%; }
-.rating.no-stars .star-rating:after { display: none; }
+.rating.five-stars .star-ratingg:after { width: 100%; }
+.rating.four-stars .star-ratingg:after { width: 80%; }
+.rating.three-stars .star-ratingg:after { width: 60%; }
+.rating.two-stars .star-ratingg:after { width: 40%; }
+.rating.one-stars .star-ratingg:after { width: 20%; }
+.rating.no-stars .star-ratingg:after { display: none; }
 
 
-.rating .star-rating:after {
+.rating .star-ratingg:after {
 	content:"    ";
 	font-family: "FontAwesome";
 	color: #ffc741;

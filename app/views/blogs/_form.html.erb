@@ -4,7 +4,7 @@
             <% if @blog.status == 1 %>
                 <h4>Published</h4>
             <% else %>
-                <h4>Draft</h4>
+                <h4><em>Draft</em></h4>
             <% end %>
         <% end %>
 
@@ -18,103 +18,108 @@
                 </div>
             <% end %>
             
-            <div class="form-group">
+            <div class="form">
                 <%= form.label :Title %>
-                <%= form.text_field :title, class: 'form-control', placeholder: 'Title' %>
+                <%= form.text_field :title, class: '', placeholder: 'Title' %>
             </div>
-            
-            <div class="form-group">
+            <br>
+            <div class="form">
                 <%= form.label :Content %>
-                <%= form.cktext_area :content, class: 'form-control', ckeditor: { language: 'en'}, placeholder: 'Content' %>
+                <%= form.cktext_area :content, class: '', ckeditor: { language: 'en'}, placeholder: 'Content' %>
             </div>
-
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-md-12">
+            <br>
+            <div class="form">
+                <div class="container">
+                    <div class="column">
                         <%= form.label :Publish %>
                     </div>
-                    <div class="col-md-2">
+                    <div class="column">
                         <%= radio_button_tag 'publish_type', '1' %>
                         <span class="badge badge-primary">Immmediately</span>
                             <br>
                         <%= radio_button_tag 'publish_type', '0', true %>
                         <span class="badge badge-success">Edit</span>
                     </div>
-                    <div class="col-md-4">
+                    <div class="column">
                         <%= form.datetime_field :published_at, 
                             value: (@blog.published_at.nil? ? convert_time(Time.zone.now): convert_time(@blog.published_at)), 
                             class: 'form-control publish-date' %>
                     </div>
                 </div>
             </div>
-
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-md-12">
+<hr>
+            <div class="form">
+                <div class="container">
+                    <div class="column">
                         <%= label_tag :Categories, "Categories" %>
                     </div>
-                    <div class = "col-md-6 categories-list">
+                    <div class = "column categories-list">
                         <%= render 'categories/list', categories: @categories %>
                     </div>
-                    <div class = "col-md-3">
+                    <div class = "column">
                         <%= text_field :category, :name, class: 'form-control', placeholder: 'New Category Name' %>
                     </div>
-                    <div class="col-md-3">
-                        <%= link_to '', class:'btn btn-primary float-right add-new-category' do %>
+                    <div class="column">
+                        <%= link_to '', class:'button add-new-category' do %>
                             <i class="fa fa-plus"></i> Add New Category
                         <% end %>
                     </div>
                 </div>
             </div>
-
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-md-6">
+<hr>
+            <div class="form">
+                <div class="container">
+                    <div class="column">
                         <%= form.label :Tags %>
                     </div>
-                    <div class="col-md-6">
-                        <%= form.label "Featured" %>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
+
+                    <div class="column">
                         <%#= text_field_tag 'tag[]', '', class: 'form-control tags_added', placeholder: 'Show Tags added'  %>
                         <%#= form.text_field :tag_ids, :class => 'multiple-input form-control tag-ids', :multiple => "multiple"  %>
-                        <div class="tags-list p-1">
+                        <div class="tags-list">
                         </div>
                     </div>
-                    <div class="col-md-6">
+
+                    <div class="column">
+                        <%= text_field :tag, :name, class: 'form-control', placeholder: 'New Tag Name' %>
+                    </div>
+
+                    <div class="column">
+                        <%= link_to '', class:'button add-new-tag' do %>
+                            <i class="fa fa-plus"></i> Add New Tag
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="form">
+                <div class="container">
+                    <div class="column">
+                        <%= form.label "Featured" %>
+                    </div> 
+                   
+                    <div class="column">
                         <%= form.file_field :featured_image, class: 'form-control' %>
                     </div>
                 </div>
             </div> 
             
-            <div class="form-group">
-                <div class = "row">
-                    
-                        <div class="col-md-4">
-                            <%= text_field :tag, :name, class: 'form-control', placeholder: 'New Tag Name' %>
-                        </div>
-
-                        <div class="col-md-2">
-                            <%= link_to '', class:'btn btn-primary float-right add-new-tag' do %>
-                                <i class="fa fa-plus"></i> Add New Tag
-                            <% end %>
-                        </div>
-
-                    <div class="col-md-6 offset-md-6">
+            <div class="form">
+                <div class = "container">
+                    <div class="column">
                         <% if @blog.featured_image? %>
                             <%= image_tag @blog.featured_image.url %>
-                            <%= form.label :remove_image %>
-                            <%= form.check_box :remove_featured_image %>
+                            <label>
+                            <%= form.check_box :remove_featured_image %> Remove Image
+                            </label>
                         <% end %>
                     </div>
                 </div>
             </div>
 
-            <div class="form-group float-right">
-                <%= form.submit "Publish", class: 'btn btn-success' %> 
-                <%= form.submit "Save as Draft", class: 'btn btn-danger' %> 
+            <div class="form">
+                <%= form.submit "Publish", class: 'button' %> 
+                <%= form.submit "Save as Draft", class: 'button' %> 
             </div>
         <% end %>
 </div>

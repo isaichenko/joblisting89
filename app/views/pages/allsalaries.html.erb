@@ -1,34 +1,68 @@
-<br>
-<div style="width: 40%">
-	<%= form_with method: :get, local: true, url: allsalaries_path do |f| %>
-		<div class="input-group mb-3">
-			<%= f.text_field :query, class: "form-control", placeholder: "Job Title", value: nil %>
-		  <div class="input-group-append">
-				<%= f.submit "Search", class: "btn btn-primary", name: nil %>
-		  </div>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="ten columns">
+			<h2>Salaries List</h2>
 		</div>
-	<% end %>
+	</div>
 </div>
 
-<h2>Salaries List</h2>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Job Title</th>
-      <th scope="col">Min Salary</th>
-      <th scope="col">Max Salary</th>
-      <th scope="col">Avergae Salary</th>
-    </tr>
-  </thead>
-  <tbody id="jobs">
-		<% if @all_salaries.size > 0 %>
-			<%= render partial: 'all_salary', collection: @all_salaries %>
-		<% else %>
-		  No results Found
-		<% end %>
-  </tbody>
-</table>
-<br>
-<div class="float-right">
-<%= paginate @all_salaries %>
+<!-- Content
+================================================== -->
+<div class="container">
+	<!-- Recent Jobs -->
+	<div class="eleven columns">
+	<div class="padding-right">
+
+		<table class="manage-table resumes responsive-table">
+			<thead>
+		    <tr>
+		      <th>Job Title</th>
+		      <th>Min Salary</th>
+		      <th>Max Salary</th>
+		      <th>Avergae Salary</th>
+		    </tr>
+		  </thead>
+		  <tbody id="jobs">
+				<% if @all_salaries.size > 0 %>
+					<%= render partial: 'all_salary', collection: @all_salaries %>
+				<% else %>
+				  No results Found
+				<% end %>
+		  </tbody>
+		</table>
+
+		<br>
+		<div class="float-right">
+		<%= paginate @all_salaries %>
+		</div>
+		
+	</div>
+	</div>
+
+
+	<!-- Widgets -->
+	<div class="five columns">
+
+		<!-- Search -->
+		<div class="widget">
+			<h4>Search</h4>
+			<div class="widget-box search">
+				<div class="input">
+					<%= form_with method: :get, local: true, url: allsalaries_path do |f| %>
+						<%= f.text_field :query, class: "search-field", placeholder: "Job Title", value: nil %>
+						<br>
+						<div class="input-group-append">
+							<%= f.submit "Search", class: "button", name: nil %>
+						</div>
+					<% end %>
+				</div>
+			</div>
+		</div>
+
+	</div>
+	<!-- Widgets / End -->
+
+
 </div>
