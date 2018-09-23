@@ -6,8 +6,8 @@
 
     <meta charset="utf-8">
     <title>ListingApp</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'colors/red.css', id: 'colors' %>
@@ -17,30 +17,27 @@
   <body>
     <div id="wrapper">
 
+      <!-- Header
+      ================================================== -->
+      <%= render 'theme/header' %>
 
+      <%= yield %>
 
-<!-- Header
-================================================== -->
-          <%= render 'theme/header' %>
+      <%= render 'shared/alerts' %>
 
-          <%= yield %>
+      <!-- Footer
+      ================================================== -->
+      <%= render 'theme/footer' %>
 
-          <%= render 'shared/alerts' %>
+      <!-- Back To Top Button -->
+      <div id="backtotop"><a href="#"></a></div>
 
-<!-- Footer
-================================================== -->
-    <%= render 'theme/footer' %>
+    </div>
+    <!-- Wrapper / End -->
 
-    <!-- Back To Top Button -->
-    <div id="backtotop"><a href="#"></a></div>
-
-  </div>
-  <!-- Wrapper / End -->
-
-<!-- Style Switcher
-================================================== -->
+    <!-- Style Switcher
+    ================================================== -->
     <%= render 'theme/theme_switcher' %>
-
 
   </body>
 </html>

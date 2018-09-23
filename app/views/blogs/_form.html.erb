@@ -1,11 +1,10 @@
-<div class="row">
-    <div class="col-md-12">
+<div class="sixteen columns">
         <%#= show published or draft %>
         <% if !@blog.new_record? %>
             <% if @blog.status == 1 %>
-                <span class="badge badge-primary">Published</span>
+                <h4>Published</h4>
             <% else %>
-                <span class="badge badge-danger">Draft</span>
+                <h4>Draft</h4>
             <% end %>
         <% end %>
 
@@ -118,5 +117,4 @@
                 <%= form.submit "Save as Draft", class: 'btn btn-danger' %> 
             </div>
         <% end %>
-    </div>
 </div>
