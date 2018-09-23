@@ -99,7 +99,7 @@ $(document).on "turbolinks:load", ->
                 complete: () -> 
                         
                 success: (data, textStatus, xhr) ->
-                    ele  = "<span class='badge badge-success mr-1'>" + data.name + "</span>"
+                    ele  = "<h6>" + data.name + "</h6>"
                     ele += "<input type='hidden' name='blog[tag_ids][]'' id='blog_tag_ids_' value='" + data.id + "' multiple='multiple'>"
                     $('.tags-list').append(ele)
                 error: () -> 

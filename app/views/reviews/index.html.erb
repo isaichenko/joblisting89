@@ -1,6 +1,38 @@
-<h3>Reviews of company <%= @company.title %></h3>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar">
+	<div class="container">
+		<div class="ten columns">
+			<h2>Reviews of company <%= @company.title %></h2>
+			<span>We've found <%= @reviews.count %> reviews</span>
+		</div>
 
-  <%= render @reviews %>
+		<div class="six columns">
+			<%= link_to new_company_review_path(@company), class: 'button dark' do %>
+        <i class="fa fa-star"></i> Review this Company
+      <% end %>
+		</div>
 
-<%= link_to "Back to #{@company.title}", company_path(@company), class: 'btn btn-primary' %>
+	</div>
+</div>
 
+<!-- Content
+================================================== -->
+<div class="container">
+	<!-- Recent Jobs -->
+	<div class="sixteen columns">
+	<div class="padding-right">
+
+		<ul class="resumes-list alternative">
+
+  		<%= render @reviews %>
+			
+		</ul>
+
+		<div class="clearfix"></div>
+
+		<%= link_to "Back to #{@company.title}", company_path(@company), class: 'button' %>
+	</div>
+	</div>
+
+</div>

@@ -1,21 +1,40 @@
-<div class="row">
-<div class="col-md-1"><%= review.average %></div>
-<div align="left" class="star-rating col-md-2" data-score= <%= review.average %> ></div>
-<div class="col-md-9">
+<li><%= link_to company_review_path(@company, review.id) do %>
+  <%= image_tag 'resumes-list-avatar-03.png' %>
+  <div class="resumes-list-content">
+    <div>
+      <div class="column">
+      <h3><%= review.average %></h3>
+    </div>
+      <div class="column">
+      <div class="star-rating review" data-score= <%= review.average %> > </div>
+    </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <h4><%= review.name %> <span>
+                            <%= review.job_title %>
+                              (
+                                <% if review.end_date.present? %>
+                                Former Employee
+                                <% else %>
+                                Current Employee
+                                <% end %>
+                              )
+                            </span>
+    </h4>
+
+    <div class="skills">
+      <span><i class="fa fa-map-marker"></i> <%= review.location %></span>
+      <span><%= review.created_at.strftime("%B %d, %Y") if review.created_at.present? %></span>
+    </div>
+    <div class="clearfix"></div>
+
+    <span><%= review.description %></span>
   </div>
-</div>
-<em><%= review.name %> - <%= review.job_title %> (
-  <% if review.end_date.present? %>
-  Former Employee
-  <% else %>
-  Current Employee
   <% end %>
-  ) - <%= review.location %> - <%= review.created_at.strftime("%B %d, %Y") if review.created_at.present? %></em>
-<br>
-<%= review.description %>
-<%= link_to '', company_review_path(@company, review.id), class: 'fa fa-eye fa-lg' %>
-<hr>
-<br>
+  <div class="clearfix"></div>
+</li>
 
 <script>
     $('.star-rating').raty({
