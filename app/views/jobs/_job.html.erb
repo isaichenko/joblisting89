@@ -1,12 +1,13 @@
 <tr>
   <td><%= job.id %></td>
-  <td><%= job.title %></td>
+  <td class="title"><%= link_to job.title, job %></td>
   <td><%= job.job_type.title %></td>
   <td><%= job.job_area.title %></td>
-  <td><%= link_to applied_count(job), job_applicants_path(job.id) %></td>
-  <td><%= link_to not_aplied_count(job), job_invites_path(job.id) %></td>
+  <td><%= link_to "Show (#{applied_count(job)})", job_applicants_path(job.id), class: "button" %></td>
+  <td><%= link_to "Show (#{not_aplied_count(job)})", job_invites_path(job.id), class: "button" %></td>
   <td><%= job.created_at.strftime("%B %d, %Y") %></td>
-  <td><%= link_to '', job, class: 'fa fa-eye fa-lg' %></td>
-  <td><%= link_to '', edit_job_path(job), class: 'fa fa-edit fa-lg index-icons' %></td>
-  <td><%= link_to '', job_path(job), method: :delete, class: 'fa fa-trash fa-lg index-icons-tresh', data: { confirm: 'Are you sure?' } %></td>
+  <td class="action">
+    <%= link_to '', edit_job_path(job), class: 'fa fa-edit fa-lg index-icons' %>
+    <%= link_to '', job_path(job), method: :delete, class: 'fa fa-trash fa-lg index-icons-tresh', data: { confirm: 'Are you sure?' } %>
+  </td>
 </tr>

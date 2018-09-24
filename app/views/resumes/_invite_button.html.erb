@@ -1,36 +1,17 @@
 <% if user_signed_in? && current_user.jobs.count > 0 && @resume.user_id != current_user.id %>
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModalCenter">
-    Invite to Job
-  </button>
+<a href="#small-dialog" class="popup-with-zoom-anim button"><i class="fa fa-envelope"></i> Invite to Job</a>
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Job Invite</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          To which Job would you like to invite this candidate?
-          <br>
-          <br>
-          <%= form_tag invite_to_job_path do %>
-                <%= select_tag "job_id", options_from_collection_for_select(current_user.jobs, "id", "title"), prompt: "Select Your Job", class: 'form-control' %><br>
-                <div class="row">
-                  <div class="col-md-6">
-                    <%= submit_tag "Invite to Job", class: 'btn btn-primary btn-block', data: { confirm: 'Do you want to invite this jobseeker?' } %>
-                  </div>
-                  <div class="col-md-6">
-                    <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal" align="right">Close</button>
-                  </div>
-                </div>
-          <% end %>
-        </div>
-      </div>
-    </div>
+<div id="small-dialog" class="zoom-anim-dialog mfp-hide apply-popup">
+  <div class="small-dialog-headline">
+    <h2>Job Invite</h2>
   </div>
+  <div class="small-dialog-content">
+    <h5>To which Job would you like to invite this candidate?</h5><br>
+    <%= form_tag invite_to_job_path do %>
+      <%= select_tag "job_id", options_from_collection_for_select(current_user.jobs, "id", "title"), prompt: "Select Your Job", class: "chosen-select-no-single" %><br><br>
+        <%= submit_tag "Send Invite", class: 'send', data: { confirm: 'Do you want to invite this jobseeker?' } %>
+    <% end %>
+  </div>
+  
+</div>
 <% end %>
