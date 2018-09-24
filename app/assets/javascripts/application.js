@@ -42,7 +42,7 @@
 //= require scripts/custom
 
 //= require gritter
-//= require bootstrap-sprockets
+// require bootstrap-sprockets
 //= require cocoon
 //= require jquery.raty
 //= require turbolinks

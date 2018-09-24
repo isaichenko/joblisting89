@@ -55,6 +55,34 @@
                         </td>
                         <td class="text-center"><%= recruiter.status == 'active' ? 'Active' : 'Suspended' %></td>
                         <td class="text-center">
+                            <a href="#small-dialog" class="popup-with-zoom-anim button">Change Status</a>
+
+                            <div id="small-dialog" class="zoom-anim-dialog mfp-hide apply-popup">
+                                <div class="small-dialog-headline">
+                                    <h2>Send Message to John Doe</h2>
+                                </div>
+
+                                <div class="small-dialog-content">
+                                    <form action="#" method="get" >
+                                        <select class="change-action" data-user-type="<%= @type %>">
+                                            <option value=""></option>
+                                            <% if recruiter.status == 'active' %>
+                                                <option value="<%= change_action_path(:id => recruiter.id, :status => 'suspend') %>">Suspend</option>
+                                            <% else %>
+                                                <option value="<%= change_action_path(:id => recruiter.id, :status => 'lift_suspend') %>">Lift suspension</option>
+                                            <% end %>
+                                            <option value="<%= change_action_path(:id => recruiter.id, :status => 'delete') %>">Delete</option>
+                                        </select>
+                                        <input type="text" placeholder="Full Name" value=""/>
+                                        <input type="text" placeholder="Email Address" value=""/>
+                                        <textarea placeholder="Message"></textarea>
+
+                                        <button class="send">Send Application</button>
+                                    </form>
+                                </div>
+                                
+                            </div>
+
                             <select class="change-action" data-user-type="<%= @type %>">
                                 <option value=""></option>
                                 <% if recruiter.status == 'active' %>
@@ -64,6 +92,8 @@
                                 <% end %>
                                 <option value="<%= change_action_path(:id => recruiter.id, :status => 'delete') %>">Delete</option>
                             </select>
+                        
+
                         </td>
                     </tr>
                 <% end %>
