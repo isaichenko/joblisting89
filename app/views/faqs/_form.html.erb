@@ -8,17 +8,17 @@
       </div>
   <% end %>
 
-  <p class="form-row form-row-wide">
+  <p class="form">
     <%= form.label :Question %>
     <%= form.text_field :question, class: 'form-control', placeholder: 'Question' %>
   </p>
 
-  <p class="form-row form-row-wide">
+  <p class="form">
     <%= form.label :Answer %>
     <%= form.text_area :answer, rows: 10, class: 'form-control', placeholder: 'Answer' %>
   </p>
 
-  <p class="form-row">
-    <%= form.submit "Submit", class: 'button border fw margin-top-10' %>
+  <p class="form">
+    <%= form.submit "Submit", class: 'button' %>
   </p>
 <% end %>

@@ -1,38 +1,24 @@
-<ul class="nav nav-tabs mr-auto custom-nav">
-  <li class="nav-item">
-    <%= link_to 'Homepage', root_path, class: "nav-link #{active? root_path}" %>
-  </li>
+<ul id="responsive">
+  <li><%= link_to 'Homepage', root_path, class: "nav-link #{active? root_path}" %></li>
 
-  <li class="nav-item">
-    <%= link_to 'Job Statistics Settings', manage_job_stats_path, class: "nav-link #{active? manage_job_stats_path}" %>
+  <li><a href="#">Actions</a>
+    <ul>
+      <li><%= link_to 'Job Statistics Settings', manage_job_stats_path, class: "nav-link #{active? manage_job_stats_path}" %></li>
+      <li><%= link_to 'Job Posting Settings', settings_path, class: "nav-link #{active? settings_path}" %></li>
+      <li><%= link_to 'Manage Job Seeker', manage_jobseeker_path, class: "nav-link #{active? manage_jobseeker_path}" %></li>
+      <li><%= link_to 'Manage Recruiter', manage_recruiter_path, class: "nav-link #{active? manage_recruiter_path}" %></li>
+    </ul>
   </li>
+  <li><%= link_to 'Blog', allblogs_path, class: "nav-link #{active? allblogs_path}" %></li>
 
-  <li class="nav-item">
-    <%= link_to 'Job Posting Settings', settings_path, class: "nav-link #{active? settings_path}" %>
-  </li>
-<%# Add Jobseeker, Recruiter, Blog, FAQ for admin %>
-  <li class="nav-item">
-    <%= link_to 'Manage Job Seeker', manage_jobseeker_path, class: "nav-link #{active? manage_jobseeker_path}" %>
-  </li>
+  <li><%= link_to 'FAQ', allfaqs_path, class: "nav-link #{active? allfaqs_path}" %></li>
+</ul>
 
-  <li class="nav-item">
-    <%= link_to 'Manage Recruiter', manage_recruiter_path, class: "nav-link #{active? manage_recruiter_path}" %>
-  </li>
-
-  <li class="nav-item">
-    <%= link_to 'Blog', allblogs_path, class: "nav-link #{active? allblogs_path}" %>
-  </li>
-
-  <li class="nav-item">
-    <%= link_to 'FAQ', allfaqs_path, class: "nav-link #{active? allfaqs_path}" %>
-  </li>
-
-  <li class="nav-item dropdown ml-auto">
-    <a class="nav-link  fa fa-cog fa-lg" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"></a>
-      <div class="dropdown-menu">
-        <%= link_to 'Setup Profile', edit_user_registration_path, class: 'dropdown-item' %>
-
-        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
-      </div>
+<ul class="float-right">
+  <li><%= link_to current_user.name, edit_user_registration_path %></li>
+  <li>
+    <%= link_to destroy_user_session_path, method: :delete do %>
+      <i class="fa fa-user"></i> Logout
+    <% end %>
   </li>
 </ul>

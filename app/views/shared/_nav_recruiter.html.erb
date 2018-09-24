@@ -1,36 +1,28 @@
-<ul class="nav nav-tabs mr-auto custom-nav">
-  <li class="nav-item">
-    <%= link_to 'Homepage', root_path, class: "nav-link #{active? root_path}" %>
+<ul id="responsive">
+  <li><%= link_to 'Homepage', root_path, id: "#{active? root_path}" %></li>
+
+  <li><a href="#">Jobs / Company</a>
+    <ul>
+	    <li><%= link_to 'New Job', new_job_path, id: 'new_job_from_nav', id: "#{active? new_job_path}" %></li>
+      <li><%= link_to 'Your Jobs', jobs_path, id: "#{active? jobs_path}" %></li>
+      <% if current_user.companies.count == 0 %>
+        <li><%= link_to 'Setup your Company', new_company_path, id: "#{active? new_company_path}" %></li>
+      <% else %>
+        <li><%= link_to 'View your Company', company_path(current_user.companies.ids), id: "#{active? company_path(current_user.companies.ids)}" %></li>
+      <% end %>
+    </ul>
   </li>
 
-  <li class="nav-item">
-		<%= link_to 'Your Jobs', jobs_path, class: "nav-link #{active? jobs_path}" %>
-	</li>
+  <li><%= link_to 'Bookmarked Resumes', bookmarked_resumes_path, id: 'new_job_from_nav', id: "#{active? bookmarked_resumes_path}" %></li>
 
-	<li class="nav-item">
-		<%= link_to 'New Job', new_job_path, id: 'new_job_from_nav', class: "nav-link #{active? new_job_path}" %>
-	</li>
+</ul>
 
-  <li class="nav-item">
-    <%= link_to 'Bookmarked Resumes', bookmarked_resumes_path, id: 'new_job_from_nav', class: "nav-link #{active? bookmarked_resumes_path}" %>
-  </li>
-
-  <% if current_user.companies.count == 0 %>
-    <li class="nav-item">
-      <%= link_to 'Setup your Company', new_company_path, class: "nav-link #{active? new_company_path}" %>
-    </li>
-  <% else %>
-    <li class="nav-item">
-      <%= link_to 'View your Company', company_path(current_user.companies.ids), class: "nav-link #{active? company_path(current_user.companies)}" %>
-    </li>
-  <% end %>
-
-  <li class="nav-item dropdown ml-auto">
-    <a class="nav-link  fa fa-cog fa-lg" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"></a>
-      <div class="dropdown-menu">
-        <%= link_to 'Setup Profile', edit_user_registration_path, class: 'dropdown-item' %>
-
-        <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
-      </div>
+<ul class="float-right">
+  <li><%= link_to "I am #{interface_button}", toggle_interface_user_path(current_user) %></li>
+  <li><%= link_to current_user.name, edit_user_registration_path %></li>
+  <li>
+    <%= link_to destroy_user_session_path, method: :delete do %>
+      <i class="fa fa-user"></i> Logout
+    <% end %>
   </li>
 </ul>

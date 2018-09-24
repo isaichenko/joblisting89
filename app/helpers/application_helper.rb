@@ -1,6 +1,6 @@
 module ApplicationHelper
   def active? path
-		"active" if current_page?(path)
+		"current" if current_page?(path)
 	end
 
   def interface_button
@@ -29,7 +29,7 @@ module ApplicationHelper
         image_generator(height: '300', width: '300')
       end
     end
-   
+
   end
 
   # Count of jobs that applies by jobseeker (from invite or by self)
@@ -52,15 +52,15 @@ module ApplicationHelper
     count_show ||= 5
     !checked && ((i + 1) > count_show)
   end
-  
+
   # For comment
-  def comment 
+  def comment
   end
 
   def convert_time time
     time.strftime("%Y-%m-%dT%H:%M")
   end
-  
+
   # def previous_url
   #   URI(request.referer || '').path
   # end
