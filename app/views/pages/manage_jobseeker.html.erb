@@ -1,6 +1,28 @@
-<div class="pl-3">
-    <h2>Manage JobSeeker</h2>
-    <table class="table table-striped">
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="single">
+  <div class="container">
+
+    <div class="sixteen columns">
+      <h2>Manage JobSeekers</h2>
+      <nav id="breadcrumbs">
+        <ul>
+          <li>You are here:</li>
+          <li><%= link_to 'Home', root_path %></li>
+          <li>Manage JobSeekers</li>
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+</div>
+
+<div class="container">
+
+    <!-- Table -->
+    <div class="sixteen columns">
+
+        <table class="manage-table resumes responsive-table">
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -16,22 +38,22 @@
     <tbody id="job_seekers">
         <% @job_seekers.each.with_index(1) do |job_seeker, key| %>
             <tr>
-                <th scope="row"><%= key %></th>
-                <% if job_seeker.resumes.count > 0 
+                <td scope="row"><%= key %></td>
+                <% if job_seeker.resumes.count > 0
                     job_applied = job_seeker.number_of_jobs_applied
                 %>
                     <td class="text-center"><%= link_to job_seeker.name, resume_path(job_seeker.resumes.ids) %></td>
-                    <th scope="col" class="text-center" ><%= job_seeker.email %></th>
+                    <td scope="col" class="text-center" ><%= job_seeker.email %></td>
                     <td class="text-center"><%= job_seeker.created_at.to_date %></td>
                     <td class="text-center"><%= job_seeker.resume_last_update %></td>
                     <td class="text-center">
                         <%= link_to_if job_applied > 0 , job_applied, applied_jobs_path(job_seeker.id) do %>
                             0
                         <% end %>
-                    </td> 
+                    </td>
                 <% else %>
                     <td class="text-center"><%= job_seeker.name %></td>
-                    <th scope="col" class="text-center" ><%= job_seeker.email %></th>
+                    <td scope="col" class="text-center" ><%= job_seeker.email %></td>
                     <td class="text-center"><%= job_seeker.created_at.to_date %></td>
                     <td class="text-center"></td>
                     <td class="text-center">0</td>
@@ -54,6 +76,7 @@
         <% end %>
     </tbody>
     </table>
+<%= render 'pages/partials/modal' %>
 </div>
 
-<%= render 'pages/partials/modal' %>
+</div>
