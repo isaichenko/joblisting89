@@ -1,6 +1,8 @@
 <ul id="responsive">
   <li><%= link_to 'Homepage', root_path, id: "#{active? root_path}" %></li>
 
+  <%= render 'shared/browse_nav' %>
+
   <% if current_user.resumes.count == 0 %>
     <li><%= link_to 'Build your Resume', new_resume_path, id: "#{active? new_resume_path}" %></li>
   <% else %>

@@ -9,6 +9,9 @@
       <li><%= link_to 'Manage Recruiter', manage_recruiter_path, class: "nav-link #{active? manage_recruiter_path}" %></li>
     </ul>
   </li>
+
+  <%= render 'shared/browse_nav' %>
+
   <li><%= link_to 'Blog', allblogs_path, class: "nav-link #{active? allblogs_path}" %></li>
 
   <li><%= link_to 'FAQ', allfaqs_path, class: "nav-link #{active? allfaqs_path}" %></li>

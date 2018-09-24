@@ -1,6 +1,8 @@
 <ul id="responsive">
   <li><%= link_to 'Homepage', root_path, id: "#{active? root_path}" %></li>
 
+  <%= render 'shared/browse_nav' %>
+
   <li><a href="#">Jobs / Company</a>
     <ul>
 	    <li><%= link_to 'New Job', new_job_path, id: 'new_job_from_nav', id: "#{active? new_job_path}" %></li>

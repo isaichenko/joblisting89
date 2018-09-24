@@ -35,17 +35,20 @@
     </div>
 
     <div class="six columns">
-      <% if user_signed_in? && @resume.user_id != current_user.id %>
-        <% if current_user.bookmark_resume?(@resume) %>
-          <%= link_to unbookmark_resume_path(resume_id: @resume.id), class: 'button dark', title: 'Unbookmark!', method: :delete do %>
-            <i class="fa fa-star"></i> UNbookmark This Resume
-          <% end %>
-        <% else %>
-          <%= link_to bookmark_resume_path(resume_id: @resume.id), class: 'button dark', alt: 'Bookmark!', title: 'Bookmark!' do %>
-            <i class="fa fa-star"></i> Bookmark This Resume
+      <div class="two-buttons">
+        <%= render 'invite_button' %>
+        <% if user_signed_in? && @resume.user_id != current_user.id %>
+          <% if current_user.bookmark_resume?(@resume) %>
+            <%= link_to unbookmark_resume_path(resume_id: @resume.id), class: 'button dark', title: 'Unbookmark!', method: :delete do %>
+              <i class="fa fa-star"></i> UNbookmark This Resume
+            <% end %>
+          <% else %>
+            <%= link_to bookmark_resume_path(resume_id: @resume.id), class: 'button dark', alt: 'Bookmark!', title: 'Bookmark!' do %>
+              <i class="fa fa-star"></i> Bookmark This Resume
+            <% end %>
           <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
 
   </div>
