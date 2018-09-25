@@ -1,3 +1,18 @@
-<h2>New keyword</h2>
-<%= render 'form', keyword: @keyword %>
-<%= link_to 'Back', alert_path, class: 'btn btn-primary' %>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="single submit-page">
+	<div class="container">
+
+		<div class="sixteen columns">
+			<h2><i class="fa fa-plus-circle"></i> Add Keyword</h2>
+		</div>
+
+	</div>
+</div>
+
+<div class="container">
+	<div class="six columns">
+		<%= render 'form', keyword: @keyword %>
+		<%= link_to 'Back', alert_path, class: 'button' %>
+	</div>
+</div>

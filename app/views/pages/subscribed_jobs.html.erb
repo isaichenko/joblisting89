@@ -1,29 +1,51 @@
-<h2>Subscribed Jobs for keyword: "<%= @keywords[0].title %>"</h2>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Title</th>
-      <th scope="col">Company</th>
-      <th scope="col">Type of Job</th>
-      <th scope="col">Job Area</th>
-      <th scope="col">Pay range USD</th>
-      <th scope="col">Posted Date</th>
-      <th scope="col"></th>
-      <th scope="col"></th>
-    </tr>
-  </thead>
-  <tbody id="jobs">
-    <% @results.each do |result| %>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="single">
+  <div class="container">
+
+    <div class="sixteen columns">
+      <h2>Subscribed Jobs</h2>
+      <nav id="breadcrumbs">
+        <ul>
+          <li>You are here:</li>
+          <li><%= link_to 'Home', root_path %></li>
+          <li>Subscribed Jobs</li>
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="container">
+  
+  <!-- Table -->
+  <div class="sixteen columns">
+
+    <h3 class="margin-bottom-25">Subscribed Jobs for keyword: "<%= @keywords[0].title %>"</h3>
+
+    <table class="manage-table responsive-table">
+
       <tr>
-        <td><%= result.id %></td>
-        <td><%= result.title %></td>
+        <th><i class="fa fa-file-text"></i> Title</th>
+        <th><i class="fa fa-file-text"></i> Company</th>
+        <th><i class="fa fa-check-square-o"></i> Type of Job</th>
+        <th><i class="fa fa-check-square-o"></i> Job Area</th>
+        <th><i class="fa fa-money"></i> Pay range USD</th>
+        <th><i class="fa fa-calendar"></i> Posted Date</th>
+        <th></th>
+      </tr>
+          
+      <% @results.each do |result| %>
+      <tr>
+        <td class="title"><%= link_to result.title, job_path(result) %></td>
         <td><%= link_to result.user.companies[0].title, company_path(result.user.companies[0]) %></td>
         <td><%=result.job_type.title %></td>
         <td><%= result.job_area.title %></td>
         <td><%= result.salary_min %> - <%= result.salary_max %></td>
         <td><%= result.created_at %></td>
-        <td><%= link_to '', job_path(result), class: 'fa fa-eye fa-lg' %></td>
         <td>
           <% if current_user.bookmark_job?(result) %>
             <%= link_to '', unbookmark_job_path(job_id: result.id), class: 'fa fa-star fa-2x unbookmark', title: 'Unbookmark!', method: :delete %>
@@ -32,6 +54,10 @@
           <% end %>
         </td>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      <% end %>
+
+    </table>
+
+  </div>
+
+</div>

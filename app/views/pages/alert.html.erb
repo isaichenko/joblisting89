@@ -1,24 +1,49 @@
-<h2>Job Alert Settings</h2>
-  <br>
-<h4>Turn on your Job Alert On Off</h4>
-  <br>
-<h4>Criteria for the job alert.</h4>
-<h5>Keyword:</h5>
-  <div class="row">
-    <% @keywords.each do |k| %>
-      <div class="col-md-3">
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <%= k.title %>
-          <span>
-            <%= link_to '', edit_keyword_path(k), class: 'fa fa-edit fa-lg admin_icons' %>
-            <%= link_to '', keyword_path(k), method: :delete, class: 'fa fa-trash fa-lg admin_icons', data: { confirm: 'Are you sure?' } %>
-          </span>
-        </li>
-      </div>
-    <% end %>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="single">
+  <div class="container">
+
+    <div class="sixteen columns">
+      <h2>Job Alert Settings</h2>
+      <nav id="breadcrumbs">
+        <ul>
+          <li>You are here:</li>
+          <li><%= link_to 'Home', root_path %></li>
+          <li>Job Alert Settings</li>
+        </ul>
+      </nav>
+    </div>
+
   </div>
-<div class="row">
-  <div class="col-md-2">
-    <%= link_to 'Add Keyword', new_keyword_path, class: 'btn btn-primary btn-block' if current_user.keyword.count < 1 %>
+</div>
+
+
+<!-- Content
+================================================== -->
+
+<!-- Categories -->
+<div class="container">
+  <div class="six columns">
+    <h4>Criteria for the job alert.</h4>
+    
+    <table class="manage-table resumes responsive-table">
+      <tr>
+        <th><i class="fa fa-file-text"></i> Keyword:</th>
+        <th></th>
+      </tr>
+
+      <!-- Item #1 -->
+      <% @keywords.each do |k| %>
+      <tr>
+        <td><%= k.title %></td>
+        <td class="action">
+          <%= link_to '', edit_keyword_path(k), class: 'fa fa-edit fa-lg admin_icons' %>
+          <%= link_to '', keyword_path(k), method: :delete, class: 'fa fa-trash fa-lg admin_icons', data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  
+    <%= link_to 'Add Keyword', new_keyword_path, class: 'button' if current_user.keyword.count < 1 %>
   </div>
 </div>
