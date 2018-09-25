@@ -37,24 +37,20 @@
           <th scope="col">Pay range USD</th>
           <th scope="col">Posted</th>
           <th scope="col"></th>
-          <th scope="col"></th>
         </tr>
       </thead>
       <tbody id="jobs">
         <% @bookmarked_jobs.each do |bookmarked_job| %>
           <tr>
             <td><%= bookmarked_job.id %></td>
-            <td><%= bookmarked_job.title %></td>
+            <td class="title"><%= link_to bookmarked_job.title, bookmarked_job %></td>
             <td><%= bookmarked_job.user.companies[0].title %></td>
             <td><%= bookmarked_job.job_type.title %></td>
             <td><%= bookmarked_job.job_area.title %></td>
             <td><%= bookmarked_job.salary_min %> - <%= bookmarked_job.salary_max %></td>
             <td><%= bookmarked_job.created_at.strftime("%B %d, %Y") %></td>
-            <td><%= link_to '', bookmarked_job, class: 'fa fa-eye fa-lg' %></td>
             <td>
-              <%= link_to unbookmark_job_path(job_id: bookmarked_job.id), class: 'button dark', title: 'Unbookmark!', method: :delete do %>
-                <i class="fa fa-star"></i>
-              <% end %>
+              <%= link_to '', unbookmark_job_path(job_id: bookmarked_job.id), class: 'fa fa-star fa-2x unbookmark', title: 'Unbookmark!', method: :delete %>
             </td>
           </tr>
         <% end %>
