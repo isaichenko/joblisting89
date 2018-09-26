@@ -1,60 +1,98 @@
-<h2>Job Types</h2>
-<div class="card">
-  <div class="card-body">
-    <h4>Current job types</h4>
-    <div class="row">
-      <% @job_types.each do |job_type| %>
-    	  <div class="col-md-3">
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <%= job_type.title %>
-            <span>
-              <%= link_to '', edit_job_type_path(job_type), class: 'fa fa-edit fa-lg admin_icons' %>
-              <%= link_to '', job_type_path(job_type), method: :delete, class: 'fa fa-trash fa-lg admin_icons', data: { confirm: 'Are you sure?' } %>
-            </span>
-          </li>
-        </div>
-      <br>
-      <br>
-      <br>
-      <% end %>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="single">
+  <div class="container">
+
+    <div class="sixteen columns">
+      <h2>Job Posting Settings</h2>
+      <nav id="breadcrumbs">
+        <ul>
+          <li>You are here:</li>
+          <li><%= link_to 'Home', root_path %></li>
+          <li>Job Posting Settings</li>
+        </ul>
+      </nav>
     </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-10">
-  </div>
-  <div class="col-md-2">
-    <%= link_to 'Add more', new_job_type_path, class: 'btn btn-primary btn-block' %>
+
   </div>
 </div>
 
-<h2>Job Areas</h2>
-<div class="card">
-  <div class="card-body">
-    <h4>Current job areas</h4>
-    <div class="row">
-      <%@job_areas.each do |job_area| %>
-      	<div class="col-md-4">
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <%= job_area.title %>
-            <span>
-              <%= link_to '', edit_job_area_path(job_area), class: 'fa fa-edit fa-lg admin_icons' %>
-              <%= link_to '', job_area_path(job_area), method: :delete, class: 'fa fa-trash fa-lg admin_icons', data: { confirm: 'Are you sure?' } %>
-            </span>
-          </li>
+<!-- Content
+================================================== -->
+<div class="container">
+
+  <!-- Job Types -->
+  <div class="sixteen columns">
+    <h1 class="margin-bottom-25" style="float: left;">Job Types</h1>
+  </div>
+
+  <div class="sixteen columns">
+    <%= link_to new_job_type_path, class: 'button gray' do %>
+      <i class="fa fa-plus-circle"></i> Add more
+    <% end %>
+  </div>
+
+
+  <% @job_types.each do |job_type| %>
+    <div class="eight columns">
+
+      <div class="application">
+        <div class="app-content">
+
+          <div class="info">
+            <span><%= job_type.title %></span>
+          </div>
+
+          <div class="buttons">
+            <%= link_to edit_job_type_path(job_type), class: 'button gray' do %>
+              <i class="fa fa-pencil"></i> Edit
+            <% end %>
+            <%= link_to job_type_path(job_type), method: :delete, class: 'button gray', data: { confirm: 'Are you sure?' } do %>
+              <i class="fa fa-trash"></i> Delete
+            <% end %>
+          </div>
+          <div class="clearfix"></div>
+
         </div>
-        <br>
-        <br>
-        <br>
-      <% end %>
+      </div>
     </div>
+  <% end %>
+
+  <!-- Job Areas -->
+  <div class="sixteen columns">
+    <h1 class="margin-bottom-25" style="float: left;">Job Areas</h1>
   </div>
+
+  <div class="sixteen columns">
+    <%= link_to new_job_area_path, class: 'button gray' do %>
+      <i class="fa fa-plus-circle"></i> Add more
+    <% end %>
+  </div>
+
+
+  <% @job_areas.each do |job_area| %>
+    <div class="eight columns">
+
+      <div class="application">
+        <div class="app-content">
+
+          <div class="info">
+            <span><%= job_area.title %></span>
+          </div>
+
+          <div class="buttons">
+            <%= link_to edit_job_area_path(job_area), class: 'button gray' do %>
+              <i class="fa fa-pencil"></i> Edit
+            <% end %>
+            <%= link_to job_area_path(job_area), method: :delete, class: 'button gray', data: { confirm: 'Are you sure?' } do %>
+              <i class="fa fa-trash"></i> Delete
+            <% end %>
+          </div>
+          <div class="clearfix"></div>
+
+        </div>
+      </div>
+    </div>
+  <% end %>
+
 </div>
-<div class="row">
-  <div class="col-md-10">
-  </div>
-  <div class="col-md-2">
-    <%= link_to 'Add more', new_job_area_path, class: 'btn btn-primary btn-block' %>
-  </div>
-</div>
-<br>

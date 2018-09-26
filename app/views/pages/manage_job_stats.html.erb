@@ -1,71 +1,109 @@
-<h2>Job Titles</h2>
-<div class="card">
-  <div class="card-body">
-    <h4>Current job titles</h4>
-    <div class="row">
-      <% @job_titles.each do |job_title| %>
-    	  <div class="col-md-3">
-          <li class="list-group-item d-flex justify-content-between align-items-center">
-            <%= job_title.title %>
-            <span>
-              <%= link_to '', edit_job_title_path(job_title), class: 'fa fa-edit fa-lg admin_icons' %>
-              <%= link_to '', job_title_path(job_title), method: :delete, class: 'fa fa-trash fa-lg admin_icons', data: { confirm: 'Are you sure?' } %>
-            </span>
-          </li>
-        </div>
-      <br>
-      <br>
-      <br>
-      <% end %>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="single">
+  <div class="container">
+
+    <div class="sixteen columns">
+      <h2>Job Statistics Settings</h2>
+      <nav id="breadcrumbs">
+        <ul>
+          <li>You are here:</li>
+          <li><%= link_to 'Home', root_path %></li>
+          <li>Job Statistics Settings</li>
+        </ul>
+      </nav>
     </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-10">
-  </div>
-  <div class="col-md-2">
-    <%= link_to 'Add more', new_job_title_path, class: 'btn btn-primary btn-block'%>
-  </div>
-</div>
-<br>
 
-<div class="pl-3">
-    <h2>Job Titles Pending For Approval</h2>
-    <table class="table table-striped">
-    <thead>
+  </div>
+</div>
+
+<!-- Content
+================================================== -->
+<div class="container">
+
+  <!-- Job Titles -->
+  <div class="sixteen columns">
+    <h1 class="margin-bottom-25" style="float: left;">Job Titles</h1>
+  </div>
+
+  <div class="sixteen columns">
+    <%= link_to new_job_title_path, class: 'button gray' do%>
+      <i class="fa fa-plus-circle"></i> Add more
+    <% end %>
+  </div>
+
+
+  <!-- Applications -->
+  <% @job_titles.each do |job_title| %>
+    <div class="eight columns">
+
+      <!-- Application #1 -->
+      <div class="application">
+        <div class="app-content">
+
+          <!-- Name / Avatar -->
+          <div class="info">
+            <span><%= job_title.title %></span>
+          </div>
+
+          <!-- Buttons -->
+          <div class="buttons">
+            <%= link_to edit_job_title_path(job_title), class: 'button gray' do %>
+              <i class="fa fa-pencil"></i> Edit
+            <% end %>
+            <%= link_to job_title_path(job_title), method: :delete, class: 'button gray', data: { confirm: 'Are you sure?' } do %>
+              <i class="fa fa-trash"></i> Delete
+            <% end %>
+          </div>
+          <div class="clearfix"></div>
+
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <!-- Job Titles Pending For Approval -->
+  <div class="sixteen columns">
+    <h1 class="margin-bottom-25" style="float: left;">Job Titles Pending For Approval</h1>
+  </div>
+
+  <div class="sixteen columns">
+
+    <table class="manage-table resumes responsive-table">
+      <thead>
         <tr>
-            <th scope="col">#</th>
-            <th scope="col" class="text-center" >Title</th>
-            <th scope="col" class="text-center" >User</th>
-						<th scope="col" class="text-center">Email</th>
-						<th scope="col" class="text-right">Action</th>
-						<th scope="col" class="text-right"></th>
-						<th scope="col" class="text-right"></th>
-						
+          <th scope="col">#</th>
+          <th scope="col" class="text-center" >Title</th>
+          <th scope="col" class="text-center" >User</th>
+          <th scope="col" class="text-center">Email</th>
+          <th scope="col" class="text-right">Actions</th>
+          <th scope="col" class="text-right"></th>
+          <th scope="col" class="text-right"></th>
         </tr>
-    </thead>
-    <tbody id="job_title_approvals">
-			<% JobTitle.where(status: false).each.with_index(1) do |job_title, key| %>
-				<tr>
-					<th scope="row"><%= key %></th>
-					<td class="text-center"><%= job_title.title %></td>
-					<th scope="col" class="text-center"><%= job_title.user.interface == nil ? 'Admin' : job_title.user.interface %></th>
-					  <td class="text-center"><%= job_title.user.email%></td>
-				    <td class="text-left"><%= link_to 'Approve', approve_action_path(:id => job_title.id, :status => 'approve'), class: 'btn btn-primary btn-block' %></td>
-				    <td class="text-left"><%= link_to 'Approve and Link', approve_action_path(:id => job_title.id, :status => 'linked'), :remote => true, class: 'btn btn-primary btn-block', 'data-toggle' => "modal" , 'data-target' => "#approveModalCenter" %></td>
-				    <td class="text-left"><%= link_to 'Cancel', approve_action_path(:id => job_title.id, :status => 'cancel'), class: 'btn btn-primary btn-block' %></td>
-						
-				</tr>
-			<% end%>
-		</tbody>
+      </thead>
+      <tbody id="job_title_approvals">
+        <% JobTitle.where(status: false).each.with_index(1) do |job_title, key| %>
+          <tr>
+            <td><%= key %></td>
+            <td><%= job_title.title %></td>
+            <td><%= job_title.user.interface == nil ? 'Admin' : job_title.user.interface %></td>
+            <td><%= job_title.user.email%></td>
+            <td><%= link_to 'Approve', approve_action_path(:id => job_title.id, :status => 'approve'), class: '' %></td>
+            <td><%= link_to 'Approve and Link', approve_action_path(:id => job_title.id, :status => 'linked'), :remote => true, class: '', 'data-toggle' => "modal" , 'data-target' => "#approveModalCenter" %></td>
+            <td><%= link_to 'Cancel', approve_action_path(:id => job_title.id, :status => 'cancel'), class: '' %></td>
+
+          </tr>
+        <% end%>
+      </tbody>
     </table>
+
+  </div>
 </div>
 
-  <!-- Modal -->
+<!-- Modal -->
   <div class="modal fade" id="approveModalCenter" tabindex="-1" role="dialog" aria-labelledby="approveModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
       </div>
     </div>
   </div>
-<br>

@@ -1,3 +1,18 @@
-<h2>New Job Type</h2>
-<%= render 'form', job_type: @job_type %>
-<%= link_to 'Back', settings_path, class: 'btn btn-primary' %>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="single submit-page">
+  <div class="container">
+
+    <div class="sixteen columns">
+      <h2><i class="fa fa-plus-circle"></i> New Job Type</h2>
+    </div>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="six columns">
+    <%= render 'form', job_type: @job_type %><br>
+    <%= link_to 'Back', settings_path, class: 'button' %>
+  </div>
+</div>

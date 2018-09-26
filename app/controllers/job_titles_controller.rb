@@ -52,7 +52,7 @@ class JobTitlesController < ApplicationController
       @job_title.destroy
       @notice = 'The Job Title is cancelled.'
     end
-    
+
     respond_to do |format|
       format.html { redirect_to manage_job_stats_path, notice: @notice }
       format.js{}
@@ -61,7 +61,7 @@ class JobTitlesController < ApplicationController
 
   def link_title
     @child_id = params[:id]
-    @parent_id = params[:parent_id]    
+    @parent_id = params[:parent_id]
     @parent_title = JobTitle.find(params[:parent_id])
     @job_title.parent_id = @parent_id
     @job_title.status = true
@@ -73,7 +73,7 @@ class JobTitlesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to manage_job_stats_path, notice: @notice }
     end
-    
+
   end
 
   private
