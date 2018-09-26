@@ -1,24 +1,45 @@
-<div class="row">
-  <div class="col-sm-4">
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="single">
+  <div class="container">
+
+    <div class="sixteen columns">
+      <h2>Admin Login</h2>
+      <nav id="breadcrumbs">
+        <ul>
+          <li>You are here:</li>
+          <li><%= link_to "Home", root_path %></li>
+          <li>Admin Login</li>
+        </ul>
+      </nav>
+    </div>
+
   </div>
-  <div class="col-sm-4">
-    <h3>Admin Log in</h3>
+</div>
+
+<!-- Content
+================================================== -->
+
+<!-- Container -->
+<div class="container">
+
+  <div class="my-account">
+
+    <h3>Admin Login</h3>
     <%= form_for(:user, :url => session_path(:user)) do |f| %>
 
-      <div class="form-group">
-        <%= f.label :email %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+      <div class="form">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: '', placeholder: 'Email' %>
       </div>
-
-      <div class="form-group">
-        <%= f.label :password %><br />
-        <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+      <br>
+      <div class="form">
+        <%= f.password_field :password, autocomplete: "off", class: '', placeholder: 'Password' %>
       </div>
-
-      <div class="form-group">
-        <%= f.submit 'Log in', class: 'btn btn-primary btn-block' %>
+      <div class="form">
+        <%= f.submit 'Login', class: 'button border fw margin-top-10' %>
       </div>
 
     <% end %>
+
   </div>
 </div>

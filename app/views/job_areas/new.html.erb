@@ -1,3 +1,18 @@
-<h2>New Job Area</h2>
-<%= render 'form', job_area: @job_area %>
-<%= link_to 'Back', settings_path, class: 'btn btn-primary' %>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="single submit-page">
+  <div class="container">
+
+    <div class="sixteen columns">
+      <h2><i class="fa fa-plus-circle"></i> New Job Area</h2>
+    </div>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="six columns">
+    <%= render 'form', job_area: @job_area %><br>
+    <%= link_to 'Back', settings_path, class: 'button' %>
+  </div>
+</div>

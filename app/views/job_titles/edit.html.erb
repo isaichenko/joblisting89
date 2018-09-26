@@ -1,3 +1,18 @@
-<h2>Edit Job Title</h2>
-<%= render 'form', job_title: @job_title %>
-<%= link_to 'Back', manage_job_stats_path, class: 'btn btn-primary' %>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="single submit-page">
+  <div class="container">
+
+    <div class="sixteen columns">
+      <h2><i class="fa fa-edit"></i> Edit Job Title</h2>
+    </div>
+
+  </div>
+</div>
+
+<div class="container">
+  <div class="six columns">
+    <%= render 'form', job_title: @job_title %><br>
+    <%= link_to 'Back', manage_job_stats_path, class: 'button' %>
+  </div>
+</div>
