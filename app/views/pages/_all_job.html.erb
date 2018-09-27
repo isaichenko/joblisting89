@@ -9,7 +9,7 @@
     <ul class="listing-icons">
       <li><i class="ln ln-icon-Management"></i> <%= pluralize(all_job.experience, 'year') %></li>
       <li><i class="ln ln-icon-Map2"></i> <%= all_job.first_company.city %></li>
-      <li><i class="ln ln-icon-Money-2"></i> USD <%= all_job.salary_min %>-<%= all_job.salary_max %></li>
+      <li><i class="ln ln-icon-Money-2"></i> $<%= all_job.salary_min %>-$<%= all_job.salary_max %></li>
       <li><div class="listing-date new">
         <% if all_job.updated_at < (Time.now - 1.days) %>
           <%= all_job.updated_at.strftime("%B %d, %Y")%>

@@ -1,7 +1,11 @@
 class PagesController < ApplicationController
   access all: { except: [:settings, :manage_jobseeker, :manage_recruiter, :manage_job_stats] }, user: { except: [:settings, :manage_jobseeker, :manage_recruiter, :manage_job_stats] }, superadmin: :all
 
-  def index; end
+  def index
+    @recent_jobs = Job.last(5)
+    @spotlight_jobs = Job.last(3)
+    @recent_posts = Blog.last(3)
+  end
 
   def alljobs
     if search_params.present?
