@@ -1,6 +1,6 @@
 <!-- Different header class for root_page and others
 ================================================== -->
-<% if current_page?(root_path) %>
+<% if current_page?(root_path) || current_page?(find_resume_path) || current_page?(find_company_path) %>
   <header class="transparent sticky-header">
 <% else %>
   <header class="sticky-header">
