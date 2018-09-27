@@ -1,11 +1,8 @@
 class PagesController < ApplicationController
   access all: { except: [:settings, :manage_jobseeker, :manage_recruiter, :manage_job_stats] }, user: { except: [:settings, :manage_jobseeker, :manage_recruiter, :manage_job_stats] }, superadmin: :all
+  before_action :set_job_post, only: [:index, :find_resume, :find_company]
 
-  def index
-    @recent_jobs = Job.last(5)
-    @spotlight_jobs = Job.last(3)
-    @recent_posts = Blog.last(3)
-  end
+  def index; end
 
   def alljobs
     if search_params.present?
@@ -115,5 +112,11 @@ class PagesController < ApplicationController
 
   def search_params
     params.permit(:q, :address, :sort_by, :page, experience: [], job_type: [], education: [], job_title: [], city: [], industry: [], reviews: [], title: [])
+  end
+
+  def set_job_post
+    @recent_jobs = Job.last(5)
+    @spotlight_jobs = Job.last(3)
+    @recent_posts = Blog.last(3)
   end
 end
