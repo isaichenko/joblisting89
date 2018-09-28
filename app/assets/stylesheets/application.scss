@@ -187,4 +187,96 @@ select.change-action {
 .recruiter-image {
   width:100%;
   height: auto;
+  /*min-height: 400px;*/
+}
+
+
+
+.wrap {
+  width: 80%;
+  /*height: 100vh;*/
+  margin: 0 auto;
+  /*background-color: aliceblue;*/
+}
+
+.wrap-img {
+  /*position: relative;*/
+  width: 100%;
+  line-height: 0px;
+  /*background-color: #26ae61;*/
+}
+
+.wrap-img img {
+  width: 100%;
+  height: 100%;
+}
+
+.middle,
+.bottom-right,
+.top-left {
+  width: 50%;
+  ;
+  height: 60%;
+  ;
+  position: absolute;
+}
+
+.top-left {
+  top: 15%;
+  left: 10%;
+  color: #ffffff;
+  /*font-size: 40px;*/
+  z-index: 2;
+  line-height: 1.9;
+}
+
+.middle {
+  top: 15%;
+  left: 40%;
+  color: #ffffff;
+  /*font-size: 40px;*/
+  z-index: 2;
+  line-height: 1.9;
+}
+
+.bottom-right {
+  background-color: #008000;
+  bottom: 47%;
+  right: 22%;
+}
+
+.darkened {
+  position: relative;
+}
+
+.darkened::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.7);
+  z-index: 1;
+}
+
+.greened {
+  position: relative;
+}
+
+.greened::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(38,174,97,0.7);
+  z-index: 1;
+}
+
+@media (max-width: 1360px) {
+  .mixplat_operators {
+    display: none;
+  }
 }
