@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   mount Ckeditor::Engine => '/ckeditor'
   get 'faq/new'
 
@@ -24,6 +25,9 @@ Rails.application.routes.draw do
 
   resources :companies do
     resources :reviews
+    member do
+      get :follow_unfollow
+    end
   end
 
   resources :jobs
@@ -98,6 +102,11 @@ Rails.application.routes.draw do
   
   get '/approve_action/:id/:status', to: 'job_titles#approve_action', as: :approve_action
   post '/job_titles/:id/link_title/', to: 'job_titles#link_title', as: :link_title
+
+  get     'following_list',       to: 'followers#following_list'
+  get     'follow_unfollow',      to: 'followers#follow_unfollow'
+
+  get     'news_feed',            to: 'news_feed#news_feed'
 
   root to: 'pages#index'
 

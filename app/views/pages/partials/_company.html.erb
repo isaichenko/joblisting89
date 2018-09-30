@@ -1,7 +1,10 @@
 <div id="main-job-container">
   <div class="job-info__head company">
     <span style="font-weight: bold; font-size: 24px; line-height: 0px;"><%= company.title %></span>
-    <p style="margin: 10px 0;"><%= link_to 'Show more about company', company_path(company), class: "btn btn-success", target: "_blank" %></p>
+    <p style="margin: 10px 0;">
+      <%= link_to 'Show more about company', company_path(company), class: "btn btn-success", target: "_blank" %>
+      <%= link_to is_following(company), follow_unfollow_company_path(company), class: 'btn btn-warning' %>
+    </p>
     <hr />
   </div>
   <div class="job-info__body">

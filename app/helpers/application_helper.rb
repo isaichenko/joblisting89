@@ -69,6 +69,24 @@ module ApplicationHelper
   #   session[:my_previous_url] = URI(request.referer || '').path
   # end
 
+  def is_following(company)
+    if user_signed_in?
+      if current_user.following?(company)
+        return 'UnFollow'
+      else
+        return 'Follow'
+      end
+    else
+      return 'Follow'
+    end
+  end
+
+  def company_followers
+    if user_signed_in? and current_user.companies.present?
+      "#{current_user.companies.first.followers_count} Followers "
+    end
+  end
+
   private
 
     def status_span_generator status

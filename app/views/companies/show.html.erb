@@ -20,7 +20,9 @@
         <br>
         <%= link_to (@company.reviews.count.to_s + " reviews"), company_reviews_path(@company), class: 'button dark' %>
       </div>
-  </div>
+        <%= link_to 'Edit Company', edit_company_path(@company), class: 'button' if user_signed_in? && current_user.company_ids[0] == @company.id %>
+        <%= link_to is_following(@company), follow_unfollow_company_path(@company), class: 'button' %>
+    </div>
 
   </div>
 </div>

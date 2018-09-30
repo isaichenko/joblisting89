@@ -1,0 +1,23 @@
+<h2>Following List [Following <%= @companies.count %> Companies]</h2>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Company Name</th>
+    <th scope="col">Jobs</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody id="jobs">
+  <% @companies.each do |company| %>
+    <tr>
+      <th border=4 height=100 width=300><%= image_tag placeholder_img(company.logo, 'logo'), width: '15%' %></th>
+      <td><%= link_to company.title, company_path(company) %></td>
+      <td><%= company.user.jobs.count %></td>
+      <td>
+        <%= link_to is_following(company), follow_unfollow_path(id: company.id), class: 'btn btn-warning' %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

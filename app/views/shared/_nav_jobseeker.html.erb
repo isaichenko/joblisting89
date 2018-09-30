@@ -3,7 +3,6 @@
 
   <%= render 'shared/browse_nav' %>
 
-
   <li><a href="#">Jobseeker Dashboard</a>
     <ul>
       <% if current_user.resumes.count == 0 %>
@@ -14,6 +13,8 @@
       <li><%= link_to 'Applied Jobs', applied_jobs_path(current_user.id), id: "#{active? applied_jobs_path(current_user.id)}" %></li>
       <li><%= link_to 'Bookmarked Jobs', bookmarked_jobs_path, id: "#{active? bookmarked_jobs_path}" %></li>
       <li><%= link_to 'Subscribed Jobs', subscribed_jobs_path, id: "#{active? subscribed_jobs_path}" %></li>
+      <li><%= link_to 'NewsFeed', news_feed_path, id: "#{active? news_feed_path}" %></li>
+      <li><%= link_to 'Following List', following_list_path, id: "#{active? following_list_path}" %></li>
       <li><%= link_to 'Job Alert', alert_path, id: "#{active? alert_path}" %></li>
     </ul>
   </li>
