@@ -3,7 +3,7 @@
 
   <%= render 'shared/browse_nav' %>
 
-  <li><a href="#">Jobs / Company</a>
+  <li><a href="#">Recruiter Dashboard</a>
     <ul>
 	    <li><%= link_to 'New Job', new_job_path, id: 'new_job_from_nav', id: "#{active? new_job_path}" %></li>
       <li><%= link_to 'Your Jobs', jobs_path, id: "#{active? jobs_path}" %></li>
@@ -12,15 +12,14 @@
       <% else %>
         <li><%= link_to 'View your Company', company_path(current_user.companies.ids), id: "#{active? company_path(current_user.companies.ids)}" %></li>
       <% end %>
+      <li><%= link_to 'Bookmarked Resumes', bookmarked_resumes_path, id: 'new_job_from_nav', id: "#{active? bookmarked_resumes_path}" %></li>
     </ul>
   </li>
-
-  <li><%= link_to 'Bookmarked Resumes', bookmarked_resumes_path, id: 'new_job_from_nav', id: "#{active? bookmarked_resumes_path}" %></li>
 
 </ul>
 
 <ul class="float-right">
-  <li><%= company_followers %></li>
+  <li><a href=""><%= company_followers %></a></li>
   <li><%= link_to "I am #{interface_button}", toggle_interface_user_path(current_user) %></li>
   <li><%= link_to current_user.name, edit_user_registration_path %></li>
   <li>

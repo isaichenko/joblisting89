@@ -1,12 +1,61 @@
-<div class="my-3 p-3 bg-white rounded shadow-sm">
-  <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="single">
+  <div class="container">
+
+    <div class="sixteen columns">
+      <h2>News Feed</h2>
+      <nav id="breadcrumbs">
+        <ul>
+          <li>You are here:</li>
+          <li><%= link_to 'Home', root_path %></li>
+          <li>News Feed</li>
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Content
+================================================== -->
+<div class="container">
+  <h2>Recent updates</h2>
+  <!-- Applications -->
+    
   <% @jobs.each do |j| %>
-    <div class="media text-muted pt-3">
-      <img data-src="holder.js/32x32?theme=thumb&amp;bg=007bff&amp;fg=007bff&amp;size=1" alt="32x32" class="mr-2 rounded" style="width: 32px; height: 32px;" src="<%= placeholder_img(j.user.companies.first.logo, 'logo') %>" data-holder-rendered="true">
-      <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-        <strong class="d-block text-gray-dark"><%= link_to j.user.companies.first.title, company_path(j.user.companies.first)  %></strong>
-        Posted a Job "<%= link_to j.title, job_path(j)  %>", on
-        <%= j.created_at.strftime('%D') %></p>
+    <div class="eight columns">
+      <!-- Application #1 -->
+      <div class="application">
+        <div class="app-content">
+          
+          <!-- Name / Avatar -->
+          <div class="info">
+            <%= image_tag placeholder_img(j.user.companies.first.logo, 'logo') %>
+            <img src="images/resumes-list-avatar-01.png" alt="">
+            <span><%= link_to j.user.companies.first.title, company_path(j.user.companies.first) %></span>
+            <ul>
+              <li>Posted a Job "<%= link_to j.title, job_path(j)  %>"</li>
+            </ul>
+          </div>
+          
+        </div>
+
+        <!-- Footer -->
+        <div class="app-footer">
+
+          
+
+          <ul>
+            <li>on</li>
+            <li><i class="fa fa-calendar"></i> September 24, 2015</li>
+          </ul>
+          <div class="clearfix"></div>
+
+        </div>
+      </div>
     </div>
   <% end %>
+
 </div>
