@@ -89,6 +89,10 @@ class JobsController < ApplicationController
           JobTitle.create(title: @job.title, status: false, user_id: current_user.id)
         end
         format.html { redirect_to jobs_path, notice: 'Your Job was created.' }
+
+        current_user.companies.first.followers.each do |user|
+          CompanyMailer.new_job_posted_by_company(user.email,@job, current_user.companies.first.title).deliver_now
+        end
       else
         format.html { render :new }
       end
