@@ -89,7 +89,10 @@
             <td><%= job_title.user.interface == nil ? 'Admin' : job_title.user.interface %></td>
             <td><%= job_title.user.email%></td>
             <td><%= link_to 'Approve', approve_action_path(:id => job_title.id, :status => 'approve'), class: '' %></td>
-            <td><%= link_to 'Approve and Link', approve_action_path(:id => job_title.id, :status => 'linked'), :remote => true, class: '', 'data-toggle' => "modal" , 'data-target' => "#approveModalCenter" %></td>
+            <td>
+              <a href="#small-dialog" class="popup-with-zoom-anim button" style="display: none"  id="modal-approve"></a>
+              <%= link_to 'Approve and Link', approve_action_path(:id => job_title.id, :status => 'linked'), :remote => true, class: '', 'data-toggle' => "modal" , 'data-target' => "#approveModalCenter" %>
+            </td>
             <td><%= link_to 'Cancel', approve_action_path(:id => job_title.id, :status => 'cancel'), class: '' %></td>
 
           </tr>
@@ -101,9 +104,14 @@
 </div>
 
 <!-- Modal -->
-  <div class="modal fade" id="approveModalCenter" tabindex="-1" role="dialog" aria-labelledby="approveModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-      </div>
+
+<div id="small-dialog" class="zoom-anim-dialog mfp-hide apply-popup">
+  <div id="approveModalCenter">
+    <div class="small-dialog-headline">
+      <h2>To which Job Title would you like to like this title?</h2>
+    </div>
+
+    <div class="small-dialog-content">
     </div>
   </div>
+</div>

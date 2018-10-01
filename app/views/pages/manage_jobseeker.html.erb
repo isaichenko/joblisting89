@@ -60,9 +60,12 @@
                 <% end %>
                 <td class="text-center"><%= job_seeker.status == 'active' ? 'Active' : 'Suspended' %></td>
                 <td class="text-center">
+
+                    <a href="#small-dialog" class="popup-with-zoom-anim button" style="display: none"  id="modal-click"></a>
                     <%#= select("status", "", ["Suspend", "Delete"], { include_blank: true }) %>
                     <%#= select("status", "", ["Lift suspension", "Delete"], { include_blank: true }) %>
-                    <select class="change-action" data-user-type="<%= @type %>">
+                    
+                    <select class="change-action chosen-select-no-single" data-user-type="<%= @type %>">
                         <option value=""></option>
                         <% if job_seeker.status == 'active' %>
                             <option value="<%= change_action_path(:id => job_seeker.id, :status => 'suspend') %>">Suspend</option>

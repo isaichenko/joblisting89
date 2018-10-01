@@ -56,43 +56,12 @@
             <td class="text-center"><%= recruiter.status == 'active' ? 'Active' : 'Suspended' %></td>
             <td class="text-center">
 
+              <a href="#small-dialog" class="popup-with-zoom-anim button" style="display: none"  id="modal-click"></a>
 
-<!--
-              <a href="#small-dialog" class="popup-with-zoom-anim button">Change Status</a>
-
-              <div id="small-dialog" class="zoom-anim-dialog mfp-hide apply-popup">
-                <div class="small-dialog-headline">
-                  <h2>Select Action</h2>
-                </div>
-
-                <div class="small-dialog-content">
-                  <form action="#" method="get" >
-                    <select class="change-action" data-user-type="<%= @type %>">
-                      <option value=""></option>
-
-                      <% if recruiter.status == 'active' %>
-                          <option value="<%= change_action_path(:id => recruiter.id, :status => 'suspend') %>">Suspend</option>
-                      <% else %>
-                          <option value="<%= change_action_path(:id => recruiter.id, :status => 'lift_suspend') %>">Lift suspension</option>
-                      <% end %>
-                      <option value="<%= change_action_path(:id => recruiter.id, :status => 'delete') %>">Delete</option>
-                    </select>
-                    <div class="modal-body">
-                      <h5></h5>
-                    </div>
-
-                      <button class="send">Submit</button>
-                  </form>
-
-                </div>
-
-              </div>
-
--->
               <select class="change-action chosen-select-no-single" data-user-type="<%= @type %>">
                   <option value=""></option>
                   <% if recruiter.status == 'active' %>
-                      <option value="<%= change_action_path(:id => recruiter.id, :status => 'suspend') %>">Suspend</option>
+                      <option value="<%= change_action_path(:id => recruiter.id, :status => 'suspend')  %>">Suspend</option>
                   <% else %>
                       <option value="<%= change_action_path(:id => recruiter.id, :status => 'lift_suspend') %>">Lift suspension</option>
                   <% end %>
