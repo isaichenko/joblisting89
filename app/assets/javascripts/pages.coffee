@@ -12,10 +12,10 @@ $(document).on "turbolinks:load", ->
         if /suspend/.test url
             $("#small-dialog .modal-body h5").text('Are you going to suspend this ' + type + ' ?')
             # disable bootstrap modal outside close
-            $("#small-dialog")
+            $("#modal-click").trigger("click");
         else if /delete/.test url
             $("#small-dialog .modal-body h5").text('Are you going to delete this ' + type + ' ?')
-            $("#small-dialog")
+            $("#modal-click").trigger("click");
 
     $(".action-confirm-yes").on "click", (event) ->
         event.preventDefault()
