@@ -259,9 +259,15 @@
 
 			<!-- Post #1 -->
 			<div class="recent-post">
-				<div class="recent-post-img"><a href="blog-single-post.html">
-					<%= image_tag 'recent-post-01.jpg', alt: "" %>
-				</a><div class="hover-icon"></div></div>
+				<div class="recent-post-img">
+					<%= link_to blog_path(blog) do %>	
+						<% if blog.featured_image? %>
+	            <%= image_tag blog.featured_image.url, width: '100%' %>
+	          <% else %>
+	            <%= image_tag image_generator(height: '498', width: '315'), width: '100%' %>
+	          <% end %>
+					<% end %><div class="hover-icon"></div>
+				</div>
 				<%= link_to blog_path(blog) do %>
           <h4><%= blog.title %></h4>
         <% end %>
