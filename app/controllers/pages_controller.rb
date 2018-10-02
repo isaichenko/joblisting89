@@ -54,7 +54,7 @@ class PagesController < ApplicationController
   def allsalaries
     @all_salaries = JobTitle.getMainTitles.order(created_at: :DESC).all
     if params[:query].present?
-      @all_salaries = @all_salaries.where('title like ?', "%#{params[:query]}%")
+      @all_salaries = JobTitle.where('title like ?', "%#{params[:query]}%")
     end
     @all_salaries = @all_salaries.page params[:page]
   end
