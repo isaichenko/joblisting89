@@ -68,11 +68,56 @@
       <!-- Register -->
       <div class="tab-content" id="tab2" style="display: none;">
 
+          <!--
           <p class="form-row" style="width: 100%;">
             <%= link_to "I am a Recruiter", new_user_with_interface_path(:initial_interface => 'recruiter'), class: "button border fw margin-top-10" %>
 
             <%= link_to "I am a Jobseeker", new_user_with_interface_path(:initial_interface => 'jobseeker'), class: "button border fw margin-top-10" %>
           </p>
+          -->
+
+                  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: 'register') do |f| %>
+                    <%= devise_error_messages! %>
+
+                    <p class="form-row form-row-wide">
+                      <%= f.label :email %>
+                      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+                    </p>
+
+                    <p class="form-row form-row-wide">
+                      <%= f.label :password %>
+                      <% if @minimum_password_length %>
+                        <em>(<%= @minimum_password_length %> characters minimum)</em>
+                      <% end %><br />
+                      <%= f.password_field :password, autocomplete: "off" %>
+                    </p>
+
+                    <p class="form-row form-row-wide">
+                      <%= f.label :password_confirmation %>
+                      <%= f.password_field :password_confirmation, autocomplete: "off" %>
+                    </p>
+
+                    <p class="form-row form-row-wide">
+                      <label class="form-row form-row-wide">
+                        <%= f.radio_button :interface, 'recruiter' %> I am a Recruiter
+                      </label>
+                      <label>
+                        <%= f.radio_button :interface, 'jobseeker' %> I am a Jobseeker
+                      </label>
+                    </p>
+
+                    <%# f.text_field :initial_interface, :value => params[:initial_interface] %>
+
+                    <p class="form-row">
+                      <%= f.submit "Sign up", class: 'button border fw margin-top-10', value: "Register" %>
+                    </p>
+                  <% end %>
+
+                  <%# render "devise/shared/links" %>
+
+
+
+
 
       </div>
     </div>
