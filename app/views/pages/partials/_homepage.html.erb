@@ -268,7 +268,7 @@
 				<div class="meta-tags">
 					<span><%= blog.created_at.strftime("%B %d, %Y") %></span>
 				</div>
-				<p><%= truncate(blog.content.html_safe, :length => 140, :escape => false, :separator => ' ') %></p>
+				<p><%= truncate(blog.content.html_safe, :length => 150, :escape => false, :separator => ' ') %></p>
 				<%= link_to "Read More", blog_path(blog), class: 'button' %>
 			</div>
 
