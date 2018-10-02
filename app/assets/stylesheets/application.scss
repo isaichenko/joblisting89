@@ -193,7 +193,7 @@ select.change-action {
 
 
 .wrap {
-  width: 80%;
+  width: 50%;
   /*height: 100vh;*/
   margin: 0 auto;
   /*background-color: aliceblue;*/
@@ -214,16 +214,16 @@ select.change-action {
 .middle,
 .bottom-right,
 .top-left {
-  width: 55%;
+  width: 75%;
   ;
-  height: 60%;
+  height: 80%;
   ;
   position: absolute;
 }
 
 .top-left {
-  top: 15%;
-  left: 10%;
+  top: 30%;
+  right: 20%;
   color: #ffffff;
   /*font-size: 40px;*/
   z-index: 2;
@@ -231,8 +231,8 @@ select.change-action {
 }
 
 .middle {
-  top: 15%;
-  left: 40%;
+  top: 30%;
+  left: 20%;
   color: #ffffff;
   /*font-size: 40px;*/
   z-index: 2;
@@ -242,7 +242,7 @@ select.change-action {
 .bottom-right {
   background-color: #008000;
   bottom: 47%;
-  right: 22%;
+  right: 20%;
 }
 
 .darkened {
@@ -275,9 +275,15 @@ select.change-action {
   z-index: 1;
 }
 
-@media (max-width: 1360px) {
+@media (max-width: 1200px) {
   .mixplat_operators {
     display: none;
+  }
+}
+
+@media (max-width: 815px) {
+  .wrap {
+    width: 100%;
   }
 }
 
