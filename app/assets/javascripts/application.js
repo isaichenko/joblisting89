@@ -37,7 +37,7 @@
 //= require scripts/hoverIntent
 //= require scripts/slick.min
 //= require scripts/stacktable
-//= require scripts/switcher
+// require scripts/switcher
 //= require scripts/waypoints.min
 //= require scripts/custom
 
