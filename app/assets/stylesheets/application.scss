@@ -214,7 +214,7 @@ select.change-action {
 .middle,
 .bottom-right,
 .top-left {
-  width: 75%;
+  width: 50%;
   ;
   height: 80%;
   ;
@@ -222,8 +222,8 @@ select.change-action {
 }
 
 .top-left {
-  top: 30%;
-  right: 20%;
+  top: 36%;
+  right: 50%;
   color: #ffffff;
   /*font-size: 40px;*/
   z-index: 2;
@@ -231,8 +231,8 @@ select.change-action {
 }
 
 .middle {
-  top: 30%;
-  left: 20%;
+  top: 36%;
+  left: 50%;
   color: #ffffff;
   /*font-size: 40px;*/
   z-index: 2;
@@ -279,11 +279,25 @@ select.change-action {
   .mixplat_operators {
     display: none;
   }
+  .middle {
+    top: 16%;
+  }
+  .top-left{
+    top: 16%;
+  }
 }
 
 @media (max-width: 815px) {
   .wrap {
     width: 100%;
+  }
+  .middle {
+    top: 36%;
+    left: 20%;
+  }
+  .top-left{
+    top: 36%;
+    right: 20%;
   }
 }
 
