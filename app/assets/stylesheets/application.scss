@@ -290,4 +290,9 @@ select.change-action {
 .header-image {
   background-image: url('banner-home-01.jpeg');
   background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-attachment: fixed;
+  background-width: 100% auto;
+  background-color: #F4F4F2;
 }
