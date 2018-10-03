@@ -288,5 +288,6 @@ select.change-action {
 }
 
 .header-image {
-  background: url("banner-home-01.jpeg");
+  background-image: url('banner-home-01.jpeg');
+  background-size: cover;
 }
