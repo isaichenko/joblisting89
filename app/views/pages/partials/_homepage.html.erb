@@ -262,7 +262,7 @@
 				<div class="recent-post-img">
 					<%= link_to blog_path(blog) do %>
 						<% if blog.featured_image? %>
-	            <%= image_tag blog.featured_image.url, width: '315px' %>
+	            <%= image_tag(blog.featured_image.url, style:"height: 250px; width: 380px;") %>
 	          <% else %>
 	            <%= image_tag image_generator(height: '498', width: '315'), width: '100%' %>
 	          <% end %>
