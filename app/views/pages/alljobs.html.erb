@@ -4,7 +4,11 @@
   <div class="container">
     <div class="ten columns">
       <span>We have <%= Job.all.count %> jobs:</span>
-      <h2>All Job</h2>
+      <% if @filter_active %>
+        <h2>Search Job Results</h2>
+      <% else %>
+        <h2>All Job</h2>
+      <% end %>
     </div>
 
     <div class="six columns">

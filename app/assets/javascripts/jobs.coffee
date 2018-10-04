@@ -50,11 +50,3 @@ $(document).on "turbolinks:load", ->
 
   $('.closeInfo').on "click", ->
     $('#job_info').hide()
-
-
-
-
-
-
-
-
