@@ -7,7 +7,7 @@
       <span>
         <div class="container">
           <h4><div class="star-rating" data-score= <%= @avg_rating %> ><%= @avg_rating %> </div></h4>
-          
+
         </div>
       </span>
     </div>
@@ -29,11 +29,11 @@
 <!-- Content
 ================================================== -->
 <div class="container">
-  
+
   <!-- Recent Jobs -->
   <div class="eleven columns">
   <div class="padding-right">
-    
+
     <!-- Company Info -->
     <div class="company-info">
       <%= image_tag placeholder_img(@company.logo, 'logo'), width: '100%' %>
@@ -60,11 +60,10 @@
     <p><%= @company.why_join_us %></p>
 
     <h5>Photos:</h5>
-    <div class="container">
+    <div class="eleven columns">
       <% @company.photos.each do |photo| %>
-        <div class="column">
+        <div class="ten columns company-photo">
           <%= image_tag photo.source, width: '100%' %>
-          <br>
           <br>
         </div>
       <% end %>
@@ -82,7 +81,7 @@
       <h4>Overview</h4>
 
       <div class="job-overview">
-        
+
         <ul>
           <li>
             <i class="fa fa-map-marker"></i>
@@ -128,7 +127,7 @@
 </div>
 
 <div class="container">
-  
+
   <!-- Jobs, available for this company -->
   <h3>Jobs, available for this company:</h3>
   <div class="sixteen columns">
