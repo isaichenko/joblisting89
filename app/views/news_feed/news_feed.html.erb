@@ -23,29 +23,28 @@
 <div class="container">
   <h2>Recent updates</h2>
   <!-- Applications -->
-    
+
   <% @jobs.each do |j| %>
     <div class="eight columns">
       <!-- Application #1 -->
       <div class="application">
         <div class="app-content">
-          
+
           <!-- Name / Avatar -->
           <div class="info">
             <%= image_tag placeholder_img(j.user.companies.first.logo, 'logo') %>
-            <img src="images/resumes-list-avatar-01.png" alt="">
             <span><%= link_to j.user.companies.first.title, company_path(j.user.companies.first) %></span>
             <ul>
               <li>Posted a Job "<%= link_to j.title, job_path(j)  %>"</li>
             </ul>
           </div>
-          
+
         </div>
 
         <!-- Footer -->
         <div class="app-footer">
 
-          
+
 
           <ul>
             <li>on</li>
