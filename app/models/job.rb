@@ -1,7 +1,7 @@
 class Job < ApplicationRecord
   validates_presence_of :title, :salary_min, :salary_max, :hires, :description, :experience, :expiry_date
 
-  JOBS_PER_PAGE = 10
+  JOBS_PER_PAGE = 15
   paginates_per JOBS_PER_PAGE
 
   belongs_to :user
