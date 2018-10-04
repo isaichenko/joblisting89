@@ -8,6 +8,7 @@ class Blog < ApplicationRecord
     has_and_belongs_to_many :categories
     has_and_belongs_to_many :tags
 
-    #image upload
-    mount_uploader :featured_image, ImageUploader
+    #image upload (change for AWS supporting)
+    #mount_uploader :featured_image, ImageUploader
+    mount_uploader :featured_image, CompanyUploader
 end
