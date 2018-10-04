@@ -8,7 +8,7 @@ class Company < ApplicationRecord
                           allow_destroy: true,
                           reject_if: lambda { |attrs| attrs['source'].blank? }
 
-  validates_presence_of :title
+  validates_presence_of :title, :industry
 
   mount_uploader :logo, CompanyUploader
 

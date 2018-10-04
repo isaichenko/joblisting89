@@ -1,6 +1,6 @@
 <!-- Titlebar
 ================================================== -->
-<div id="titlebar">
+<div id="titlebar" class="photo-bg all-jobs-image">
   <div class="container">
     <div class="ten columns">
       <span>We have <%= Company.all.count %> companies:</span>
@@ -77,7 +77,7 @@
     <!-- Job title -->
     <div class="widget">
       <h4>
-        <%= render "pages/partials/filter", arr: @all_companies.aggs['title'], form: f, title: "Company title", name_inp: :title %>
+        <%= render "pages/partials/filter", arr: @all_companies.aggs['title'], form: f, title: "Company", name_inp: :title %>
       </h4>
     </div>
 
