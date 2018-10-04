@@ -1,14 +1,18 @@
 <!-- Titlebar
 ================================================== -->
-<div id="titlebar">
+<div id="titlebar" class="photo-bg all-jobs-image">
   <div class="container">
     <div class="ten columns">
       <span>We have <%= Job.all.count %> jobs:</span>
-      <h2>All Jobs List</h2>
+      <h2>All Job</h2>
     </div>
 
     <div class="six columns">
-      <%= link_to 'Post a Job, It’s Free!', new_job_path, class: 'button' %>
+      <% if user_signed_in? %>
+        <%= link_to 'Post a Job, It’s Free!', new_job_path, class: 'button' %>
+      <% else %>
+        <%= link_to 'Post a Job, It’s Free!', "#{new_user_session_path}#tab2", class: 'button' %>
+      <% end %>
     </div>
 
   </div>
