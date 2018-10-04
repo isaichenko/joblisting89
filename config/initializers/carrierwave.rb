@@ -16,7 +16,6 @@ CarrierWave.configure do |config|
   }
 end
 
-
 #require 'carrierwave/orm/activerecord'
 
 
