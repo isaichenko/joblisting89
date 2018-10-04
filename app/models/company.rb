@@ -10,7 +10,7 @@ class Company < ApplicationRecord
 
   validates_presence_of :title
 
-  mount_uploader :logo,   CompanyUploader
+  mount_uploader :logo, CompanyUploader
 
   scope :setup_by, ->(user) { where(user_id: user.id) }
 
