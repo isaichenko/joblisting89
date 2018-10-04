@@ -27,11 +27,11 @@
 <!-- Content
 ================================================== -->
 <div class="container">
-  
+
   <!-- Recent Jobs -->
   <div class="eleven columns">
   <div class="padding-right">
-    
+
     <!-- Company Info -->
     <div class="company-info">
       <%= image_tag placeholder_img(@job.user.companies[0].logo, 'logo'), width: '100%' %>
@@ -56,6 +56,8 @@
       <%= @job.description %>
     </p>
 
+    <%= social_share_button_tag(@job.title) %>
+
   </div>
   </div>
 
@@ -68,7 +70,7 @@
       <h4>Overview</h4>
 
       <div class="job-overview">
-        
+
         <ul>
           <li>
             <i class="fa fa-calendar-o"></i>
@@ -132,10 +134,10 @@
 
             <div class="small-dialog-content">
               <p>Do you want to submit your resume?</p>
-              
+
               <%= link_to 'Apply Job', apply_by_self_job_path(job_id: @job.id), class: 'button send' %>
             </div>
-            
+
           </div>
         <% end %>
 
