@@ -1,6 +1,10 @@
 <%= link_to company_url(all_company), class: "listing full-time" do %>
   <div class="listing-logo">
-    <%= image_tag("job-list-logo-01.png") %>
+    <% if all_company.logo.present? %>
+      <%= image_tag all_company.logo, width: '100%' %>
+    <% else %>
+      <%= image_tag ('job-list-logo-01.png'), width: '100%' %>
+    <% end %>
   </div>
   <div class="listing-title">
     <h4>

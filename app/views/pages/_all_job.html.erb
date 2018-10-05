@@ -1,6 +1,10 @@
 <%= link_to job_url(all_job), class: "listing #{all_job.job_type.title}" do %>
   <div class="listing-logo">
-    <%= image_tag placeholder_img(all_job.user.companies[0].logo, 'logo'), width: '100%' %>
+    <% if all_job.user.companies[0].logo.present? %>
+      <%= image_tag all_job.user.companies[0].logo, width: '100%' %>
+    <% else %>
+      <%= image_tag ('job-list-logo-01.png'), width: '100%' %>
+    <% end %>
   </div>
   <div class="listing-title">
     <h4>
