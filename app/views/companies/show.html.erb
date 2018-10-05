@@ -59,7 +59,10 @@
     <h5>Why join us:</h5>
     <p><%= @company.why_join_us %></p>
 
+
+    <!--
     <h5>Photos:</h5>
+    -->
     <div class="eleven columns">
       <% @company.photos.each do |photo| %>
         <div class="ten columns company-photo">
@@ -97,6 +100,7 @@
               <span><%= @company.number_of_employee %></span>
             </div>
           </li>
+            <!--
           <li>
             <i class="fa fa-clock-o"></i>
             <div>
@@ -111,6 +115,7 @@
               <span><%= @company.payment_info %></span>
             </div>
           </li>
+            -->
         </ul>
 
         <%= link_to 'Edit Company', edit_company_path(@company), class: 'button' if user_signed_in? && current_user.company_ids[0] == @company.id %>
@@ -133,13 +138,13 @@
   <div class="sixteen columns">
     <table class="manage-table resumes responsive-table">
       <thead>
-        <tr>
-          <th scope="col">Title</th>
-          <th scope="col">Type of Job</th>
-          <th scope="col">Job Area</th>
-          <th scope="col">Pay range USD</th>
-          <th scope="col">Posted at</th>
-          <th scope="col">Expiry Date</th>
+        <tr align="center">
+          <th>Title</th>
+          <th>Type of Job</th>
+          <th>Job Area</th>
+          <th>Pay range USD</th>
+          <th>Posted at</th>
+          <th>Expiry Date</th>
           <% if user_signed_in? %>
             <th></th>
           <% end %>
@@ -147,7 +152,7 @@
       </thead>
       <tbody id="jobs">
         <% @company.user.jobs.each do |job| %>
-          <tr>
+          <tr align="center">
             <td><%= link_to job.title, job %></td>
             <td><%= job.job_type.title %></td>
             <td><%= job.job_area.title %></td>
