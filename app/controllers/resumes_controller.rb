@@ -22,7 +22,7 @@ class ResumesController < ApplicationController
     if user_signed_in? && current_user.resumes.count == 0
       @resume = Resume.new
     else
-      redirect_to allresumes_path, notice: 'You do not have permission for this action!'
+      redirect_to allresumes_path, notice: 'You already have the resume!'
     end
   end
 

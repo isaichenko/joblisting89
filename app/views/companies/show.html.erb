@@ -138,10 +138,10 @@
   <div class="sixteen columns">
     <table class="manage-table resumes responsive-table">
       <thead>
-        <tr align="center">
-          <th>Title</th>
+        <tr style="text-align: center;">
+          <th style="text-align: center;">Title</th>
           <th>Type of Job</th>
-          <th>Job Area</th>
+          <th style="text-align: center;">Job Area</th>
           <th>Pay range USD</th>
           <th>Posted at</th>
           <th>Expiry Date</th>
@@ -152,7 +152,7 @@
       </thead>
       <tbody id="jobs">
         <% @company.user.jobs.each do |job| %>
-          <tr align="center">
+          <tr style="text-align: center;">
             <td><%= link_to job.title, job %></td>
             <td><%= job.job_type.title %></td>
             <td><%= job.job_area.title %></td>
