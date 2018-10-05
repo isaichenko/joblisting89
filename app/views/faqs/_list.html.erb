@@ -1,15 +1,15 @@
 <tr>
   <th></th>
-  <th>Question</th>
-  <th>Answer</th>
+  <th class="faq-table">Question</th>
+  <th class="faq-table">Answer</th>
   <th></th>
 </tr>
 
 <% @faqs.each.with_index(1) do |faq, key| %>
   <tr>
     <td class="title"><span class="faq-index"><%= key %></span></td>
-    <td class="centered"><%= faq.question %></td>
-    <td class="centered"><%= faq.answer %></td>
+    <td style="text-align: left;"><%= faq.question %></td>
+    <td class="centered" style="text-align: left;"><%= faq.answer %></td>
     <td class="action"></td>
   </tr>
 <% end %>
