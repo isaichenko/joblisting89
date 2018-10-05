@@ -58,7 +58,7 @@
 <!-- Content
 ================================================== -->
 <div class="container">
-  <!-- Recent Jobs -->
+
   <div class="eight columns">
   <div class="padding-right">
 
@@ -89,8 +89,9 @@
       </li>
     </ul>
 
-<hr>
-
+<!-- Skills -->
+  <% if @resume.skills.present? %>
+  <hr>
     <h3 class="margin-bottom-15">Skills</h3>
     <p>Title (Years of experience)</p>
     <ul class="list-1">
@@ -98,19 +99,29 @@
       <li><%= s.title %> (<%= s.experience %>)</li>
       <% end %>
     </ul>
+  <% end %>
 
-<hr>
-
+<!-- Links -->
+  <hr>
     <h3 class="margin-bottom-15">Links</h3>
     <ul class="list-1">
-      <li>Blog: <%= @resume.blog_url %></li>
-      <li>Personal Homepage: <%= @resume.personal_homepage %></li>
-      <li>Facebook: <%= @resume.facebook %></li>
-      <li>Twitter: <%= @resume.twitter %></li>
+      <% if @resume.blog_url.present? %>
+        <li>Blog: <%= @resume.blog_url %></li>
+      <% end %>
+      <% if @resume.personal_homepage.present? %>
+        <li>Personal Homepage: <%= @resume.personal_homepage %></li>
+      <% end %>
+      <% if @resume.facebook.present? %>
+        <li>Facebook: <%= @resume.facebook %></li>
+      <% end %>
+      <% if @resume.twitter.present? %>
+        <li>Twitter: <%= @resume.twitter %></li>
+      <% end %>
     </ul>
 
-<hr>
-
+<!-- Certifications / Licenses -->
+  <% if @resume.certifications.present? %>
+  <hr>
     <h3 class="margin-bottom-15">Certifications / Licenses</h3>
       <% @resume.certifications.each do |c| %>
         <ul class="list-1">
@@ -120,9 +131,11 @@
 
         <p><%= c.description %></p>
       <% end %>
+  <% end %>
 
-<hr>
-
+<!-- Awards -->
+  <% if @resume.awards.present? %>
+  <hr>
     <h3 class="margin-bottom-15">Awards</h3>
       <% @resume.awards.each do |a| %>
         <ul class="list-1">
@@ -132,9 +145,11 @@
 
         <p><%= a.description %></p>
       <% end %>
+  <% end %>
 
-<hr>
-
+<!-- Groups -->
+  <% if @resume.groups.present? %>
+  <hr>
     <h3 class="margin-bottom-15">Groups</h3>
       <% @resume.groups.each do |g| %>
         <ul class="list-1">
@@ -145,9 +160,12 @@
 
         <p><%= g.description %></p>
       <% end %>
+  <% end %>
 
-<hr>
 
+<!-- Patents -->
+  <% if @resume.patents.present? %>
+  <hr>
     <h3 class="margin-bottom-15">Patents</h3>
       <% @resume.patents.each do |p| %>
         <ul class="list-1">
@@ -159,9 +177,11 @@
 
         <p><%= p.description %></p>
       <% end %>
+  <% end %>
 
-<hr>
-
+<!-- Publications -->
+  <% if @resume.publications.present? %>
+  <hr>
     <h3 class="margin-bottom-15">Publications</h3>
       <% @resume.publications.each do |p| %>
         <ul class="list-1">
@@ -172,17 +192,18 @@
 
         <p><%= p.description %></p>
       <% end %>
+  <% end %>
 
   </div>
   </div>
 
 
-  <!-- Widgets -->
+<!-- Widgets -->
   <div class="eight columns">
 
+<!-- Education -->
+  <% if @resume.education_start_date.present? || @resume.education_end_date.present? %>
     <h3 class="margin-bottom-20">Education</h3>
-
-    <!-- Education -->
     <dl class="resume-table">
       <dt>
         <small class="date">
@@ -196,12 +217,12 @@
         <p><%= @resume.education_country %> / <%= @resume.education_city %></p>
       </dd>
     </dl>
+  <% end %>
 
-<hr>
-
+<!-- Work Experience -->
+  <% if @resume.work_experiences.present? %>
+  <hr>
     <h3 class="margin-bottom-20">Work Experience</h3>
-
-    <!-- Work Experience -->
     <dl class="resume-table">
       <% @resume.work_experiences.each do |w| %>
       <dt>
@@ -223,18 +244,18 @@
           <li>Salaries USD: <%= w.salary if w.salary_status == 'show' %></li>
           <li>I currently work here: <%= w.i_currently_work_here ? 'Yes' : 'No' %></li>
         </ul>
-
         <p><%= w.job_description %></p>
       </dd>
 
       <% end %>
     </dl>
+  <% end %>
 
-<hr>
 
+<!-- Military service -->
+  <% if @resume.militaries.present? %>
+  <hr>
     <h3 class="margin-bottom-20">Military service</h3>
-
-    <!-- Military service -->
     <dl class="resume-table">
       <% @resume.militaries.each do |m| %>
       <dt>
@@ -256,6 +277,7 @@
 
       <% end %>
     </dl>
+  <% end %>
 
   </div>
 </div>
