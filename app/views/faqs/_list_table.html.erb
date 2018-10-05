@@ -1,15 +1,15 @@
 <tr>
-  <th><i class="fa fa-file-text"></i> FAQ</th>
-  <th>Question</th>
-  <th>Answer</th>
-  <th>Actions</th>
+  <th></th>
+  <th style="text-align: left;">Question</th>
+  <th style="text-align: left;">Answer</th>
+  <th></th>
 </tr>
 <% @faqs.each.with_index(1) do |faq, key| %>
   <tr>
-    <td class="title"><span class="faq-index"><%= key %>. Questions?</span></td>
-    <td class="centered"><%= faq.question %></td>
-    <td class="centered"><%= faq.answer %></td>
-    <td class="action">
+    <td class="title"><span class="faq-index"><%= key %></span></td>
+    <td class="centered" style="text-align: left;"><%= faq.question %></td>
+    <td class="centered" style="text-align: left;"><%= faq.answer %></td>
+    <td class="action" style="text-align: right;">
       <%= link_to '', edit_faq_path(faq), class: 'fa fa-edit fa-lg text-success' %>
       <%= link_to '', faq_path(faq), method: :delete, class: 'fa fa-trash fa-lg text-danger', data: { confirm: 'Are you sure?' } %>
     </td>

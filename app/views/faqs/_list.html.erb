@@ -1,13 +1,13 @@
 <tr>
-  <th><i class="fa fa-file-text"></i> FAQ</th>
+  <th></th>
   <th>Question</th>
   <th>Answer</th>
-  <th> Actions</th>
+  <th></th>
 </tr>
 
 <% @faqs.each.with_index(1) do |faq, key| %>
   <tr>
-    <td class="title"><span class="faq-index"><%= key %>. Questions?</span></td>
+    <td class="title"><span class="faq-index"><%= key %></span></td>
     <td class="centered"><%= faq.question %></td>
     <td class="centered"><%= faq.answer %></td>
     <td class="action"></td>
