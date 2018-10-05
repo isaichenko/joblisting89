@@ -36,7 +36,12 @@
 
     <!-- Company Info -->
     <div class="company-info">
-      <%= image_tag placeholder_img(@company.logo, 'logo'), width: '100%' %>
+      <%# image_tag placeholder_img(@company.logo, 'logo'), width: '100%' %>
+      <% if @company.logo.present? %>
+        <%= image_tag @company.logo, width: '100%' %>
+      <% else %>
+        <%= image_tag ('job-list-logo-01.png'), width: '100%' %>
+      <% end %>
       <div class="content">
         <h4><%= @company.title %></h4>
         <span>

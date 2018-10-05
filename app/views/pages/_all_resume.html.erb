@@ -1,6 +1,10 @@
 <li>
   <%= link_to resume_path(all_resume) do %>
-  <%= image_tag placeholder_img(all_resume.profile_pic, 'logo'), width: '100%', alt: "" %>
+    <% if all_resume.profile_pic.present? %>
+      <%= image_tag all_resume.profile_pic, width: '100%' %>
+    <% else %>
+      <%= image_tag ('resumes-list-avatar-01.png'), width: '100%' %>
+    <% end %>
   <div class="resumes-list-content">
     <h4><%= all_resume.first_name %> <%= all_resume.last_name %> <span><%= all_resume.desired_job_title %></span></h4>
     <span><i class="fa fa-university"></i> <%= all_resume.degree %></span>
