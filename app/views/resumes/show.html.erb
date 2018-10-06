@@ -3,7 +3,7 @@
 <div id="titlebar" class="resume photo-bg job-page-photo">
   <div class="container">
     <div class="ten columns">
-      <div class="resume-titlebar resume-title-text">
+      <div class="resume-titlebar">
         <% if @resume.profile_pic.present? %>
           <%= image_tag @resume.profile_pic, width: '100%' %>
         <% else %>
@@ -11,21 +11,21 @@
         <% end %>
         <%# image_tag placeholder_img(@resume.profile_pic, 'logo'), width: '100%', alt: "" %>
         <div class="resumes-list-content">
-          <h4><%= @resume.first_name %> <%= @resume.last_name %> <span><%= @resume.desired_job_title %></span></h4>
-          <span class="icons"><i class="fa fa-map-marker"></i> <%= @resume.country %> / <%= @resume.city %></span>
-          <span class="icons"><i class="fa fa-money"></i> $<%= @resume.desired_salary_per_month %> / month</span>
+          <h4 class="resume-title-text"><%= @resume.first_name %> <%= @resume.last_name %> <span class="resume-title-text"><%= @resume.desired_job_title %></span></h4>
+          <span class="icons resume-title-text"><i class="fa fa-map-marker resume-title-text"></i> <%= @resume.country %> / <%= @resume.city %></span>
+          <span class="icons resume-title-text"><i class="fa fa-money resume-title-text"></i> $<%= @resume.desired_salary_per_month %> / month</span>
           <span class="icons">
             <%= link_to "http://#{@resume.personal_homepage}", target: :_blank do %>
-              <i class="fa fa-link"></i> Website
+              <i class="fa fa-link resume-title-text"></i> Website
             <% end %>
           </span>
-          <span class="icons"><a href="mailto:<%= @resume.contact_information %>"><i class="fa fa-envelope"></i> <%= @resume.contact_information %></a></span>
-          <span class="icons"><i class="fa fa-phone"></i> <%= @resume.phone %></span>
-          <span class="icons">
+          <span class="icons"><a href="mailto:<%= @resume.contact_information %>"><i class="fa fa-envelope resume-title-text"></i> <%= @resume.contact_information %></a></span>
+          <span class="icons resume-title-text"><i class="fa fa-phone resume-title-text"></i> <%= @resume.phone %></span>
+          <span class="icons resume-title-text">
             <% if @resume.status == "private_resume" %>
-              <i class="fa fa-lock"></i> Privat Resume
+              <i class="fa fa-lock resume-title-text"></i> Privat Resume
             <% else %>
-              <i class="fa fa-lock"></i> Public Resume
+              <i class="fa fa-lock resume-title-text"></i> Public Resume
             <% end %>
           </span>
           <div class="skills">
@@ -41,15 +41,17 @@
 
     <div class="six columns">
       <div class="two-buttons">
+        <div class="six columns">
         <%= render 'invite_button' %>
+      </div>
         <% if user_signed_in? && @resume.user_id != current_user.id %>
           <% if current_user.bookmark_resume?(@resume) %>
-            <%= link_to unbookmark_resume_path(resume_id: @resume.id), class: 'button', title: 'Unbookmark!', method: :delete do %>
-              <i class="fa fa-star"></i> UNbookmark This Resume
+            <%= link_to unbookmark_resume_path(resume_id: @resume.id), class: 'button dark resume-title-button', title: 'Unbookmark!', method: :delete do %>
+              <i class="fa fa-star"></i> UNbookmark Resume
             <% end %>
           <% else %>
-            <%= link_to bookmark_resume_path(resume_id: @resume.id), class: 'button dark', alt: 'Bookmark!', title: 'Bookmark!' do %>
-              <i class="fa fa-star"></i> Bookmark This Resume
+            <%= link_to bookmark_resume_path(resume_id: @resume.id), class: 'button dark resume-title-button', alt: 'Bookmark!', title: 'Bookmark!' do %>
+              <i class="fa fa-star"></i> Bookmark Resume
             <% end %>
           <% end %>
         <% end %>
