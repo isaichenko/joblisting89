@@ -342,3 +342,20 @@ select.change-action {
 .resume-title-button:hover {
   background-color: white !important;
 }
+
+
+table.manage-table th {
+  padding-left: 20px;
+}
+
+table.manage-table th:first-child {
+  padding-left: 20px;
+}
+
+table.manage-table.resumes td:first-child, table.manage-table td:first-child {
+  padding-left: 20px;
+}
+
+table.manage-table th {
+  text-align: center;
+}

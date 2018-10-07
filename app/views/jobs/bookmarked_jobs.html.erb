@@ -28,20 +28,20 @@
 
     <table class="manage-table resumes responsive-table">
       <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Title</th>
-          <th scope="col">Company</th>
-          <th scope="col">Type of Job</th>
-          <th scope="col">Job Area</th>
-          <th scope="col">Pay range USD</th>
-          <th scope="col">Posted</th>
-          <th scope="col"></th>
+        <tr style="text-align: center;">
+          <th>#</th>
+          <th>Title</th>
+          <th>Company</th>
+          <th>Type of Job</th>
+          <th>Job Area</th>
+          <th>Pay range USD</th>
+          <th>Posted</th>
+          <th></th>
         </tr>
       </thead>
       <tbody id="jobs">
         <% @bookmarked_jobs.each do |bookmarked_job| %>
-          <tr>
+          <tr style="text-align: center;">
             <td><%= bookmarked_job.id %></td>
             <td class="title"><%= link_to bookmarked_job.title, bookmarked_job %></td>
             <td><%= bookmarked_job.user.companies[0].title %></td>

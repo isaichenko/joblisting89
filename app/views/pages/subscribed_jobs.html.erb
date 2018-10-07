@@ -26,9 +26,9 @@
 
     <h3 class="margin-bottom-25">Subscribed Jobs for keyword: "<%= @keywords[0].title %>"</h3>
 
-    <table class="manage-table responsive-table">
+    <table class="manage-table resumes responsive-table">
 
-      <tr>
+      <tr style="text-align: center;">
         <th><i class="fa fa-file-text"></i> Title</th>
         <th><i class="fa fa-file-text"></i> Company</th>
         <th><i class="fa fa-check-square-o"></i> Type of Job</th>
@@ -39,9 +39,9 @@
       </tr>
           
       <% @results.each do |result| %>
-      <tr>
+      <tr style="text-align: center;">
         <td class="title"><%= link_to result.title, job_path(result) %></td>
-        <td><%= link_to result.user.companies[0].title, company_path(result.user.companies[0]) %></td>
+        <td class="title"><%= link_to result.user.companies[0].title, company_path(result.user.companies[0]) %></td>
         <td><%=result.job_type.title %></td>
         <td><%= result.job_area.title %></td>
         <td><%= result.salary_min %> - <%= result.salary_max %></td>
