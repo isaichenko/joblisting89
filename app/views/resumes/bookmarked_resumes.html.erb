@@ -28,27 +28,25 @@
 
     <table class="manage-table resumes responsive-table">
       <thead>
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Desired Job Title</th>
-          <th scope="col">Desired Salary (per month / per year) USD</th>
-          <th scope="col">Degree</th>
-          <th scope="col">Posted</th>
-          <th scope="col"></th>
+        <tr style="text-align: center;">
+          <th>Name</th>
+          <th>Desired Job Title</th>
+          <th>Desired Salary (per month / per year) USD</th>
+          <th>Degree</th>
+          <th>Posted</th>
           <% if user_signed_in? %>
-            <th scope="col"></th>
+            <th></th>
           <% end %>
         </tr>
       </thead>
       <tbody id="jobs">
         <% @bookmarked_resumes.each do |bookmarked_resume| %>
-          <tr>
-            <td scope="row"><%= bookmarked_resume.first_name %> <%= bookmarked_resume.last_name %></td>
+          <tr style="text-align: center;">
+            <td class="title"><%= link_to "#{bookmarked_resume.first_name} #{bookmarked_resume.last_name}", bookmarked_resume %></td>
             <td><%= bookmarked_resume.desired_job_title %></td>
             <td><%= bookmarked_resume.desired_salary_per_month %> / <%= bookmarked_resume.desired_salary_per_year %></td>
             <td><%= bookmarked_resume.degree %></td>
             <td><%= bookmarked_resume.created_at.strftime("%B %d, %Y") %></td>
-            <td><%= link_to '', bookmarked_resume, class: 'fa fa-eye fa-lg' %></td>
             <% if user_signed_in? %>
               <td>
                 <% if current_user.bookmark_resume?(bookmarked_resume) %>

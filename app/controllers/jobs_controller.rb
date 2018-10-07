@@ -56,7 +56,8 @@ class JobsController < ApplicationController
 
   def invites
     if user_signed_in? && @job.user_id == current_user.id
-      invite_resumes = @job.applied_jobs.where.not(status: 0)
+      #invite_resumes = @job.applied_jobs.where.not(status: 0) && @job.applied_jobs.where.not(status: 3)
+      invite_resumes = @job.applied_jobs.where(status: 1) + @job.applied_jobs.where(status: 2)
       @resumes = []
       invite_resumes.each do |r|
         @resumes << Resume.find(r.resume_id)
