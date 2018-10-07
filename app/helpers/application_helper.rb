@@ -39,7 +39,8 @@ module ApplicationHelper
   end
 
   def not_aplied_count(job)
-    job.applied_jobs.where.not(status: 0).count
+    job.applied_jobs.where.not(status: 0).count - 
+    job.applied_jobs.where(status: 3).count
   end
 
   # Bages for status
