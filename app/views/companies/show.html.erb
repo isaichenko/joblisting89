@@ -146,7 +146,7 @@
         <tr style="text-align: center;">
           <th style="text-align: center;">Title</th>
           <th>Type of Job</th>
-          <th style="text-align: center;">Job Area</th>
+          <th>Job Area</th>
           <th>Pay range USD</th>
           <th>Posted at</th>
           <th>Expiry Date</th>
@@ -158,7 +158,7 @@
       <tbody id="jobs">
         <% @company.user.jobs.each do |job| %>
           <tr style="text-align: center;">
-            <td><%= link_to job.title, job %></td>
+            <td class="title"><%= link_to job.title, job %></td>
             <td><%= job.job_type.title %></td>
             <td><%= job.job_area.title %></td>
             <td><%= job.salary_min %> - <%= job.salary_max %></td>

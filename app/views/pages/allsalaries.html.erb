@@ -17,7 +17,7 @@
 
 		<table class="manage-table resumes responsive-table">
 			<thead>
-		    <tr>
+		    <tr style="text-align: center;">
 		      <th>Job Title</th>
 		      <th>Min Salary</th>
 		      <th>Max Salary</th>
@@ -47,8 +47,8 @@
 
 		<!-- Search -->
 		<div class="widget">
-			<h4>Search</h4>
 			<div class="widget-box search">
+			<h4>Search</h4>
 				<div class="input">
 					<%= form_with method: :get, local: true, url: allsalaries_path do |f| %>
 						<%= f.text_field :query, class: "search-field", placeholder: "Job Title", value: nil %>

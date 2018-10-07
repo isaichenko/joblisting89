@@ -13,6 +13,9 @@ $(document).on "turbolinks:load", ->
             $("#small-dialog .modal-body h5").text('Are you going to suspend this ' + type + ' ?')
             # disable bootstrap modal outside close
             $("#modal-click").trigger("click");
+        else if /lift_suspend/.test url
+            $("#small-dialog .modal-body h5").text('Are you going to lift suspension for this ' + type + ' ?')
+            $("#modal-click").trigger("click");
         else if /delete/.test url
             $("#small-dialog .modal-body h5").text('Are you going to delete this ' + type + ' ?')
             $("#modal-click").trigger("click");

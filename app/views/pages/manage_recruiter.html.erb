@@ -61,7 +61,7 @@
               <select class="change-action chosen-select-no-single" data-user-type="<%= @type %>">
                   <option value=""></option>
                   <% if recruiter.status == 'active' %>
-                      <option value="<%= change_action_path(:id => recruiter.id, :status => 'suspend')  %>">Suspend</option>
+                      <option value="<%= change_action_path(:id => recruiter.id, :status => 'suspend') %>">Suspend</option>
                   <% else %>
                       <option value="<%= change_action_path(:id => recruiter.id, :status => 'lift_suspend') %>">Lift suspension</option>
                   <% end %>
@@ -75,3 +75,4 @@
     <%= render 'pages/partials/modal' %>
   </div>
 </div>
+<br>

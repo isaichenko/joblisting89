@@ -7,7 +7,9 @@
     </ul>
   <% end %>
 
-  <h3>Rate this company:</h3>
+  <h2><%= @company.title %></h2>
+  <h3>Take a minute to review this company:</h3>
+
   <div class="form container">
     <%= form.label :"Job work / Life Balance", class: 'four columns form-control-label' %>
     <div class="five columns" id="balance"></div>
@@ -99,6 +101,8 @@
     <label class="two columns">
       <%= form.radio_button :question3, 'collaborative' %> Collaborative
     </label>
+  </div><br><br>
+  <div class="form">
     <label class="two columns">
       <%= form.radio_button :question3, 'competitive' %> Competitive
     </label>

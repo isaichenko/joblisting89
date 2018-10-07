@@ -3,7 +3,7 @@
 
   <%= render 'shared/browse_nav' %>
 
-  <li><a href="#">Actions</a>
+  <li><a href="#">Admin Dashboard</a>
     <ul>
       <li><%= link_to 'Job Statistics Settings', manage_job_stats_path, id: "#{active? manage_job_stats_path}" %></li>
       <li><%= link_to 'Job Posting Settings', settings_path, id: "#{active? settings_path}" %></li>
@@ -15,10 +15,14 @@
 </ul>
 
 <ul class="float-right">
-  <li><%= link_to current_user.name, edit_user_registration_path %></li>
-  <li>
-    <%= link_to destroy_user_session_path, method: :delete do %>
-      <i class="fa fa-user"></i> Logout
-    <% end %>
+  <li><a href="#"><%= current_user.name %></a>
+    <ul>
+      <li><%= link_to 'Setup Profile', edit_user_registration_path %></li>
+      <li>
+        <%= link_to destroy_user_session_path, method: :delete do %>
+          <i class="fa fa-user"></i> Logout
+        <% end %>
+      </li>
+    </ul>
   </li>
 </ul>
