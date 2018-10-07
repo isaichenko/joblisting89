@@ -1,6 +1,6 @@
 <!-- Titlebar
 ================================================== -->
-<div id="titlebar">
+<div id="titlebar" class="photo-bg header-image-jobseeker">
 	<div class="container">
 		<div class="ten columns">
 			<h2>Reviews of company <%= @company.title %></h2>
@@ -8,7 +8,7 @@
 		</div>
 
 		<div class="six columns">
-			<%= link_to new_company_review_path(@company), class: 'button dark' do %>
+			<%= link_to new_company_review_path(@company), class: 'button' do %>
         <i class="fa fa-star"></i> Review this Company
       <% end %>
 		</div>

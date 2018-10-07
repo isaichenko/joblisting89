@@ -1,10 +1,10 @@
-
 /**
   *
   * jPanelMenu 1.4.1 (http://jpanelmenu.com)
   * By Anthony Colangelo (http://acolangelo.com)
   *
 * */
+  $(document).on("turbolinks:load", function(){
 
 (function($){
   $.jPanelMenu = function(options) {
@@ -498,7 +498,7 @@
         jP.options.afterOff();
       }
     };
-
+    
     return {
       on: jP.init,
       off: jP.destroy,
@@ -518,5 +518,7 @@
         jP.setMenuStyle({ width: jP.options.openPosition });
       }
     };
-  };
+
+};
 })(jQuery);
+});

@@ -301,13 +301,16 @@ select.change-action {
   }
 }
 
-.header-image {
-  background-image: url(banner-home-01.png);
-  background-attachment: fixed;
-  -o-background-size: cover;
-  -moz-background-size: cover;
-  -webkit-background-size: cover;
-  background-repeat: no-repeat;
+.header-image-non-login {
+  background-image: url(banner-home-01.jpeg);
+}
+
+.header-image-recruiter {
+  background-image: url(banner-home-02.jpeg);
+}
+
+.header-image-jobseeker {
+  background-image: url(banner-home-03.jpeg);
 }
 
 .all-jobs-image {
