@@ -13,7 +13,7 @@ module CompanySearch
 =end
 
   SORT_PARAMS = {
-    'alphabetical' => { updated_at: :asc },
+    'alphabetical' => { title: :asc },
     'relevance' => { updated_at: :desc }
   }.freeze
 
