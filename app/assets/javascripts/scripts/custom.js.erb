@@ -40,7 +40,7 @@
                 $('header').removeClass('alternative');
             }
         }
-    }
+    };
 
     $(window).resize(function (){
         menumobile();
@@ -78,11 +78,9 @@
           return false;
         });
 
-
         // Removes SuperFish Styles
         $('#jPanelMenu-menu').removeClass('sf-menu');
         $('#jPanelMenu-menu li ul').removeAttr('style');
-
 
         $(window).resize(function (){
           var winWidth = $(window).width();

@@ -12,6 +12,7 @@
 //
 
 // require jquery3
+//= require scripts/jquery-2.1.3.min
 
 //= require ckeditor/init
 
@@ -20,7 +21,6 @@
 
 
 
-//= require scripts/jquery-2.1.3.min
 //= require scripts/chosen.jquery.min
 //= require scripts/jquery.counterup.min
 //= require scripts/jquery.flexslider-min

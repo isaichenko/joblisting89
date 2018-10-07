@@ -87,6 +87,19 @@ module ApplicationHelper
     end
   end
 
+  # Header image depending interface
+  def header_image
+    if user_signed_in?
+      if current_user.interface == 'recruiter'
+        'header-image-recruiter'
+      else
+        'header-image-jobseeker'
+      end
+    else
+      'header-image-non-login'
+    end
+  end
+
   private
 
     def status_span_generator status
