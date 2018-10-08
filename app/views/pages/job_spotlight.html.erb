@@ -25,6 +25,7 @@
 
   <!-- Table -->
   <div class="sixteen columns">
+    <% if @spotlight_jobs.count > 0 %>
     <h1>Jobs Spotlight</h1>
     <table class="manage-table resumes responsive-table">
       <thead>
@@ -66,7 +67,7 @@
         <% end %>
       </tbody>
     </table>
-
+    <% end %>
     <h1>All Jobs</h1>
     <table class="manage-table resumes responsive-table">
       <thead>
