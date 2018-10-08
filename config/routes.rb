@@ -57,6 +57,7 @@ Rails.application.routes.draw do
   get     '/admin',             to: 'pages#admin'
   get     '/settings',          to: 'pages#settings'
   get     '/job_spotlight',     to: 'pages#job_spotlight'
+  get     '/change_spotlight/:id/:spotlight', to: 'jobs#change_spotlight', as: :change_spotlight
 # Add Jobseeker, Recruiter, Blog, FAQ for adminshow_jobs
   get     '/manage_jobseeker',  to: 'pages#manage_jobseeker'
   get     '/manage_recruiter',  to: 'pages#manage_recruiter'

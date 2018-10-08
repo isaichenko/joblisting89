@@ -21,8 +21,53 @@
 ================================================== -->
 <div class="container">
 
+
+
   <!-- Table -->
   <div class="sixteen columns">
+    <h1>Jobs Spotlight</h1>
+    <table class="manage-table resumes responsive-table">
+      <thead>
+        <tr style="text-align: center;">
+          <th>Id</th>
+          <th>Job Title</th>
+          <th>Company</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="job_seekers">
+        <% @spotlight_jobs.each do |job| %>
+          <tr style="text-align: center;">
+            <td><%= job.id %></td>
+            <td class="title"><%= link_to job.title, job %></td>
+            <td class="title"><%= link_to job.companies[0].title, company_path(job.companies[0].id) %></td>
+            <td>
+              <% if job.spotlight == true %>
+                Active
+              <% else %>
+                No
+              <% end %>
+            </td>
+            <td>
+              <a href="#small-dialog" class="popup-with-zoom-anim button" style="display: none"  id="modal-click"></a>
+                    <select class="change-action chosen-select-no-single" data-user-type="<%= @type %>">
+                      <option value=""></option>
+                      <% if job.spotlight == true %>
+                          <option value="<%= change_spotlight_path(:id => job.id, :spotlight => 'remove') %>">Remove from Spotlight</option>
+                      <% else %>
+                          <option value="<%= change_spotlight_path(:id => job.id, :spotlight => 'add') %>">Add to Spotlight</option>
+                      <% end %>
+                      <option value="<%= change_spotlight_path(:id => job.id, :spotlight => 'delete') %>">Delete Job!</option>
+                    </select>
+            </td>
+
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <h1>All Jobs</h1>
     <table class="manage-table resumes responsive-table">
       <thead>
         <tr style="text-align: center;">
@@ -47,41 +92,26 @@
               <% end %>
             </td>
             <td>
-              <a href="#small-dialog" class="popup-with-zoom-anim button">Spotlight</a>
-
-              <div id="small-dialog" class="zoom-anim-dialog mfp-hide apply-popup">
-                <div class="small-dialog-headline">
-                  <h2>Apply For This Job</h2>
-                </div>
-
-                <div class="small-dialog-content">
-                  <form action="#" method="get" >
-                    <input type="text" placeholder="Full Name" value=""/>
-                    <input type="text" placeholder="Email Address" value=""/>
-                    <textarea placeholder="Your message / cover letter sent to the employer"></textarea>
-
-                    <!-- Upload CV -->
-                    <div class="upload-info"><strong>Upload your CV (optional)</strong> <span>Max. file size: 5MB</span></div>
-                    <div class="clearfix"></div>
-
-                    <label class="upload-btn">
-                        <input type="file" multiple />
-                        <i class="fa fa-upload"></i> Browse
-                    </label>
-                    <span class="fake-input">No file selected</span>
-
-                    <div class="divider"></div>
-
-                    <button class="send">Send Application</button>
-                  </form>
-                </div>
-
-              </div>
+              <a href="#small-dialog" class="popup-with-zoom-anim button" style="display: none"  id="modal-click"></a>
+                    <select class="change-action chosen-select-no-single" data-user-type="<%= @type %>">
+                      <option value=""></option>
+                      <% if job.spotlight == true %>
+                          <option value="<%= change_spotlight_path(:id => job.id, :spotlight => 'remove') %>">Remove from Spotlight</option>
+                      <% else %>
+                          <option value="<%= change_spotlight_path(:id => job.id, :spotlight => 'add') %>">Add to Spotlight</option>
+                      <% end %>
+                      <option value="<%= change_spotlight_path(:id => job.id, :spotlight => 'delete') %>">Delete Job!</option>
+                    </select>
             </td>
+
           </tr>
         <% end %>
       </tbody>
     </table>
+    <div class="pagination-container">
+      <%= paginate @jobs %>
+    </div>
+    <%= render 'pages/partials/spotlight' %>
   </div>
 
 </div>
