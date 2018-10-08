@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  access all: { except: [:settings, :manage_jobseeker, :manage_recruiter, :manage_job_stats] }, user: { except: [:settings, :manage_jobseeker, :manage_recruiter, :manage_job_stats] }, superadmin: :all
+  access all: { except: [:settings, :manage_jobseeker, :manage_recruiter, :manage_job_stats, :job_spotlight] }, user: { except: [:settings, :manage_jobseeker, :manage_recruiter, :manage_job_stats, :job_spotlight] }, superadmin: :all
   before_action :set_job_post, only: [:index, :find_resume, :find_company]
 
   def index; end
@@ -92,6 +92,12 @@ class PagesController < ApplicationController
     @type = 'Recruiter'
   end
 
+# Job Spotlight
+  def job_spotlight
+    @jobs = Job.all
+    @spotlight_jobs = Job.spotlight
+  end
+
 # Add FAQ
   def add_faq
   end
@@ -116,11 +122,7 @@ class PagesController < ApplicationController
 
   def set_job_post
     @recent_jobs = Job.last(5)
-    @spotlight_jobs = []
-    #@spotlight_jobs << Job.find(16)
-    #@spotlight_jobs << Job.find(12)
-    #@spotlight_jobs << Job.find(11)
-
     @recent_posts = Blog.last(3)
+    @spotlight_jobs = Job.spotlight
   end
 end

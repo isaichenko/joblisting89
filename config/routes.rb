@@ -56,6 +56,7 @@ Rails.application.routes.draw do
   get     '/find_company',      to: 'pages#find_company'
   get     '/admin',             to: 'pages#admin'
   get     '/settings',          to: 'pages#settings'
+  get     '/job_spotlight',     to: 'pages#job_spotlight'
 # Add Jobseeker, Recruiter, Blog, FAQ for adminshow_jobs
   get     '/manage_jobseeker',  to: 'pages#manage_jobseeker'
   get     '/manage_recruiter',  to: 'pages#manage_recruiter'
@@ -63,7 +64,7 @@ Rails.application.routes.draw do
 # Add Fag page
   get     '/add_faq',           to: 'pages#add_faq'
   get     '/add_blog',          to: 'pages#add_blog'
-  
+
 # manage job stats settings
   get     '/manage_job_stats',     to: 'pages#manage_job_stats'
 
@@ -97,9 +98,9 @@ Rails.application.routes.draw do
   post    '/categories/add',      to: 'categories#add'
   #
   post    '/tags/add',            to: 'tags#add'
-  
+
   # job titles approvals
-  
+
   get '/approve_action/:id/:status', to: 'job_titles#approve_action', as: :approve_action
   post '/job_titles/:id/link_title/', to: 'job_titles#link_title', as: :link_title
 
