@@ -12,12 +12,12 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'colors/red.css', id: 'colors' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
+
     <!-- Prevent duplicate on this page when we click back on brouser -->
-    <% if current_page?(allcompanies_path) || current_page?(allresumes_path) || current_page?(alljobs_path) %>
+    <% if current_page?(allcompanies_path) || current_page?(allresumes_path) || current_page?(alljobs_path) || current_page?(manage_jobseeker_path) || current_page?(manage_recruiter_path) %>
       <meta name="turbolinks-cache-control" content="no-cache">
     <% end %>
-  
+
   </head>
 
   <body>

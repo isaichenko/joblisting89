@@ -19,68 +19,67 @@
 
 <div class="container">
 
-    <!-- Table -->
-    <div class="sixteen columns">
-
-        <table class="manage-table resumes responsive-table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col" class="text-center" >Name</th>
-            <th scope="col" class="text-center" >Email</th>
-            <th scope="col" class="text-center">Joined_Date</th>
-            <th scope="col" class="text-center">Resume Last Updated Date</th>
-            <th scope="col" class="text-center">Number of Jobs Applied</th>
-            <th scope="col" class="text-center">Status</th>
-            <th scope="col" class="text-center">Action</th>
+  <!-- Table -->
+  <div class="sixteen columns">
+    <table class="manage-table resumes responsive-table">
+      <thead>
+        <tr style="text-align: center;">
+          <th>#</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Joined_Date</th>
+          <th>Resume Last Updated Date</th>
+          <th>Number of Jobs Applied</th>
+          <th>Status</th>
+          <th>Action</th>
         </tr>
-    </thead>
-    <tbody id="job_seekers">
+      </thead>
+      <tbody id="job_seekers">
         <% @job_seekers.each.with_index(1) do |job_seeker, key| %>
-            <tr>
-                <td scope="row"><%= key %></td>
-                <% if job_seeker.resumes.count > 0
-                    job_applied = job_seeker.number_of_jobs_applied
-                %>
-                    <td class="text-center"><%= link_to job_seeker.name, resume_path(job_seeker.resumes.ids) %></td>
-                    <td scope="col" class="text-center" ><%= job_seeker.email %></td>
-                    <td class="text-center"><%= job_seeker.created_at.to_date %></td>
-                    <td class="text-center"><%= job_seeker.resume_last_update %></td>
-                    <td class="text-center">
-                        <%= link_to_if job_applied > 0 , job_applied, applied_jobs_path(job_seeker.id) do %>
-                            0
-                        <% end %>
-                    </td>
-                <% else %>
-                    <td class="text-center"><%= job_seeker.name %></td>
-                    <td scope="col" class="text-center" ><%= job_seeker.email %></td>
-                    <td class="text-center"><%= job_seeker.created_at.to_date %></td>
-                    <td class="text-center"></td>
-                    <td class="text-center">0</td>
-                <% end %>
-                <td class="text-center"><%= job_seeker.status == 'active' ? 'Active' : 'Suspended' %></td>
-                <td class="text-center">
+          <tr style="text-align: center;">
+            <td><%= key %></td>
+              <% if job_seeker.resumes.count > 0
+                job_applied = job_seeker.number_of_jobs_applied
+              %>
+                <td><%= link_to job_seeker.name, resume_path(job_seeker.resumes.ids) %></td>
+                <td><%= job_seeker.email %></td>
+                <td><%= job_seeker.created_at.to_date %></td>
+                <td><%= job_seeker.resume_last_update %></td>
+                <td>
+                    <%= link_to_if job_applied > 0 , job_applied, applied_jobs_path(job_seeker.id) do %>
+                        0
+                    <% end %>
+                </td>
+              <% else %>
+                <td><%= job_seeker.name %></td>
+                <td><%= job_seeker.email %></td>
+                <td><%= job_seeker.created_at.to_date %></td>
+                <td></td>
+                <td>0</td>
+              <% end %>
+                <td><%= job_seeker.status == 'active' ? 'Active' : 'Suspended' %></td>
+                <td>
 
                     <a href="#small-dialog" class="popup-with-zoom-anim button" style="display: none"  id="modal-click"></a>
                     <%#= select("status", "", ["Suspend", "Delete"], { include_blank: true }) %>
                     <%#= select("status", "", ["Lift suspension", "Delete"], { include_blank: true }) %>
-                    
+
                     <select class="change-action chosen-select-no-single" data-user-type="<%= @type %>">
-                        <option value=""></option>
-                        <% if job_seeker.status == 'active' %>
-                            <option value="<%= change_action_path(:id => job_seeker.id, :status => 'suspend') %>">Suspend</option>
-                        <% else %>
-                            <option value="<%= change_action_path(:id => job_seeker.id, :status => 'lift_suspend') %>">Lift suspension</option>
-                        <% end %>
-                        <option value="<%= change_action_path(:id => job_seeker.id, :status => 'delete') %>">Delete</option>
+                      <option value=""></option>
+                      <% if job_seeker.status == 'active' %>
+                          <option value="<%= change_action_path(:id => job_seeker.id, :status => 'suspend') %>">Suspend</option>
+                      <% else %>
+                          <option value="<%= change_action_path(:id => job_seeker.id, :status => 'lift_suspend') %>">Lift suspension</option>
+                      <% end %>
+                      <option value="<%= change_action_path(:id => job_seeker.id, :status => 'delete') %>">Delete</option>
                     </select>
                 </td>
-            </tr>
+          </tr>
         <% end %>
-    </tbody>
+      </tbody>
     </table>
-<%= render 'pages/partials/modal' %>
-</div>
+    <%= render 'pages/partials/modal' %>
+  </div>
 
 </div>
 <br>
