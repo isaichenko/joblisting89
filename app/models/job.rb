@@ -17,6 +17,7 @@ class Job < ApplicationRecord
   has_many :resumes, through: :applied_jobs, source: :resume
 
   scope :posts_by, ->(user) { where(user_id: user.id) }
+  scope :spotlight, -> { where(spotlight: true) }
 
   include JobSearch
 
