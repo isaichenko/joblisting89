@@ -9,12 +9,12 @@ $(document).on "turbolinks:load", ->
     $("select.change-action").on "change", (event) ->
         url = $(this).val()
         # check url contain 'suspend' or 'delete'
-        if /suspend/.test url
-            $("#small-dialog .modal-body h5").text('Are you going to suspend this ' + type + ' ?')
+        if /lift_suspend/.test url
+            $("#small-dialog .modal-body h5").text('Are you going to lift the suspension for this ' + type + ' ?')
             # disable bootstrap modal outside close
             $("#modal-click").trigger("click");
-        else if /lift_suspend/.test url
-            $("#small-dialog .modal-body h5").text('Are you going to lift suspension for this ' + type + ' ?')
+        else if /suspend/.test url
+            $("#small-dialog .modal-body h5").text('Are you going to suspend this ' + type + ' ?')
             $("#modal-click").trigger("click");
         else if /delete/.test url
             $("#small-dialog .modal-body h5").text('Are you going to delete this ' + type + ' ?')

@@ -20,7 +20,7 @@
 <!-- Content
 ================================================== -->
 <div class="container">
-  
+
   <!-- Table -->
   <div class="sixteen columns">
 
@@ -29,15 +29,15 @@
     <table class="manage-table resumes responsive-table">
 
       <tr style="text-align: center;">
-        <th><i class="fa fa-file-text"></i> Title</th>
-        <th><i class="fa fa-file-text"></i> Company</th>
-        <th><i class="fa fa-check-square-o"></i> Type of Job</th>
-        <th><i class="fa fa-check-square-o"></i> Job Area</th>
-        <th><i class="fa fa-money"></i> Pay range USD</th>
-        <th><i class="fa fa-calendar"></i> Posted Date</th>
+        <th>Title</th>
+        <th>Company</th>
+        <th>Type of Job</th>
+        <th>Job Area</th>
+        <th>Pay range USD</th>
+        <th>Posted Date</th>
         <th></th>
       </tr>
-          
+
       <% @results.each do |result| %>
       <tr style="text-align: center;">
         <td class="title"><%= link_to result.title, job_path(result) %></td>
@@ -55,9 +55,7 @@
         </td>
       </tr>
       <% end %>
-
     </table>
-
   </div>
-
 </div>
+<br>

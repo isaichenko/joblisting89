@@ -28,6 +28,7 @@ class UsersController < ApplicationController
       if @user.update(:status => 'active')
         @notice = 'The User was active.'
       else
+        #notice: 'The User status is not updated.'
         @notice = 'The User status is not updated.'
       end
     end
