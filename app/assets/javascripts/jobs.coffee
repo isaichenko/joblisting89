@@ -50,3 +50,31 @@ $(document).on "turbolinks:load", ->
 
   $('.closeInfo').on "click", ->
     $('#job_info').hide()
+
+#Spotlight part
+$(document).on "turbolinks:load", ->
+    url =
+
+    type = $("select.change-action").data('user-type')
+    $("select.change-action").on "change", (event) ->
+        url = $(this).val()
+        # check url contain 'suspend' or 'delete'
+        if /add/.test url
+            $("#small-dialog .modal-body h5").text('Are you going to ADD this ' + type + ' to Spotlight?')
+            # disable bootstrap modal outside close
+            $("#modal-click").trigger("click");
+        else if /remove/.test url
+            $("#small-dialog .modal-body h5").text('Are you going to REMOVE this ' + type + ' from Spotlight?')
+            $("#modal-click").trigger("click");
+        else if /delete/.test url
+            $("#small-dialog .modal-body h5").text('Danger! Are you going to delete this ' + type + ' ?')
+            $("#modal-click").trigger("click");
+
+    $(".action-confirm-yes").on "click", (event) ->
+        event.preventDefault()
+        $.get(url)
+
+    $(".action-confirm-no").on "click", (event) ->
+        $("select.change-action").val("")
+        # location.reload()
+

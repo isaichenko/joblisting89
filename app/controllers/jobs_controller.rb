@@ -139,6 +139,35 @@ class JobsController < ApplicationController
     end
   end
 
+  # Set spotlight to Jobs
+  def change_spotlight
+    @job = Job.find(params[:id])
+    @spotlight = params[:spotlight]
+
+    if @spotlight == 'delete'
+      @job.destroy
+      @notice = 'The Job was removed.'
+    elsif @spotlight == 'remove'
+      if @job.update(:spotlight => false)
+        @notice = 'The Job was removed from Spotlight.'
+      else
+        @notice = 'The Job Spotlight is not updated.'
+      end
+    elsif @spotlight == 'add'
+      if @job.update(:spotlight => true)
+        @notice = 'The Job was add to Spotlight.'
+      else
+        #notice: 'The User status is not updated.'
+        @notice = 'The Job Spotlight is not updated.'
+      end
+    end
+
+    #refresh page
+    respond_to do |format|
+      format.js { render inline: "location.reload();", notice: @notice }
+    end
+  end
+
   private
     def set_job
       @job = Job.find(params[:id])

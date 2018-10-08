@@ -94,8 +94,9 @@ class PagesController < ApplicationController
 
 # Job Spotlight
   def job_spotlight
-    @jobs = Job.all
+    @jobs = Job.all.order(id: :asc).page params[:page]
     @spotlight_jobs = Job.spotlight
+    @type = 'Job'
   end
 
 # Add FAQ
