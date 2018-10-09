@@ -18,10 +18,24 @@
       <li><%= link_to 'Job Alert', alert_path, id: "#{active? alert_path}" %></li>
     </ul>
   </li>
-
+  <li class="nav-mobile"><%= link_to "I am #{interface_button}", toggle_interface_user_path(current_user) %></li>
+  <li class="nav-mobile">
+    <%= link_to edit_user_registration_path do %>
+      <% if current_user.name.present? %>
+        <%= current_user.name %>
+      <% else %>
+        Enter Your Name
+      <% end %>
+    <% end %>
+  </li>
+  <li class="nav-mobile">
+    <%= link_to destroy_user_session_path, method: :delete do %>
+      <i class="fa fa-user"></i> Logout
+    <% end %>
+  </li>
 </ul>
 
-<ul class="float-right">
+<ul class="float-right nav-desktop">
   <% if current_user.resumes.count > 0 && current_user.has_invites? %>
     <%= render 'shared/invites' %>
   <% end %>
@@ -51,4 +65,25 @@
       </li>
     </ul>
   </li>
+</ul>
+
+<ul class="float-right nav-mobile">
+  <% if current_user.resumes.count > 0 && current_user.has_invites? %>
+    <%= render 'shared/invites' %>
+  <% else %>
+    <li>
+      <%= link_to edit_user_registration_path do %>
+        <% if current_user.name.present? %>
+          <%= current_user.name %>
+        <% else %>
+          Enter Your Name
+        <% end %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to destroy_user_session_path, method: :delete do %>
+        <i class="fa fa-user"></i> Logout
+      <% end %>
+    </li>
+  <% end %>
 </ul>

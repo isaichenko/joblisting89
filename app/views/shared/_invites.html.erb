@@ -1,4 +1,4 @@
-<li><a href="#small-dialog" class="popup-with-zoom-anim button"><i class="fa fa-envelope"></i> You have Invites</a></li>
+<li><a href="#small-dialog" class="popup-with-zoom-anim"><i class="fa fa-envelope"></i> You have Invites</a></li>
 
     <div id="small-dialog" class="zoom-anim-dialog mfp-hide apply-popup">
       <div class="small-dialog-headline">
@@ -20,13 +20,13 @@
                   <div class="columns">
                     <%= link_to "Accept and Apply", apply_job_path(job.id), class: 'button', data: { confirm: 'Do you want to accept invitation and apply to this job?' } %>
                   </div>
-                  <div class="columns"> 
+                  <div class="columns">
                     <%= link_to "Decline invitation", decline_job_path(job.id), class: 'button dark', data: { confirm: 'Do you want to decline invitation to this job?' } %>
-                  </div> 
+                  </div>
                 </div>
-        <hr>  
+        <hr>
         <% end %>
       </div>
-      
+
     </div>
 
