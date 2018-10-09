@@ -1,31 +1,30 @@
-<%= link_to job_url(all_job), class: "listing #{all_job.job_type.title}" do %>
-  <div class="listing-logo">
-    <% if all_job.user.companies[0].logo.present? %>
-      <%= image_tag all_job.user.companies[0].logo, width: '100%' %>
-    <% else %>
-      <%= image_tag ('job-list-logo-01.png'), width: '100%' %>
-    <% end %>
-  </div>
-  <div class="listing-title">
-    <h4>
-      <%= all_job.title %>
-      (<%= all_job.user.companies[0].title %>)
-      <span class="listing-type"><%= all_job.job_type.title %></span>
-    </h4>
-    <ul class="listing-icons">
-      <li><i class="ln ln-icon-Management"></i> <%= pluralize(all_job.experience, 'year') %></li>
-      <li><i class="ln ln-icon-Map2"></i> <%= all_job.first_company.city %></li>
-      <li><i class="ln ln-icon-Money-2"></i> $<%= all_job.salary_min %>-$<%= all_job.salary_max %></li>
-      <li><div class="listing-date new">
-        <% if all_job.updated_at < (Time.now - 1.days) %>
-          <%= all_job.updated_at.strftime("%B %d, %Y")%>
-        <% else %>
-          new
-        <% end %>
-      </div></li>
-    </ul>
-  </div>
+<% if all_job.user.status == 'active' %>
+  <%= link_to job_url(all_job), class: "listing #{all_job.job_type.title}" do %>
+    <div class="listing-logo">
+      <% if all_job.user.companies[0].logo.present? %>
+        <%= image_tag all_job.user.companies[0].logo, width: '100%' %>
+      <% else %>
+        <%= image_tag ('job-list-logo-01.png'), width: '100%' %>
+      <% end %>
+    </div>
+    <div class="listing-title">
+      <h4>
+        <%= all_job.title %>
+        (<%= all_job.user.companies[0].title %>)
+        <span class="listing-type"><%= all_job.job_type.title %></span>
+      </h4>
+      <ul class="listing-icons">
+        <li><i class="ln ln-icon-Management"></i> <%= pluralize(all_job.experience, 'year') %></li>
+        <li><i class="ln ln-icon-Map2"></i> <%= all_job.first_company.city %></li>
+        <li><i class="ln ln-icon-Money-2"></i> $<%= all_job.salary_min %>-$<%= all_job.salary_max %></li>
+        <li><div class="listing-date new">
+          <% if all_job.updated_at < (Time.now - 1.days) %>
+            <%= all_job.updated_at.strftime("%B %d, %Y")%>
+          <% else %>
+            new
+          <% end %>
+        </div></li>
+      </ul>
+    </div>
+  <% end %>
 <% end %>
-
-
-
