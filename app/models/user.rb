@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   acts_as_follower
 
+  USERS_PER_PAGE = 10
+  paginates_per USERS_PER_PAGE
+
   ############################################################################################
   ## PeterGate Roles                                                                        ##
   ## The :user role is added by default and shouldn't be included in this list.             ##
