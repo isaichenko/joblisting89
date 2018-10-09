@@ -15,10 +15,18 @@
       <li><%= link_to 'Bookmarked Resumes', bookmarked_resumes_path, id: 'new_job_from_nav', id: "#{active? bookmarked_resumes_path}" %></li>
     </ul>
   </li>
+  <li class=" nav-mobile">
+    <% if company_followers.present? %>
+      <a href=""><%= company_followers %></a>
+    <% else %>
+      <a href="">0 followers</a>
+    <% end %>
+  </li>
+  <li class="nav-mobile"><%= link_to "I am #{interface_button}", toggle_interface_user_path(current_user) %></li>
 
 </ul>
 
-<ul class="float-right">
+<ul class="float-right nav-desktop">
   <li>
     <% if company_followers.present? %>
       <a href=""><%= company_followers %></a>
@@ -50,5 +58,22 @@
         <% end %>
       </li>
     </ul>
+  </li>
+</ul>
+
+<ul class="float-right nav-mobile">
+  <li>
+    <%= link_to edit_user_registration_path do %>
+      <% if current_user.name.present? %>
+        <%= current_user.name %>
+      <% else %>
+        Enter Your Name
+      <% end %>
+    <% end %>
+  </li>
+  <li>
+    <%= link_to destroy_user_session_path, method: :delete do %>
+      <i class="fa fa-user"></i> Logout
+    <% end %>
   </li>
 </ul>

@@ -359,3 +359,17 @@ table.manage-table.resumes td:first-child, table.manage-table td:first-child {
 table.manage-table th {
   text-align: center;
 }
+
+/* Navs for mobile */
+.nav-mobile {
+  display: none
+}
+
+@media (max-width: 990px) {
+  .nav-desktop {
+    display: none !important;
+  }
+  .nav-mobile {
+    display: block;
+  }
+}

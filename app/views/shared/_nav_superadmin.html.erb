@@ -15,7 +15,7 @@
 
 </ul>
 
-<ul class="float-right">
+<ul class="float-right nav-desktop">
   <li><a href="#"><%= current_user.name %></a>
     <ul>
       <li><%= link_to 'Setup Profile', edit_user_registration_path %></li>
@@ -25,5 +25,14 @@
         <% end %>
       </li>
     </ul>
+  </li>
+</ul>
+
+<ul class="float-right nav-mobile">
+  <li><%= link_to "#{current_user.name}", edit_user_registration_path %></li>
+  <li>
+    <%= link_to destroy_user_session_path, method: :delete do %>
+      <i class="fa fa-user"></i> Logout
+    <% end %>
   </li>
 </ul>
