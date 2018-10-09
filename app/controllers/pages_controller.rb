@@ -82,13 +82,13 @@ class PagesController < ApplicationController
 # Show Jobseeker, Recruiter, Blog, FAQ for admin
   def manage_jobseeker
     # @job_seekers = User.where(interface: 1).order(created_at: :DESC).all
-    @job_seekers = User.job_seekers
+    @job_seekers = User.job_seekers.page params[:page]
     @type = 'JobSeeker'
   end
 
   def manage_recruiter
     # @recruiters = User.where(interface: 0).order(created_at: :DESC).all
-    @recruiters = User.recruiters
+    @recruiters = User.recruiters.page params[:page]
     @type = 'Recruiter'
   end
 
