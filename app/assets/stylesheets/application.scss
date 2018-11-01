@@ -223,7 +223,7 @@ select.change-action {
 
 .top-left {
   top: 36%;
-  right: 50%;
+  right: 40%;
   color: #ffffff;
   /*font-size: 40px;*/
   z-index: 2;
@@ -232,7 +232,7 @@ select.change-action {
 
 .middle {
   top: 36%;
-  left: 50%;
+  left: 40%;
   color: #ffffff;
   /*font-size: 40px;*/
   z-index: 2;
@@ -280,10 +280,10 @@ select.change-action {
     display: none;
   }
   .middle {
-    top: 16%;
+    top: 9%;
   }
   .top-left{
-    top: 16%;
+    top: 9%;
   }
 }
 
@@ -292,11 +292,11 @@ select.change-action {
     width: 100%;
   }
   .middle {
-    top: 36%;
+    top: 25%;
     left: 20%;
   }
   .top-left{
-    top: 36%;
+    top: 25%;
     right: 20%;
   }
 }
