@@ -15,7 +15,7 @@
 				<%= form_with method: :get, local: true, url: alljobs_path do |f| %>
 		        <%= f.text_field :q, class: "ico-01", placeholder: "Job title, Skills", value: "" %>
 
-		        <%= f.text_field :city, multiple: true, class: "ico-02", placeholder: "City, Country", value: ""  %>
+		        <%= f.text_field :city, multiple: true, class: "ico-02", placeholder: "City, State", value: ""  %>
 
 		        <%= button_tag( :class => "button") do %>
 						  <i class="fa fa-search"></i>
