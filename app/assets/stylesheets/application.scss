@@ -305,8 +305,11 @@ select.change-action {
 /* images */
 
 .header-image-non-login {
-  /*background-image: url(banner-home-01.jpg);*/
-  background-image: url(bg/purty_wood.png);
+  background-image: url(banner-home-01.jpg);
+  /*background-image: url(bg/purty_wood.png);*/
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   background-size: cover !important;
 }
 

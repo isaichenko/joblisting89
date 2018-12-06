@@ -1,7 +1,7 @@
 <!-- Banner
 ================================================== -->
 <% if !user_signed_in? %>
-<div id="banner" class="with-transparent-header parallax background" data-img-width="1840" data-img-height="1226" data-diff="300"><%= image_tag("banner-home-01.jpg") %>
+<div id="banner" class="with-transparent-header parallax background header-image-non-login" data-img-width="1840" data-img-height="1226" data-diff="300">
 <% elsif current_user.role == :superadmin %>
 <div id="banner" class="with-transparent-header parallax background header-image-admin-homepage" data-img-width="1840" data-img-height="1226" data-diff="300">
 	<% else %>
