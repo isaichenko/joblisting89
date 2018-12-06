@@ -301,6 +301,9 @@ select.change-action {
   }
 }
 
+
+// images
+
 .header-image-non-login {
   background-image: url(banner-home-01.jpg);
   background-size: cover;
@@ -311,15 +314,19 @@ select.change-action {
 }
 
 .header-image-jobseeker {
-  background-image: url(banner-home-03.jpg);
+  background-image: url(crop-jobseeker.png);
 }
 
 .header-image-admin {
-  background-image: url(banner-home-01.jpg);
+  background-image: url(crop-admin.png);
+}
+
+.header-image-admin-homepage {
+  background-image: url(admin.jpg);
 }
 
 .all-jobs-image {
-  background-image: url(all-jobs-photo.jpg);
+  background-image: url(crop-others.png);
 }
 
 .faq-table {
@@ -328,7 +335,7 @@ select.change-action {
 }
 
 .job-page-photo {
-  background-image: url(all-jobs-photo.jpg);
+  background-image: url(crop-others.png);
 }
 
 .resume-title-text {
