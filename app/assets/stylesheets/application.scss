@@ -302,11 +302,12 @@ select.change-action {
 }
 
 
-// images
+/* images */
 
 .header-image-non-login {
-  background-image: url(banner-home-01.jpg);
-  background-size: cover;
+  /*background-image: url(banner-home-01.jpg);*/
+  background-image: url(popular-location-03.jpg);
+  background-size: cover !important;
 }
 
 .header-image-recruiter {
