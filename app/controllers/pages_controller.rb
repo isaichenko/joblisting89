@@ -7,10 +7,10 @@ class PagesController < ApplicationController
   def alljobs
     if search_params.present?
       query = params[:q].presence || '*'
-        record_exist_check(Job)
+        record_exist_check(Job, @all_jobs)
       @filter_active = true
     else
-      record_exist_check(Job)
+      record_exist_check(Job, @all_jobs)
     end
     #binding.pry
   end
@@ -18,20 +18,20 @@ class PagesController < ApplicationController
   def allcompanies
     if search_params.present?
       query = params[:q].presence || '*'
-        record_exist_check(Company)
+        record_exist_check(Company, @all_companies)
       @filter_active = true
     else
-      record_exist_check(Company)
+      record_exist_check(Company, @all_companies)
     end
   end
 
   def allresumes
     if search_params.present?
       query = params[:q].presence || '*'
-        record_exist_check(Resume)
+        record_exist_check(Resume, @all_resumes)
       @filter_active = true
     else
-      record_exist_check(Resume)
+      record_exist_check(Resume, @all_resumes)
     end
   end
 # Add FAQs and Blogs
@@ -128,11 +128,11 @@ class PagesController < ApplicationController
     @spotlight_jobs = Job.spotlight
   end
 
-  def record_exist_check(model)
+  def record_exist_check(model, records)
     if model.first.present?
-      @all_jobs = model.search(query, model.prepare_search(search_params))
+      records = model.search(query, model.prepare_search(search_params))
     else
-      @all_jobs = model.all
+      records = model.all
     end
   end
 
