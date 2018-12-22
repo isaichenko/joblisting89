@@ -30,20 +30,18 @@
   <div class="eleven columns">
   <div class="padding-right">
 
-    <ul class="resumes-list alternative">
+    <div class="listings-container">
 
-      <% if params[:q].present? %>
-        <h6>Results for: <i><%= params[:q] %></i></h6>
+      <% if params[:q].present? %><h6>Results for: <i><%= params[:q] %></i></h6>
       <% end %>
-
+      <div class="info-cards">
         <% if @all_resumes.present? %>
-      <h2>All Resumes List</h2>
           <%= render partial: 'all_resume', collection: @all_resumes %>
         <% else %>
           No results
         <% end %>
-
-    </ul>
+      </div>
+    </div>
     <div class="clearfix"></div>
 
     <% if @all_resumes.present? %>
