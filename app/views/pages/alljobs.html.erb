@@ -35,7 +35,7 @@
 
         <% if params[:q].present? %><h6>Results for: <i><%= params[:q] %></i></h6><% end %>
         <div class="info-cards">
-          <% if @all_jobs.size > 0 %>
+          <% if @all_jobs.present? %>
             <%= render partial: 'all_job', collection: @all_jobs %>
           <% else %>
             No results
@@ -45,7 +45,7 @@
     </div>
     <div class="clearfix"></div>
 
-    <% if @all_jobs.size > 0 %>
+    <% if @all_jobs.present? %>
       <div class="pagination-container">
         <%= paginate @all_jobs %>
       </div>
