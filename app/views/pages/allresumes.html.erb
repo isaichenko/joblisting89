@@ -36,8 +36,8 @@
         <h6>Results for: <i><%= params[:q] %></i></h6>
       <% end %>
 
+        <% if @all_resumes.present? %>
       <h2>All Resumes List</h2>
-        <% if @all_resumes.size > 0 %>
           <%= render partial: 'all_resume', collection: @all_resumes %>
         <% else %>
           No results
@@ -46,9 +46,11 @@
     </ul>
     <div class="clearfix"></div>
 
-    <div class="pagination-container">
-      <%= paginate @all_resumes %>
-    </div>
+    <% if @all_resumes.present? %>
+      <div class="pagination-container">
+        <%= paginate @all_resumes %>
+      </div>
+    <% end %>
 
   </div>
   </div>
@@ -56,6 +58,7 @@
 
   <!-- Widgets -->
   <div class="five columns">
+  <% if @all_resumes.present? %>
 
     <%= form_with method: :get, local: true, url: allresumes_path, id: "filter-auto" do |f| %>
       <!-- Sort by -->
@@ -119,6 +122,7 @@
 
     <% end %>
 
+  <% end %>
   </div>
   <!-- Widgets / End -->
 
