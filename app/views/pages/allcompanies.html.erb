@@ -35,7 +35,7 @@
 
         <% if params[:q].present? %><h6>Results for: <i><%= params[:q] %></i></h6><% end %>
         <div class="info-cards">
-          <% if @all_companies.size > 0 %>
+          <% if @all_companies.present? %>
             <%= render partial: 'all_company', collection: @all_companies %>
           <% else %>
             No results
@@ -45,15 +45,18 @@
     </div>
     <div class="clearfix"></div>
 
-    <div class="pagination-container">
-      <%= paginate @all_companies %>
-    </div>
+    <% if @all_companies.present? %>
+      <div class="pagination-container">
+        <%= paginate @all_companies %>
+      </div>
+    <% end %>
 
   </div>
   </div>
 
  <!-- Widgets -->
   <div class="five columns">
+  <% if @all_companies.present? %>
 
     <!-- Sort by -->
 
@@ -95,10 +98,11 @@
       </h4>
     </div>
 
-  <%= f.hidden_field :q, value: params[:q] %>
+    <%= f.hidden_field :q, value: params[:q] %>
       <!--<%= f.submit "Update", class: "btn btn-primary", name: nil %>-->
     <% end %>
 
+  <% end %>
   </div>
   <!-- Widgets / End -->
 </div>
