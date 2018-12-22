@@ -7,10 +7,18 @@ class PagesController < ApplicationController
   def alljobs
     if search_params.present?
       query = params[:q].presence || '*'
-        record_exist_check(Job, @all_jobs, query)
+      if Job.first.present?
+        @all_jobs = Job.search(query, Job.prepare_search(search_params))
+      else
+        @all_jobs = Job.all
+      end
       @filter_active = true
     else
-      record_exist_check(Job, @all_jobs, '*')
+      if Job.first.present?
+        @all_jobs = Job.search('*', Job.prepare_search(search_params))
+      else
+        @all_jobs = Job.all
+      end
     end
     #binding.pry
   end
@@ -18,20 +26,36 @@ class PagesController < ApplicationController
   def allcompanies
     if search_params.present?
       query = params[:q].presence || '*'
-        record_exist_check(Company, @all_companies, query)
+      if Company.first.present?
+        @all_companies = Company.search(query, Company.prepare_search(search_params))
+      else
+        @all_companies = Company.all
+      end
       @filter_active = true
     else
-      record_exist_check(Company, @all_companies, '*')
+      if Company.first.present?
+        @all_companies = Company.search('*', Company.prepare_search(search_params))
+      else
+        @all_companies = Company.all
+      end
     end
   end
 
   def allresumes
     if search_params.present?
       query = params[:q].presence || '*'
-        record_exist_check(Resume, @all_resumes, query)
+        if Resume.first.present?
+          @all_resumes = Resume.search(query, Resume.prepare_search(search_params))
+        else
+          @all_resumes = Resume.all
+        end
       @filter_active = true
     else
-      record_exist_check(Resume, @all_resumes, '*')
+      if Resume.first.present?
+        @all_resumes = Resume.search('*', Resume.prepare_search(search_params))
+      else
+        @all_resumes = Resume.all
+      end
     end
   end
 # Add FAQs and Blogs
@@ -126,14 +150,6 @@ class PagesController < ApplicationController
     @recent_jobs = Job.last(5)
     @recent_posts = Blog.last(3)
     @spotlight_jobs = Job.spotlight
-  end
-
-  def record_exist_check(model, records, query)
-    if model.first.present?
-      records = model.search(query, model.prepare_search(search_params))
-    else
-      records = model.all
-    end
   end
 
 end
