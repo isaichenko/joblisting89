@@ -11,4 +11,6 @@ class Blog < ApplicationRecord
     #image upload (change for AWS supporting)
     #mount_uploader :featured_image, ImageUploader
     mount_uploader :featured_image, CompanyUploader
+
+    scope :published, -> { where.not(published_at: nil) }
 end
