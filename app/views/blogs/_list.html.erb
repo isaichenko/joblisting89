@@ -18,7 +18,10 @@
                 <h3><%= blog.title %></h3>
             <% end %>
             <div class="meta-tags">
-                <span><%= blog.created_at.strftime("%B %d, %Y") %></span>
+                <span>
+                    <%= blog.published_at.strftime("%B %d, %Y") if blog.published_at? %>
+                    <%# blog.created_at.strftime("%B %d, %Y") %>
+                </span>
             </div>
             <p><%= truncate(blog.content.html_safe, :length => 500, :escape => false, :separator => ' ') %></p>
             <%= link_to "Read More", blog_path(blog), class: 'button' %>
