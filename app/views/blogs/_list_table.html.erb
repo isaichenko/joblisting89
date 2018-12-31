@@ -34,7 +34,7 @@
                         <% end %>
                     </td>
                     <td class="text-center">
-                        <%= blog.published_at.to_date if blog.published_at? %>
+                        <%= blog.published_at.strftime("%B %d, %Y") if blog.published_at? %>
                     </td>
                     <td class="text-center">
                         <%= link_to '', blog_path(blog), class: 'fa fa-eye fa-lg text-primary' %>
