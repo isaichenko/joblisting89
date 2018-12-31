@@ -148,7 +148,8 @@ class PagesController < ApplicationController
 
   def set_job_post
     @recent_jobs = Job.last(5)
-    @recent_posts = Blog.last(3)
+    @recent_posts = Blog.published.last(3)
+    #@recent_posts = Blog.last(3)
     @spotlight_jobs = Job.spotlight
   end
 
