@@ -16,7 +16,10 @@
                     <%= post.title %>
                 <% end %>
             </h5>
-            <span><%= post.created_at.strftime("%B %d, %Y") %></span>
+            <span>
+                <%# post.created_at.strftime("%B %d, %Y") %>
+                <%= post.published_at.strftime("%B %d, %Y") if post.published_at? %>
+            </span>
         </div>
         <div class="clearfix"></div>
     </li>
