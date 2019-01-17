@@ -251,7 +251,7 @@
           <li>Salaries USD: <%= w.salary if w.salary_status == 'show' %></li>
           <li>I currently work here: <%= w.i_currently_work_here ? 'Yes' : 'No' %></li>
         </ul>
-        <p><%= w.job_description %></p>
+        <p><%= simple_format(w.job_description) %></p>
       </dd>
 
       <% end %>
