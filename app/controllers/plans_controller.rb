@@ -25,7 +25,7 @@ class PlansController < ApplicationController
     @plan = Plan.new(plan_params)
 
     if @plan.save
-      redirect_to @plan, notice: 'Plan was successfully created.'
+      redirect_to manage_plans_url, notice: 'Plan was successfully created.'
     else
       render :new
     end

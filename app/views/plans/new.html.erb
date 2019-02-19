@@ -1,5 +1,18 @@
-<h1>New Plan</h1>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="photo-bg header-image-admin">
+  <div class="container">
 
-<%= render 'form', plan: @plan %>
+    <div class="sixteen columns">
+      <h2><i class="fa fa-plus-circle"></i> New Plan</h2>
+    </div>
 
-<%= link_to 'Back', plans_path %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="six columns">
+    <%= render 'form', plan: @plan %><br>
+    <%= link_to 'Back', manage_plans_path, class: 'button' %>
+  </div>
+</div>

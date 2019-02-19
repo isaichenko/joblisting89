@@ -58,7 +58,7 @@ Rails.application.routes.draw do
   get     '/admin',             to: 'pages#admin'
   get     '/settings',          to: 'pages#settings'
 
-  get     '/plans' ,            to: 'pages#plans'
+  get     '/manage-plans' ,            to: 'pages#plans'
 
   get     '/job_spotlight',     to: 'pages#job_spotlight'
   get     '/change_spotlight/:id/:spotlight', to: 'jobs#change_spotlight', as: :change_spotlight
