@@ -17,9 +17,11 @@ class Company < ApplicationRecord
   COMPANIES_PER_PAGE = 15
   paginates_per COMPANIES_PER_PAGE
 
-  include CompanySearch
+  #TODO remove commented before commit
 
-  after_commit :reindex_jobs
+  #include CompanySearch
+
+  #after_commit :reindex_jobs
 
   def reindex_jobs
     user.jobs&.reindex
