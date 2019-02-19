@@ -31,6 +31,15 @@ Rails.application.routes.draw do
     end
   end
 
+
+  resources :checkout do
+    collection do
+      post :stripe
+      post :paypal
+    end
+  end
+
+
   resources :jobs
   resources :job_types,   except: :index
   resources :job_areas,   except: :index
