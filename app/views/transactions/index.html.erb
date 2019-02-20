@@ -1,0 +1,64 @@
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="photo-bg header-image-admin">
+  <div class="container">
+
+    <div class="sixteen columns">
+      <h2>All Transactions</h2>
+      <nav id="breadcrumbs">
+        <ul>
+          <li>You are here:</li>
+          <li><%= link_to 'Home', root_path %></li>
+          <li>All Transactions</li>
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Table -->
+  <div class="sixteen columns">
+
+    <table class="manage-table resumes responsive-table">
+
+      <thead>
+      <tr style="text-align: center;">
+        <th>#</th>
+        <th>Company Name</th>
+        <th>Username</th>o
+        <th>Email</th>
+        <th>Subscription Date</th>
+        <th>Job Title</th>
+        <th>Plan Name</th>
+        <th>Payment Method</th>
+        <th>Plan Status</th>
+        <th>Amount</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody id="job_seekers">
+      <% @orders.each.with_index(1) do |order, key| %>
+        <tr style="text-align: center;">
+          <td><%= order.company_name %></td>
+          <td><%= order.username %></td>
+          <td><%= order.email %></td>
+          <td><%= order.subscription_date.to_date %></td>
+          <td><%= link_to order.job_title, jobs_path %></td>
+          <td><%= order.plan_name %></td>
+          <td><%= order.payment_method %></td>
+          <td><%= order.plan_status %></td>
+          <td><%= order.amount.to_f %></td>
+          <td><%= link_to transactions_path(order.id), method: :delete, class: 'button gray', data: { confirm: 'Are you sure?' } do %>
+              <i class="fa fa-trash"></i> Delete
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    <%= render 'pages/partials/modal' %>  </div>
+</div>
+<br>
