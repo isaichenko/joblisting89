@@ -93,6 +93,12 @@
           <p class="note">Deadline for new applicants.</p>
         </div>
 
+        <div class="form">
+          <%- array = Plan.all.map{|plan| [plan.name, plan.name] }%>
+          <%= form.select :plan, options_for_select(array, :selected => job.plan), {:prompt => "-- During “Add New Job” show this, Choose a plan that suits your need --"}, class: "form-control", id: "payment_plan_recruiter" %>
+          <p class="note">Deadline for new applicants.</p>
+        </div>
+
         <div class="form-group">
           <%= form.submit "Submit", class: 'button big margin-top-5' %>
         </div>
@@ -126,6 +132,31 @@
     return $result;
   }
 });
+
+  $("#payment_plan_recruiter").select2({
+      tags: true,
+      createTag: function (params) {
+          return {
+              id: params.term,
+              text: params.term,
+              newOption: true
+          }
+      },
+      templateResult: function (data) {
+          var $result = $("<span></span>");
+
+          $result.text(data.text);
+
+          if (data.newOption) {
+              $result.append(" <em>(new)</em>");
+          }
+
+          return $result;
+      }
+  });
+
+
+
 </script>
 
 <style type="text/css">

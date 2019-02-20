@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   mount Ckeditor::Engine => '/ckeditor'
   get 'faq/new'
 
@@ -30,12 +31,25 @@ Rails.application.routes.draw do
     end
   end
 
+
+  resources :checkout do
+    collection do
+      post :stripe
+      post :paypal
+    end
+  end
+
+  resources :transactions do
+
+  end
+
+
   resources :jobs
   resources :job_types,   except: :index
   resources :job_areas,   except: :index
   resources :keywords,    except: :index
   resources :job_titles,  except: :index
-
+  resources :plans
 # FAQ and Blog
   resources :faqs
   resources :blogs
@@ -56,6 +70,9 @@ Rails.application.routes.draw do
   get     '/find_company',      to: 'pages#find_company'
   get     '/admin',             to: 'pages#admin'
   get     '/settings',          to: 'pages#settings'
+
+  get     '/manage-plans' ,            to: 'pages#plans'
+
   get     '/job_spotlight',     to: 'pages#job_spotlight'
   get     '/change_spotlight/:id/:spotlight', to: 'jobs#change_spotlight', as: :change_spotlight
 # Add Jobseeker, Recruiter, Blog, FAQ for adminshow_jobs

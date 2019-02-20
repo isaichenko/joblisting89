@@ -9,6 +9,7 @@ class Job < ApplicationRecord
   belongs_to :job_type
   belongs_to :education
   has_many :companies, through: :user
+  belongs_to :plan
 
   has_many :bookmarked_jobs, dependent: :destroy
   has_many :bookmarked_by_users, through: :bookmarked_jobs, source: :user

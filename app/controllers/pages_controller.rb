@@ -100,6 +100,11 @@ class PagesController < ApplicationController
     @job_areas = JobArea.all
   end
 
+
+  def plans
+    @plans = Plan.all
+  end
+
   def manage_job_stats
     @job_titles = JobTitle.where(status: true).all
   end
