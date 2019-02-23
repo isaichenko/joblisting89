@@ -27,9 +27,10 @@ class OrderService
     @order.subscription_date = data[:subscription_date]
     @order.job_title = data[:job_title]
     @order.plan_name = data[:plan_name]
-    @order.payment_method = 'PayPal'
+    @order.payment_method = 'Stripe'
     @order.plan_status = 'Active'
     @order.amount = data[:amount]
+    @order.save!
   end
 
 end
