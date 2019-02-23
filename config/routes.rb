@@ -34,8 +34,8 @@ Rails.application.routes.draw do
 
   resources :checkout do
     collection do
-      post :stripe
-      post :paypal
+      post :stripe_pay
+      post :paypal_pay
     end
   end
 

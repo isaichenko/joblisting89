@@ -1,36 +1,43 @@
-require_relative 'paypal_client'
+require_relative 'pay_pal_client'
 require 'json'
 require 'ostruct'
 
 include PayPalCheckoutSdk::Orders
 
-module Samples
+module PayPal
   class GetOrder
 
-    #2. Set up your server to receive a call from the client
-    # You can use this function to retrieve an order by passing order ID as an argument
+    attr_accessor :job, :plan, :company
+
+    def initialize(params)
+      @job = params[:job]
+      @plan = params[:plan]
+      @company = params[:company]
+    end
+
     def get_order(order_id)
       request = OrdersGetRequest::new(order_id)
-      #3. Call PayPal to get the transaction
       response = PayPalClient::client::execute(request)
-      #4. Save the transaction in your database. Implement logic to save transaction to your database for future reference.
-      puts "Status Code: #"
-      puts "Status: #"
-      puts "Order ID: #"
-      puts "Intent: #"
-      puts "Links:"
-      for link in response.result.links
-        # You could also call this link.rel or link.href, but method is a reserved keyword for RUBY. Avoid calling link.method.
-        puts "\t#{link["rel"]}: #{link["href"]}\tCall Type: #{link["method"]}"
-      end
-      puts "Gross Amount: # #"
+      get_transaction(response)
     end
+
+    def get_transaction(response)
+      result =  PayPalClient::openstruct_to_hash(response)
+      set_transaction(result)
+    end
+
+    def set_transaction(hash)
+      payments = hash[:result][:purchase_units][0][:payments]
+      amount = hash[:result][:purchase_units][0][:payments][:captures][0][:amount][:value].to_f
+      payer = hash[:result][:payer]
+      username = hash[:result][:payer][:name].values.join(' ')
+      email = hash[:result][:payer][:email_address]
+      subscription_date = hash[:result][:purchase_units][0][:payments][:captures][0][:create_time]
+      data = {:company_name => @company.try(:title), :username => username, :email => email, :subscription_date => subscription_date,
+              :job_title => @job.try(:title), :plan_name => @plan.try(:name), :amount => amount
+      }
+      OrderService.new.pay_pay_order(data)
+    end
+
   end
 end
-
-# This is the driver function that invokes the get_order function
-# with order ID to retrieve sample order details.
-
-# if __FILE__ == $0
-#   Samples::GetOrder::new::get_order('REPLACE-WITH-VALID-ORDER-ID')
-# end
