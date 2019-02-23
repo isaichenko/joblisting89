@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190218235512) do
+
+ActiveRecord::Schema.define(version: 20190220124650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -231,6 +232,22 @@ ActiveRecord::Schema.define(version: 20190218235512) do
     t.index ["resume_id"], name: "index_militaries_on_resume_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.string "username"
+    t.string "email"
+    t.datetime "subscription_date"
+    t.string "job_title"
+    t.string "plan_name"
+    t.string "payment_method"
+    t.string "plan_status"
+    t.float "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "company_id"
+    t.string "company_name"
+    t.integer "plan_id"
+  end
+
   create_table "patents", force: :cascade do |t|
     t.string "patent_number"
     t.string "title"
@@ -258,6 +275,7 @@ ActiveRecord::Schema.define(version: 20190218235512) do
     t.string "currency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "payment_gateway"
   end
 
   create_table "publications", force: :cascade do |t|

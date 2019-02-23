@@ -5,6 +5,29 @@
   <td><%= job.job_area.title %></td>
   <td><%= link_to "Show (#{applied_count(job)})", job_applicants_path(job.id), class: "button" %></td>
   <td><%= link_to "Show (#{not_aplied_count(job)})", job_invites_path(job.id), class: "button" %></td>
+  <td>
+    <a class="popup-with-zoom-anim button color" href="#small-dialog" >Open</a>
+    <% @plan = Plan.find(job.plan_id) %>
+    <% @order = Order.find(job.plan_id) %>
+    <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+
+      <h2>Payment date:</h2>
+      <p><%= order.create_at.to_date %></p>
+
+      <h2>Payment method:</h2>
+      <p><%= order.payment_method.titlize %></p>
+
+      <h2>Credit Card:</h2>
+      <p>-</p>
+
+      <h2>Plan Status:</h2>
+      <p>Active</p>
+
+      <h2>Action:</h2>
+      <%= link_to "Repost", edit_job_path(job.id), class: "button" %>
+    </div>
+  </td>
+
   <td><%= job.created_at.strftime("%B %d, %Y") %></td>
   <td class="action">
     <%= link_to '', edit_job_path(job), class: 'fa fa-edit fa-lg index-icons' %>

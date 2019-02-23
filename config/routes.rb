@@ -39,6 +39,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :transactions do
+  end
+
 
   resources :jobs
   resources :job_types,   except: :index
