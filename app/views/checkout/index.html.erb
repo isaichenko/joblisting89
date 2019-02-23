@@ -13,132 +13,165 @@
 
   </div>
 </div>
+<script src="https://www.paypal.com/sdk/js?client-id=<%= ENV['PAYPAL_CLIENT_ID'] %>"></script>
+<script src="https://js.stripe.com/v3/"></script>
 
-
-
+<scirpt src="https://www.paypalobjects.com/api/checkout.js"></scirpt>
 <div class="container">
 
-  <div class="my-account">
+    <div style="width: 100%; height:100px; border-radius:3px; margin-top: 100px;">
 
-    <ul class="tabs-nav">
-      <li class=""><a href="#tab1">Stripe</a></li>
-      <li><a href="#tab2">PayPal</a></li>
-    </ul>
-
-
-    <div class="tabs-container">
-      <!-- Login -->
-      <div class="tab-content" id="tab1" style="display: none;">
-
-        <%= form_tag("/checkout/stripe", method: "post") do %>
-
-
-          <p class="form-row form-row-wide">
-            <%= label_tag(:number) %>
-            <%= text_field(:number, autofocus: true, autocomplete: "Credit Card Number")%>
-          </p>
-
-          <p class="form-row form-row-wide">
-            <%= label_tag(:month) %>
-            <%= month_field(:month, autofocus: true, autocomplete: "Credit Card Month") %>
-          </p>
-
-          <p class="form-row form-row-wide">
-            <%= label_tag(:years) %>
-            <%= number_field(:years, autofocus: true, autocomplete: "Credit Card Year") %>
-          </p>
-
-
-          <p class="form-row form-row-wide">
-            <%= label_tag(:verification_value) %>
-            <%= number_field(:verification_value, autofocus: true, autocomplete: " Credit Card Verification Value") %>
-          </p>
-
-          <hr>
-           Customer Detail
-          <hr>
-
-          <p class="form-row form-row-wide">
-            <%= label_tag(:name) %>
-            <%= text_field(:name, autofocus: true, autocomplete: "Customer name") %>
-          </p>
-
-          <p class="form-row form-row-wide">
-            <%= label_tag(:address1) %>
-            <%= text_field(:address1, autofocus: true, autocomplete: "Customer name") %>
-          </p>
-
-          <p class="form-row form-row-wide">
-            <%= label_tag(:city) %>
-            <%= text_field(:city, autofocus: true, autocomplete: "Customer City") %>
-          </p>
-
-          <p class="form-row form-row-wide">
-            <%= label_tag(:state) %>
-            <%= text_field(:state, autofocus: true, autocomplete: "Customer State") %>
-          </p>
-
-          <p class="form-row form-row-wide">
-            <%= label_tag(:zip) %>
-            <%= text_field(:zip, autofocus: true, autocomplete: "Customer Zip") %>
-          </p>
-          <%= submit_tag("Submit") %>
-        <% end %>
+      <div class="eight columns" style="text-align:center">
+        <div class="two columns" style="margin-left: 45%;">
+          <div id="paypal-button-container" style="width: 0"></div>
+        </div>
 
       </div>
 
-      <!-- Register -->
-      <div class="tab-content" id="tab2" style="display: none;">
 
-        <%= form_tag("/checkout/paypal", method: "post") do %>
-
-          <p class="form-row form-row-wide">
-            <%= label_tag(:number) %>
-            <%= text_field(:number, autofocus: true, autocomplete: "Credit Card Number") %>
-          </p>
-
-          <p class="form-row form-row-wide">
-            <%= label_tag(:month) %>
-            <%= month_field(:month, autofocus: true, autocomplete: "Credit Card Month") %>
-          </p>
-
-          <p class="form-row form-row-wide">
-            <%= label_tag(:years) %>
-            <%= number_field(:years, autofocus: true, autocomplete: "Credit Card Year") %>
-          </p>
-
-
-          <p class="form-row form-row-wide">
-            <%= label_tag(:verification_value) %>
-            <%= number_field(:verification_value, autofocus: true, autocomplete: " Credit Card Verification Value") %>
-          </p>
-
-          <p class="form-row form-row-wide">
-            <%= label_tag(:type) %>
-            <%= text_field(:type, autofocus: true, autocomplete: " Credit Card Type") %>
-          </p>
-
-
-          <hr>
-          Customer Detail
-          <hr>
-
-          <p class="form-row form-row-wide">
-            <%= label_tag(:first_name) %>
-            <%= text_field(:first_name, autofocus: true, autocomplete: "Customer name") %>
-          </p>
-
-          <p class="form-row form-row-wide">
-            <%= label_tag(:last_name) %>
-            <%= text_field(:last_name, autofocus: true, autocomplete: "Customer name") %>
-          </p>
-
-          <%= submit_tag("Submit") %>
-        <% end %>
-
+      <div class="eight columns" style="text-align:center">
+        <form action="/your-server-side-code" method="POST">
+          <script src="https://checkout.stripe.com/checkout.js"
+                  class="stripe-button"
+                  data-key="pk_Fhlzwtm9SCx6Uxww5fNXX8CUbwwAc"
+                  data-amount="2000"
+                  data-name="Job Listing"
+                  data-description="2 widgets ($20.00)"
+                  data-image="https://stripe.com/img/documentation/checkout/marketplace.png">
+          </script>
+          <script>
+              // Hide default stripe button, be careful there if you
+              // have more than 1 button of that class
+              document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
+          </script>
+          <button type="submit" class="button green" style="font-size: 18px;font-family: 'Times New Roman', Times, serif;font-style: italic;
+              border-radius: 21px;
+              width: 25%;
+              height: 42px;
+          ">Stripe</button>
+        </form>
       </div>
-
 
     </div>
-  </div>
+
+
+
+
 </div>
+
+<script>
+    paypal.Buttons({
+        style: {
+            layout: 'horizontal',
+            size: 'small',
+            color:  'blue',
+            shape:  'pill',
+            label:  'pay',
+            height: 40,
+            tagline: 'false'
+        },
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '0.01'
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                alert('Transaction completed by ' + details.payer.name.given_name);
+                // Call your server to save the transaction
+                return fetch('/paypal-transaction-complete', {
+                    method: 'post',
+                    body: JSON.stringify({
+                        orderID: data.orderID
+                    })
+                });
+            });
+        }
+    }).render('#paypal-button-container');
+
+
+
+
+
+
+    // var stripe = Stripe('pk_test_rEoQAIK4qDXjYCOlh3MFgDit');
+    // console.log(stripe);
+    //
+    // var paymentRequest = stripe.paymentRequest({
+    //     country: 'US',
+    //     currency: 'usd',
+    //     total: {
+    //         label: 'Demo total',
+    //         amount: 1000,
+    //     },
+    //     requestPayerName: true,
+    //     requestPayerEmail: true,
+    // });
+    //
+    // var elements = stripe.elements();
+    // var prButton = elements.create('paymentRequestButton', {
+    //     paymentRequest: paymentRequest,
+    // });
+    //
+    //
+    //
+    // // Custom styling can be passed to options when creating an Element.
+    // var style = {
+    //     base: {
+    //         // Add your base input styles here. For example:
+    //         fontSize: '16px',
+    //         color: "#32325d",
+    //     }
+    // };
+    //
+    // // Create an instance of the card Element.
+    // var card = elements.create('card', {style: style});
+    //
+    // // Add an instance of the card Element into the `card-element` <div>.
+    // card.mount('#card-element');
+    //
+    //
+    //
+    // card.addEventListener('change', function(event) {
+    //     var displayError = document.getElementById('card-errors');
+    //     if (event.error) {
+    //         displayError.textContent = event.error.message;
+    //     } else {
+    //         displayError.textContent = '';
+    //     }
+    // });
+    //
+    //
+    // // Create a token or display an error when the form is submitted.
+    // var form = document.getElementById('payment-form');
+    // form.addEventListener('submit', function(event) {
+    //     event.preventDefault();
+    //
+    //     stripe.createToken(card).then(function(result) {
+    //         if (result.error) {
+    //             // Inform the customer that there was an error.
+    //             var errorElement = document.getElementById('card-errors');
+    //             errorElement.textContent = result.error.message;
+    //         } else {
+    //             // Send the token to your server.
+    //             stripeTokenHandler(result.token);
+    //         }
+    //     });
+    // });
+    //
+    //
+    //
+    // // Check the availability of the Payment Request API first.
+    // paymentRequest.canMakePayment().then(function(result) {
+    //     if (result) {
+    //         prButton.mount('#payment-request-button');
+    //     } else {
+    //         document.getElementById('payment-request-button').style.display = 'none';
+    //     }
+    // });
+
+</script>

@@ -60,3 +60,6 @@ gem 'social-share-button'
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
 gem 'mini_racer'
 gem 'activemerchant'
+gem 'paypal-checkout-sdk', '~> 1.0', '>= 1.0.1'
+gem "braintree", "~> 2.94.0"
+gem "braintreehttp"
