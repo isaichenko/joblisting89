@@ -17,7 +17,7 @@ class CheckoutController < ApplicationController
     company = Company.find(job.company_ids.last)
 
     additional_params = {:job => job, :plan => plan, :company => company }
-    result = Stripe::StripeChargesService.new(params, additional_params).call
+    result = StripeChargesService.new(params, additional_params).call
     if result
       respond_to do |format|
         format.html { redirect_to jobs_path,  notice: 'Stripe payment success!'  }
