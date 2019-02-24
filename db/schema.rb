@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190220124650) do
+ActiveRecord::Schema.define(version: 20190224223927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,6 +115,15 @@ ActiveRecord::Schema.define(version: 20190220124650) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_companies_on_user_id"
+  end
+
+  create_table "currencies", force: :cascade do |t|
+    t.string "iso_code"
+    t.string "name"
+    t.string "symbol"
+    t.boolean "symbol_first"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "educations", force: :cascade do |t|
@@ -275,6 +284,9 @@ ActiveRecord::Schema.define(version: 20190220124650) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "payment_gateway"
+    t.integer "duration_days"
+    t.bigint "currency_id"
+    t.index ["currency_id"], name: "index_plans_on_currency_id"
   end
 
   create_table "publications", force: :cascade do |t|
@@ -415,6 +427,7 @@ ActiveRecord::Schema.define(version: 20190220124650) do
   add_foreign_key "militaries", "resumes"
   add_foreign_key "patents", "resumes"
   add_foreign_key "photos", "companies"
+  add_foreign_key "plans", "currencies"
   add_foreign_key "publications", "resumes"
   add_foreign_key "resumes", "users"
   add_foreign_key "reviews", "companies"
