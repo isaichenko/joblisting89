@@ -5,7 +5,7 @@ class Plan < ApplicationRecord
   STATUS_EXPIRED = 'Expired'.freeze
 
   def expired?
-    Date.parse(p.duration.strftime('%d %B %Y')) < Date.today
+    Date.parse(self.duration.strftime('%d %B %Y')) < Date.today
   end
 
 end
