@@ -89,7 +89,10 @@ class JobsController < ApplicationController
         if !JobTitle.where(title: @job.title).present?
           JobTitle.create(title: @job.title, status: false, user_id: current_user.id)
         end
-        format.html { redirect_to jobs_path, notice: 'Your Job was created.' }
+
+        format.html {
+          redirect_to controller: 'checkout', action: 'show', id: 3
+        }
 
         current_user.companies.first.followers.each do |user|
           CompanyMailer.new_job_posted_by_company(user.email,@job, current_user.companies.first.title).deliver_now
@@ -186,6 +189,8 @@ class JobsController < ApplicationController
                                   :job_area_id,
                                   :education_id,
                                   :expiry_date,
-                                  :user_id)
+                                  :user_id,
+                                  :plan_id
+                                  )
     end
 end

@@ -35,15 +35,17 @@
         </div>
       </div>
 
+       <div id="payment-plan" data-amount="<%= @plan.amount %>"></div>
+
       <div class="eight columns" style="text-align:center">
 
         <form action="/checkout/stripe_pay" method="POST">
           <script src="https://checkout.stripe.com/checkout.js"
                   class="stripe-button"
-                  data-key="pk_test_rEoQAIK4qDXjYCOlh3MFgDit"
-                  data-amount="2000"
+                  data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>"
+                  data-amount="<%= @plan.amount %>"
                   data-name="Job Listing"
-                  data-description="2 widgets ($20.00)"
+                  data-description="2 widgets ($<%= @plan.amount %>)"
                   data-image="https://stripe.com/img/documentation/checkout/marketplace.png">
           </script>
           <script>
@@ -78,7 +80,7 @@
             return actions.order.create({
                 purchase_units: [{
                     amount: {
-                        value: '2000'
+                        value: $('#payment-plan').data('amount')
                     }
                 }]
             });
