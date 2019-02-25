@@ -17,8 +17,8 @@
     </div>
 
     <div class="field">
-      <%= form.label :duration %>
-      <%= form.datetime_select :duration, id: :plan_duration, class: :datepicker %>
+      <%= form.label :duration_days %>
+      <%= form.number_field :duration_days, id: :plan_duration_days %>
     </div>
 
     <div class="field">
@@ -28,7 +28,7 @@
 
     <div class="field">
       <%= form.label :currency %>
-      <%= form.text_field :currency, id: :plan_current %>
+      <%= form.collection_select(:currency_id, Currency.all, :id, :iso_code, {selected: form.object.currency_id}, class: 'chosen-select-no-single') %>
     </div>
   </div>
   <br>
