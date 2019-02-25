@@ -5,6 +5,8 @@ class Plan < ApplicationRecord
   STATUS_ACTIVE = 'Active'.freeze
   STATUS_EXPIRED = 'Expired'.freeze
 
+  validates :name, :duration_days, :price, :currency, :presence => { :message => 'cannot be blank' }
+
   before_save :set_date_expiration
 
   def expired?

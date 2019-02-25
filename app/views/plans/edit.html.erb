@@ -1,6 +1,20 @@
-<h1>Editing Plan</h1>
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="photo-bg header-image-admin">
+  <div class="container">
 
-<%= render 'form', plan: @plan %>
+    <div class="sixteen columns">
+      <h2><i class="fa fa-plus-circle"></i> Edit Plan</h2>
+    </div>
 
-<%= link_to 'Show', @plan %> |
-<%= link_to 'Back', plans_path %>
+  </div>
+</div>
+
+<div class="container">
+  <div class="six columns">
+  <%= render 'form', plan: @plan %>
+  <br>
+  <%= link_to 'Show', @plan, class: "button green" %>
+  <%= link_to 'Back', plans_path, class: "button green" %>
+  </div>
+</div>
