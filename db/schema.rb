@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190225205704) do
+ActiveRecord::Schema.define(version: 20190225224628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,6 +115,18 @@ ActiveRecord::Schema.define(version: 20190225205704) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_companies_on_user_id"
+  end
+
+  create_table "credit_cards", force: :cascade do |t|
+    t.string "digits", null: false
+    t.string "brand", null: false
+    t.integer "month", null: false
+    t.integer "year", null: false
+    t.string "stripe_id", null: false
+    t.string "paypal_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "is_default", default: false
   end
 
   create_table "currencies", force: :cascade do |t|
@@ -255,6 +267,8 @@ ActiveRecord::Schema.define(version: 20190225205704) do
     t.string "company_name"
     t.integer "plan_id"
     t.integer "job_id"
+    t.bigint "credit_card_id"
+    t.index ["credit_card_id"], name: "index_orders_on_credit_card_id"
   end
 
   create_table "patents", force: :cascade do |t|
@@ -426,6 +440,7 @@ ActiveRecord::Schema.define(version: 20190225205704) do
   add_foreign_key "jobs", "users"
   add_foreign_key "keywords", "users"
   add_foreign_key "militaries", "resumes"
+  add_foreign_key "orders", "credit_cards"
   add_foreign_key "patents", "resumes"
   add_foreign_key "photos", "companies"
   add_foreign_key "plans", "currencies"

@@ -8,8 +8,7 @@
   <td>
     <a class="popup-with-zoom-anim button color" href="#small-dialog" >Open</a>
     <% @plan = Plan.find(job.plan_id) %>
-    <% @order = Order.find(job.plan_id) %>
-
+    <% @order = Order.find_by(:job_id => job.id) %>
 
     <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
       <div class="row" style="text-align: center">
@@ -23,7 +22,11 @@
         <p><%= @order.payment_method.titleize %></p>
 
         <h4>Credit Card:</h4>
-        <p>-</p>
+        <% if @order.credit_card.present? %>
+          <p> <%= "#{@order.credit_card.brand} xxxx#{@order.credit_card.digits}" %></p>
+        <% else %>
+          <p>-</p>
+        <% end %>
 
         <h4>Plan Status:</h4>
         <p>Active</p>
