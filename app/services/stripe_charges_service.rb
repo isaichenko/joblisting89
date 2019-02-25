@@ -24,10 +24,12 @@ class StripeChargesService
     customer = get_customer(charge.customer)
     amount = @plan.price
     username = charge.customer
+    stripe_card = customer.sources.retrieve(customer.default_source)
+    card = CreditCard.new.save_card_info(stripe_card)
     email = customer.email
     subscription_date = Time.at(charge.created).to_datetime
     data = {:company_name => @company.try(:title), :username => username, :email => email, :subscription_date => subscription_date,
-            :job_title => @job.try(:title), :plan_name => @plan.try(:name), :amount => amount, :job_id => @job.id
+            :job_title => @job.try(:title), :plan_name => @plan.try(:name), :amount => amount, :job_id => @job.id, :card => card
     }
     OrderService.new.stripe_order(data)
   end
