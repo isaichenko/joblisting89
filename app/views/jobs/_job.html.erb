@@ -8,6 +8,7 @@
   <td>
     <a class="popup-with-zoom-anim button color" href="#small-dialog" >Open</a>
     <% @plan = Plan.find(job.plan_id) %>
+
     <% @order = Order.find_by(:job_id => job.id) %>
 
     <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
