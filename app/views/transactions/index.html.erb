@@ -47,7 +47,7 @@
           <td><%= order.username %></td>
           <td><%= order.email %></td>
           <td><%= order.subscription_date.to_date %></td>
-          <td><%= link_to order.job_title, jobs_path %></td>
+          <td><%= link_to order.job_title, job_url(order.job_id) %></td>
           <td><%= order.plan_name %></td>
           <td><%= order.payment_method %></td>
           <td><%= order.plan_status %></td>
