@@ -12,17 +12,20 @@
 
 
     <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+      <div class="row" style="text-align: center">
+        <h2>Transaction Detail</h2>
+      </div>
       <% if @order.present? %>
-        <h2>Payment date:</h2>
+        <h4>Payment date:</h4>
         <p><%= @order.created_at.to_date %></p>
 
-        <h2>Payment method:</h2>
+        <h4>Payment method:</h4>
         <p><%= @order.payment_method.titleize %></p>
 
-        <h2>Credit Card:</h2>
+        <h4>Credit Card:</h4>
         <p>-</p>
 
-        <h2>Plan Status:</h2>
+        <h4>Plan Status:</h4>
         <p>Active</p>
         <% if @plan.present? %>
           <% if @plan.expired? %>

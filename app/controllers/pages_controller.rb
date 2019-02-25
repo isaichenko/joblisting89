@@ -20,7 +20,6 @@ class PagesController < ApplicationController
         @all_jobs = Job.all
       end
     end
-    #binding.pry
   end
 
   def allcompanies
