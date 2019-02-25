@@ -19,9 +19,9 @@ class Company < ApplicationRecord
 
   #TODO remove commented before commit
 
-  #include CompanySearch
+  include CompanySearch
 
-  #after_commit :reindex_jobs
+  after_commit :reindex_jobs
 
   def reindex_jobs
     user.jobs&.reindex

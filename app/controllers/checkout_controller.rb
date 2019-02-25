@@ -6,8 +6,14 @@ class CheckoutController < ApplicationController
   end
 
   def show
-    @job = Job.find(params[:id]) if params.present?
-    @plan = @job.plan
+    @job = Job.find_by(id: params[:id])
+    binding.pry
+    if @job.present?
+
+      @plan = @job.plan
+    else
+      redirect_to jobs_path, notice: 'Job not found!'
+    end
   end
 
   def stripe_pay
