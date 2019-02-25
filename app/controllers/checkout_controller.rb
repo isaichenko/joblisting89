@@ -7,9 +7,7 @@ class CheckoutController < ApplicationController
 
   def show
     @job = Job.find_by(id: params[:id])
-    binding.pry
     if @job.present?
-
       @plan = @job.plan
     else
       redirect_to jobs_path, notice: 'Job not found!'
