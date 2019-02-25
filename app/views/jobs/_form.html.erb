@@ -94,9 +94,9 @@
         </div>
 
         <div class="form">
+          <h5>Listing Plan</h5>
           <%- array = Plan.all.map{|plan| [plan.name, plan.id] }%>
-          <%= form.select :plan_id, options_for_select(array, nil), {:prompt => "-- During “Add New Job” show this, Choose a plan that suits your need --"}, class: "form-control", id: "payment_plan_recruiter" %>
-          <p class="note">Deadline for new applicants.</p>
+          <%= form.select :plan_id, options_for_select(array, nil), {:prompt => "Choose a plan that suits your need"}, class: "form-control", id: "payment_plan_recruiter" %>
         </div>
 
         <div class="form-group">
