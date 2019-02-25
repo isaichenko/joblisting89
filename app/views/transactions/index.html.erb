@@ -20,13 +20,12 @@
 <div class="container">
 
   <!-- Table -->
-  <div class="sixteen columns">
+
 
     <table class="manage-table resumes responsive-table">
 
       <thead>
-      <tr style="text-align: center;">
-        <th>#</th>
+      <tr>
         <th>Company Name</th>
         <th>Username</th>
         <th>Email</th>
@@ -42,12 +41,11 @@
       <tbody id="job_seekers">
       <% @orders.each.with_index(1) do |order, key| %>
         <tr style="text-align: center;">
-          <td></td>
           <td><%= order.company_name %></td>
           <td><%= order.username %></td>
           <td><%= order.email %></td>
           <td><%= order.subscription_date.to_date %></td>
-          <td><%= link_to order.job_title, jobs_path %></td>
+          <td><%= link_to order.job_title, job_url(order.job_id) %></td>
           <td><%= order.plan_name %></td>
           <td><%= order.payment_method %></td>
           <td><%= order.plan_status %></td>
@@ -60,6 +58,6 @@
       <% end %>
       </tbody>
     </table>
-    <%= render 'pages/partials/modal' %>  </div>
+    <%= render 'pages/partials/modal' %>
+
 </div>
-<br>

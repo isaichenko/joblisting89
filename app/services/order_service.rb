@@ -5,7 +5,6 @@ class OrderService
     @order = Order.new
   end
 
-
   def pay_pay_order(data)
     @order.company_name = data[:company_name]
     @order.username = data[:username]
@@ -16,6 +15,7 @@ class OrderService
     @order.payment_method = 'PayPal'
     @order.plan_status = 'Active'
     @order.amount = data[:amount]
+    @order.job_id = data[:job_id]
     @order.save!
   end
 
@@ -30,6 +30,7 @@ class OrderService
     @order.payment_method = 'Stripe'
     @order.plan_status = 'Active'
     @order.amount = data[:amount]
+    @order.job_id = data[:job_id]
     @order.save!
   end
 
