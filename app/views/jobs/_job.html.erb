@@ -12,9 +12,9 @@
     <% @order = Order.find_by(:job_id => job.id) %>
 
     <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
-      <div class="row" style="text-align: center">
-        <h2>Transaction Detail</h2>
-      </div>
+
+      <h2 style="text-align: ce">Transaction Detail</h2>
+
       <% if @order.present? %>
         <h4>Payment date:</h4>
         <p><%= @order.created_at.to_date %></p>
