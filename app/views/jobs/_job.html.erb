@@ -7,7 +7,7 @@
   <td><%= link_to "Show (#{not_aplied_count(job)})", job_invites_path(job.id), class: "button" %></td>
   <td>
     <a href="#small-dialog<%= job.id %>" class="open-popup-link button color">Show</a>
-    <% @plan = Plan.find(job.plan_id) %>
+    <% @plan = Plan.find_by(:id => job.plan_id) %>
     <% @order = Order.find_by(:job_id => job.id) %>
 
     <div id="small-dialog<%= job.id %>" class="white-popup mfp-hide custom-small-dialog">
