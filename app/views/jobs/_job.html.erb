@@ -6,12 +6,11 @@
   <td><%= link_to "Show (#{applied_count(job)})", job_applicants_path(job.id), class: "button" %></td>
   <td><%= link_to "Show (#{not_aplied_count(job)})", job_invites_path(job.id), class: "button" %></td>
   <td>
-    <a class="popup-with-zoom-anim button color" href="#small-dialog" >Open</a>
+    <a href="#small-dialog<%= job.id %>" class="open-popup-link button color">Show</a>
     <% @plan = Plan.find(job.plan_id) %>
-
     <% @order = Order.find_by(:job_id => job.id) %>
 
-    <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+    <div id="small-dialog<%= job.id %>" class="white-popup mfp-hide custom-small-dialog">
 
       <h2 style="text-align: ce">Transaction Detail</h2>
 
@@ -38,7 +37,7 @@
           <% end  %>
         <% end %>
       <%  else %>
-        <p>Not Have Payments yet</p>
+        <p>No payment has been done for this listing</p>
       <% end %>
     </div>
 
@@ -51,3 +50,10 @@
     <%= link_to '', job_path(job), method: :delete, class: 'fa fa-trash fa-lg index-icons-tresh', data: { confirm: 'Are you sure?' } %>
   </td>
 </tr>
+<script type="text/javascript">
+    $('.open-popup-link').magnificPopup({
+        type:'inline',
+        midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+    });
+
+</script>
