@@ -39,7 +39,7 @@
     <div id="job-payment-plan" data-id="<%= @job.id %>"></div>
     <div class="eight columns" style="text-align:center">
 
-      <form action="/checkout/stripe_pay" method="POST">
+      <%= form_with(url: :stripe_pay_checkout_index, method: :post) do %>
         <script src="https://checkout.stripe.com/checkout.js"
                 class="stripe-button"
                 data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>"
@@ -48,21 +48,16 @@
                 data-description="2 widgets ($<%= @plan.price %>)"
                 data-image="https://stripe.com/img/documentation/checkout/marketplace.png">
         </script>
-        <input type="hidden" value="<%= @job.id %>" name="job_id">
+        <%= hidden_field_tag(:job_id, @job.id) %>
+        <%= hidden_field_tag(:user_id, checkout_current_user_id) %>
         <script>
             document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
         </script>
-
-        <button type="submit" class="button green" style="font-size: 18px;font-family: 'Times New Roman', Times, serif;font-style: italic;
-            border-radius: 21px;
-            width: 25%;
-            height: 42px;
-        ">Stripe</button>
-      </form>
+        <button type="submit" class="button green" style="font-size: 18px;font-family: 'Times New Roman', Times, serif;font-style: italic; border-radius: 21px; width: 25%; height: 42px;">Stripe</button>
+      <% end %>
 
     </div>
-
-  </div>
+ </div>
 
 </div>
 
