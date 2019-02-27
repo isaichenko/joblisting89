@@ -16,6 +16,7 @@ class OrderService
     @order.plan_status = 'Active'
     @order.amount = data[:amount]
     @order.job_id = data[:job_id]
+    @order.credit_card = CreditCard.last
     @order.save!
   end
 

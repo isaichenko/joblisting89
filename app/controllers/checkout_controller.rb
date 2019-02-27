@@ -1,4 +1,5 @@
 class CheckoutController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @job = Job.find(params[:id]) if params.present?
@@ -19,8 +20,10 @@ class CheckoutController < ApplicationController
     job = Job.find(job_id)
     plan = job.plan
     company = Company.find(job.company_ids.last)
-
-    additional_params = {:job => job, :plan => plan, :company => company }
+    if  current_user.nil?
+      currrent_user = User.first
+    end
+      additional_params = {:job => job, :plan => plan, :company => company, :user => current_user}
     result = StripeChargesService.new(params, additional_params).call
     if result
       respond_to do |format|
@@ -34,11 +37,11 @@ class CheckoutController < ApplicationController
     job = Job.find(job_id)
     plan = job.plan
     company = Company.find(job.company_ids.last)
-    params = {:job => job, :plan => plan, :company => company}
-    order = PayPal::GetOrder::new(params)::get_order(params[:order_id])
+    additional_params = {:job => job, :plan => plan, :company => company}
+    order = PayPal::GetOrder::new(additional_params)::get_order(params[:order_id])
     if order
       respond_to do |format|
-        format.html { redirect_to jobs_path, notice: 'PayPal payment success!' }
+        format.html { redirect_to jobs_path,  notice: 'Stripe payment success!'  }
       end
     end
   end

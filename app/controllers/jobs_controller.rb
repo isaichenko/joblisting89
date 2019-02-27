@@ -3,7 +3,7 @@ class JobsController < ApplicationController
 
   def index
     if user_signed_in?
-      @jobs = Job.posts_by(current_user)
+      @jobs = Job.posts_by(current_user).order('created_at DESC')
     else
       redirect_to root_path, notice: 'You do not have permission for this action!'
     end

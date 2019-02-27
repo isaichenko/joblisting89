@@ -44,7 +44,7 @@
                 class="stripe-button"
                 data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>"
                 data-amount="<%= @plan.price*100 %>"
-                data-name="Job Listing"
+                data-name="Job found!"
                 data-description="2 widgets ($<%= @plan.price %>)"
                 data-image="https://stripe.com/img/documentation/checkout/marketplace.png">
         </script>
@@ -89,7 +89,7 @@
         onApprove: function(data, actions) {
             formData = new FormData;
             formData.append('order_id', data.orderID);
-            formData.append('job_id', $('job-payment-plan').data('id'));
+            formData.append('job_id', $('#job-payment-plan').data('id'));
             return actions.order.capture().then(function(details) {
                 return fetch('/checkout/paypal_pay', {
                     method: 'post',

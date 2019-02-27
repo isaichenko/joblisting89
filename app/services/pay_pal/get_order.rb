@@ -3,6 +3,7 @@ require 'json'
 require 'ostruct'
 
 include PayPalCheckoutSdk::Orders
+include PayPalCheckoutSdk::Payments
 
 module PayPal
   class GetOrder
@@ -27,6 +28,8 @@ module PayPal
     end
 
     def set_transaction(hash)
+      capture_id = hash[:result][:purchase_units][0][:payments][:captures][0][:id]
+      paments_info = CapturesGetRequest.new(capture_id)
       payments = hash[:result][:purchase_units][0][:payments]
       amount = hash[:result][:purchase_units][0][:payments][:captures][0][:amount][:value].to_f
       payer = hash[:result][:payer]
