@@ -20,7 +20,6 @@ class CheckoutController < ApplicationController
     plan = job.plan
     company = Company.find(job.company_ids.last)
     if current_user.nil? && params[:user_id].present?
-      binding.pry
       payer = User.find_by(:id => params[:user_id])
     elsif current_user.present?
       payer = current_user
