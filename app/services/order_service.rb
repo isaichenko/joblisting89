@@ -36,4 +36,14 @@ class OrderService
     @order.save!
   end
 
+
+  private
+
+    def set_subscribe_job(job_id)
+      job = Job.find_by(:id => job_id)
+      job.is_subscribe_payment_plan = true
+      job.save(:validate => false)
+    end
+
+
 end

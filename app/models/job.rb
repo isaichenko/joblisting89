@@ -19,6 +19,7 @@ class Job < ApplicationRecord
 
   scope :posts_by, ->(user) { where(user_id: user.id) }
   scope :spotlight, -> { where(spotlight: true) }
+  scope :paid, -> { where(is_subscribe_payment_plan: true) }
 
   include JobSearch
 
