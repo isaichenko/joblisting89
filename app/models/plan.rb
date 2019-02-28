@@ -17,4 +17,13 @@ class Plan < ApplicationRecord
     self.duration = Date.today + self.duration_days.days
   end
 
+  def destroy
+    unless jobs.count == 0
+      return false
+    else
+      super
+    end
+  end
+
+
 end

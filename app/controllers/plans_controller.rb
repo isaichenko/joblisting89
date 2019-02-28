@@ -42,8 +42,12 @@ class PlansController < ApplicationController
 
   # DELETE /plans/1
   def destroy
-    @plan.destroy
-    redirect_to plans_url, notice: 'Plan was successfully destroyed.'
+    if @plan.destroy
+      redirect_to plans_url, notice: 'Plan was successfully destroyed.'
+    else
+      redirect_to plans_url, notice: 'Cannot delete plan with subscriptions.'
+    end
+
   end
 
   private
