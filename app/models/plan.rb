@@ -1,5 +1,6 @@
 class Plan < ApplicationRecord
   has_many :jobs
+  has_many :orders
   belongs_to :currency
 
   STATUS_ACTIVE = 'Active'.freeze
