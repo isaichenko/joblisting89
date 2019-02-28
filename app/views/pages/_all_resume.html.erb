@@ -2,9 +2,10 @@
   <li>
     <%= link_to resume_path(all_resume) do %>
       <% if all_resume.profile_pic.present? %>
-        <%= image_tag all_resume.profile_pic, width: '100%' %>
+        <%# image_tag all_resume.profile_pic %>
+        <%= image_tag all_resume.profile_pic, style: "height: 130px;" %>
       <% else %>
-        <%= image_tag ('resumes-list-avatar-01.png'), width: '100%' %>
+        <%= image_tag 'resumes-list-avatar-01.png' %>
       <% end %>
     <div class="resumes-list-content">
       <h4><%= all_resume.first_name %> <%= all_resume.last_name %> <span><%= all_resume.desired_job_title %></span></h4>
@@ -27,11 +28,5 @@
 <% end %>
 
 <!--
-        <% if user_signed_in? %>
-          <% if current_user&.bookmark_resume?(all_resume) %>
-          <%= link_to '', unbookmark_resume_path(resume_id: all_resume.id), class: 'fa fa-star fa-2x unbookmark small', title: 'Unbookmark!', method: :delete %>
-        <% else %>
-          <%= link_to '', bookmark_resume_path(resume_id: all_resume.id), class: 'fa fa-star fa-2x bookmark small', alt: 'Bookmark!', title: 'Bookmark!' %>
-          <% end %>
-        <% end %>
+        
 -->
