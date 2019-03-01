@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190225224628) do
+ActiveRecord::Schema.define(version: 20190228220954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -223,6 +223,7 @@ ActiveRecord::Schema.define(version: 20190225224628) do
     t.bigint "user_id"
     t.boolean "spotlight", default: false
     t.integer "plan_id"
+    t.boolean "is_subscribe_payment_plan", default: false
     t.index ["education_id"], name: "index_jobs_on_education_id"
     t.index ["job_area_id"], name: "index_jobs_on_job_area_id"
     t.index ["job_type_id"], name: "index_jobs_on_job_type_id"
@@ -268,6 +269,7 @@ ActiveRecord::Schema.define(version: 20190225224628) do
     t.integer "plan_id"
     t.integer "job_id"
     t.bigint "credit_card_id"
+    t.integer "status"
     t.index ["credit_card_id"], name: "index_orders_on_credit_card_id"
   end
 

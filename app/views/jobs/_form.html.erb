@@ -92,13 +92,13 @@
           <%= form.date_field :expiry_date, class: 'search-field' %>
           <p class="note">Deadline for new applicants.</p>
         </div>
-
-        <div class="form">
-          <h5>Listing Plan</h5>
-          <%- array = Plan.all.map{|plan| [plan.name, plan.id] }%>
-          <%= form.select :plan_id, options_for_select(array, nil), {:prompt => "Choose a plan that suits your need"}, class: "form-control", id: "payment_plan_recruiter" %>
-        </div>
-
+        <% unless job.subscribed? %>
+          <div class="form">
+            <h5>Listing Plan</h5>
+            <%- array = Plan.all.map{|plan| [plan.name, plan.id] }%>
+            <%= form.select :plan_id, options_for_select(array, nil), {:prompt => "Choose a plan that suits your need"}, class: "form-control", id: "payment_plan_recruiter" %>
+          </div>
+        <% end %>
         <div class="form-group">
           <%= form.submit "Submit", class: 'button big margin-top-5' %>
         </div>

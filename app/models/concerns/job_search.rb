@@ -40,7 +40,7 @@ module JobSearch
     end
 
     def self.where_condition(params = nil)
-      filter = {}
+      filter = {is_subscribe_payment_plan: true}
       return filter unless params
       filter[:_and] = []
       filter[:_and] << Job.build_cities(params[:city]) if params[:city].present?
@@ -78,7 +78,8 @@ module JobSearch
         experience: experience,
         job_type: job_type,
         education: education,
-        city: companies&.first&.city&.downcase || "Other"
+        city: companies&.first&.city&.downcase || "Other",
+        is_subscribe_payment_plan: is_subscribe_payment_plan
       }
     end
 

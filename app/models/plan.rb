@@ -1,9 +1,16 @@
 class Plan < ApplicationRecord
   has_many :jobs
+  has_many :orders
   belongs_to :currency
 
   STATUS_ACTIVE = 'Active'.freeze
   STATUS_EXPIRED = 'Expired'.freeze
+
+  enum status: {
+      draft: 0,
+      expired: 1,
+      actibe: 2
+  }
 
   validates :name, :duration_days, :price, :currency, :presence => { :message => 'cannot be blank' }
 

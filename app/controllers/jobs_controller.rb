@@ -115,7 +115,11 @@ class JobsController < ApplicationController
         if !JobTitle.where(title: @job.title).present?
           JobTitle.create(title: @job.title, status: false, user_id: current_user.id)
         end
-        format.html { redirect_to controller: 'checkout', action: 'show', id: @job.id}
+        if @job.subscribed?
+          format.html { redirect_to jobs_path, notice: 'The Job was successfully updated.' }
+        else
+          format.html { redirect_to controller: 'checkout', action: 'show', id: @job.id, notice: 'Your subscription expired! Please select payment plan again!'}
+        end
       else
         format.html { render :edit }
       end

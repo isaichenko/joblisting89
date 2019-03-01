@@ -29,8 +29,7 @@ class StripeChargesService
     email = customer.email
     subscription_date = Time.at(charge.created).to_datetime
     data = {:company_name => @company.try(:title), :username => @user.name, :email => email, :subscription_date => subscription_date,
-            :job_title => @job.try(:title), :plan_name => @plan.try(:name), :amount => amount, :job_id => @job.id, :card => card
-    }
+            :job_title => @job.try(:title), :plan_name => @plan.try(:name), :amount => amount, :job_id => @job.id, :card => card , :plan => @plan }
     OrderService.new.stripe_order(data)
   end
 
