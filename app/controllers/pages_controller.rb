@@ -9,16 +9,13 @@ class PagesController < ApplicationController
       query = params[:q].presence || '*'
       if Job.first.present?
         @all_jobs = Job.search(query, Job.prepare_search(search_params))
-
       else
         @all_jobs = Job.all
       end
       @filter_active = true
     else
       if Job.first.present?
-
         @all_jobs = Job.search('*', Job.prepare_search(search_params))
-        binding.pry
       else
         @all_jobs = Job.all
       end

@@ -29,7 +29,7 @@ class Job < ApplicationRecord
   end
 
   def subscribed?
-    order = Order.find_by(job_id: self.id)
+    order = Order.where(job_id: self.id).last
     if order.present? && self.plan.present?
       return (order.subscription_date + self.plan.duration_days.days) >= Date.today
     else
