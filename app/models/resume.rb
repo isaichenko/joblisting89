@@ -8,8 +8,8 @@ class Resume < ApplicationRecord
   include ResumeSearch
 
   validates_presence_of :first_name, :last_name
-  validates :first_name, uniqueness: true
-  validates :last_name, uniqueness: true
+  #validates :first_name, uniqueness: true
+  #validates :last_name, uniqueness: true
 
 	belongs_to :user
   has_and_belongs_to_many :job_types
