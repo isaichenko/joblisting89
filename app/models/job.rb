@@ -19,12 +19,23 @@ class Job < ApplicationRecord
 
   scope :posts_by, ->(user) { where(user_id: user.id) }
   scope :spotlight, -> { where(spotlight: true) }
-  scope :paid, -> { where(is_subscribe_payment_plan: true) }
+
+  scope :subscribed, -> {where(is_subscribe_payment_plan: true)}
 
   include JobSearch
 
   def first_company
     companies.first
   end
+
+  def subscribed?
+    order = Order.find_by(job_id: self.id)
+    if order.present? && self.plan.present?
+      return (order.subscription_date + self.plan.duration_days.days) >= Date.today
+    else
+      return false
+    end
+  end
+
 end
 

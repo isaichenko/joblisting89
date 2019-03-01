@@ -39,7 +39,7 @@
     <div id="job-payment-plan" data-id="<%= @job.id %>"></div>
     <div class="eight columns" style="text-align:center">
 
-      <%= form_with(url: :stripe_pay_checkout_index, method: :post) do %>
+      <%= form_with(url: :stripe_pay_checkout_index, method: :post, remote: false) do %>
         <script src="https://checkout.stripe.com/checkout.js"
                 class="stripe-button"
                 data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>"

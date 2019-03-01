@@ -27,12 +27,15 @@
         <% else %>
           <p>-</p>
         <% end %>
-
         <h4>Plan Status:</h4>
-        <p>Active</p>
+        <% unless job.subscribed? %>
+          <p>Expired</p>
+        <% else %>
+          <p>Active</p>
+        <% end %>
         <% if @plan.present? %>
-          <% if @plan.expired? %>
-            <h2>Action:</h2>
+          <% unless job.subscribed? %>
+            <h4>Action:</h4>
             <%= link_to "Repost", edit_job_path(job.id), class: "button" %>
           <% end  %>
         <% end %>

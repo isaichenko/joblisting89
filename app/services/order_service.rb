@@ -41,6 +41,7 @@ class OrderService
       @order.amount = data[:amount]
       @order.job_id = data[:job_id]
       @order.credit_card = data[:card]
+      @order.plan = data[:plan]
       if @order.save!
         @order.update(status: :paid)
         set_subscribe_job(@order.job_id)
@@ -52,10 +53,14 @@ class OrderService
 
   private
 
+
+
+
     def set_subscribe_job(job_id)
       job = Job.find_by(:id => job_id)
       job.is_subscribe_payment_plan = true
       job.save(:validate => false)
+      Job.reindex
     end
 
 
