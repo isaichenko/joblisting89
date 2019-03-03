@@ -30,5 +30,10 @@ module ListingApp
 
     # Add fonts in pipline
     config.assets.paths << Rails.root.join("app", "assets", "fonts")
+
+    Raven.configure do |config|
+      config.dsn = 'https://651f9e14b93f4b4ea5e45fa20bb78d22:36b25a378c2f4f5f831919098c3008ca@sentry.io/1406897'
+    end
+
   end
 end

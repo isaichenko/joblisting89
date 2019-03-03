@@ -66,3 +66,4 @@ gem 'paypal-checkout-sdk', '~> 1.0', '>= 1.0.1'
 
 gem 'stripe', '~> 4.0.3'
 gem 'oauth2', '>= 1.4.1'
+gem "sentry-raven"
