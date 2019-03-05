@@ -53,17 +53,12 @@ class OrderService
 
   private
 
-
-
-
     def set_subscribe_job(job_id)
       job = Job.find_by(:id => job_id)
       job.is_subscribe_payment_plan = true
       job.save(:validate => false)
+      Job.reindex
       jobs = Job.where(is_subscribe_payment_plan: false)
       jobs.map{|j| Job.searchkick_index.remove(j)}
-      Job.reindex
     end
-
-
 end
