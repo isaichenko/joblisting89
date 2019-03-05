@@ -27,70 +27,14 @@
       To proceed to checkout out, choose your preferable payment method
     </p>
   </div>
-  <div style="width: 100%; height:100px; border-radius:3px; margin-top: 100px; margin-left: 305px;">
 
-    <div class="two columns" style="text-align:center">
-      <div class="two columns" style="margin-left: 45%;">
-        <div id="paypal-button-container" style="width: 0"></div>
-      </div>
-    </div>
 
-    <div id="payment-plan" data-amount="<%= @plan.price %>"></div>
-    <div id="job-payment-plan" data-id="<%= @job.id %>"></div>
-    <div class="eight columns" style="text-align:center">
 
-      <%= form_with(url: :stripe_pay_checkout_index, method: :post, remote: false) do %>
-        <script src="https://checkout.stripe.com/checkout.js"
-                class="stripe-button"
-                data-key="<%= ENV['STRIPE_PUBLIC_KEY'] %>"
-                data-amount="<%= @plan.price*100 %>"
-                data-name="Job found!"
-                data-description="2 widgets ($<%= @plan.price %>)"
-                data-image="https://stripe.com/img/documentation/checkout/marketplace.png">
-        </script>
-        <%= hidden_field_tag(:job_id, @job.id) %>
-        <%= hidden_field_tag(:user_id, checkout_current_user_id) %>
-        <script>
-            document.getElementsByClassName("stripe-button-el")[0].style.display = 'none';
-        </script>
-        <button type="submit" class="button green" style="font-size: 18px;font-family: 'Times New Roman', Times, serif;font-style: italic; border-radius: 21px; width: 25%; height: 42px;">Stripe</button>
-      <% end %>
+  <% unless mobile_device? %>
+    <%= render "desktop_view", plan: @plan, job: @job %>
 
-    </div>
- </div>
+  <% else %>
+    <%= render "mobile_show", plan: @plan, job: @job %>
+  <% end %>
 
 </div>
-
-<script>
-    paypal.Buttons({
-        style: {
-            layout: 'horizontal',
-            size: 'small',
-            color:  'blue',
-            shape:  'pill',
-            label:  'pay',
-            height: 40,
-            tagline: 'false'
-        },
-        createOrder: function(data, actions) {
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: $('#payment-plan').data('amount')
-                    }
-                }]
-            });
-        },
-        onApprove: function(data, actions) {
-            formData = new FormData;
-            formData.append('order_id', data.orderID);
-            formData.append('job_id', $('#job-payment-plan').data('id'));
-            return actions.order.capture().then(function(details) {
-                return fetch('/checkout/paypal_pay', {
-                    method: 'post',
-                    body: formData
-                });
-            });
-        }
-    }).render('#paypal-button-container');
-</script>
