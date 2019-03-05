@@ -164,19 +164,18 @@
           <li>Title: <%= g.title %></li>
           <li>Time Period:
             <% if g.start_date.present? %>
-            <%= g.start_date.strftime("%B %d, %Y") %>
-            <% if g.end_date.present? %>
-            - <%= g.end_date.strftime("%B %d, %Y") %>
-            <% else %>
-             -  Present
+              <%= g.start_date.strftime("%B %d, %Y") %>
+              <% if g.end_date.present? %>
+              - <%= g.end_date.strftime("%B %d, %Y") %>
+              <% else %>
+               -  Present
+              <% end %>
             <% end %>
           </li>
           <li>I am till a member: <%= g.i_am_still_a_member ? 'Yes' : 'No' %></li>
         </ul>
-
         <p><%= g.description %></p>
       <% end %>
-        
   <% end %>
 
 
