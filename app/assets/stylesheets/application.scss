@@ -420,3 +420,22 @@ table.manage-table th {
   -o-transform: scale(0.8);
   transform: scale(0.8);
 }
+
+.mobile-payments{
+  .button.green{
+    font-size: 18px;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    border-radius: 21px;
+    width: 100%;
+    height: 42px;
+  }
+  #paypal-button-container{
+    .paypal-button-container{
+      .paypal-button-text{
+        display: none;
+      }
+    }
+
+  }
+}
