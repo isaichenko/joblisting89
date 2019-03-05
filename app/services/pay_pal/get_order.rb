@@ -37,7 +37,7 @@ module PayPal
       email = hash[:result][:payer][:email_address]
       subscription_date = hash[:result][:purchase_units][0][:payments][:captures][0][:create_time]
       data = {:company_name => @company.try(:title), :username => username, :email => email, :subscription_date => subscription_date,
-              :job_title => @job.try(:title), :plan_name => @plan.try(:name), :amount => amount, :job_id => @job.id
+              :job_title => @job.try(:title), :plan_name => @plan.try(:name), :amount => amount, :job_id => @job.id, :plan => @plan
       }
       OrderService.new.pay_pay_order(data)
     end
