@@ -2,15 +2,9 @@
 ================================================== -->
 <div id="titlebar" class="photo-bg header-image-recruiter">
   <div class="container">
-
     <div class="sixteen columns">
-      <% if current_user.has_roles?(:superadmin) %>
-        <h2>Checkout</h2>
-      <% else %>
-        <h2><i class="fa fa-list"></i> Your Jobs List</h2>
-      <% end %>
+      <h2>Checkout</h2>
     </div>
-
   </div>
 </div>
 <script src="https://www.paypal.com/sdk/js?client-id=<%= ENV['PAYPAL_CLIENT_ID'] %>"></script>

@@ -25,8 +25,8 @@ class CheckoutController < ApplicationController
       payer = current_user
     end
     additional_params = {:job => job, :plan => plan, :company => company, :user => payer}
-    result = StripeChargesService.new(params, additional_params).call
-    if result
+    order = StripeChargesService.new(params, additional_params).call
+    if order.present?
       respond_to do |format|
         format.html { redirect_to jobs_path,  notice: 'Stripe payment success!'  }
       end
@@ -44,8 +44,10 @@ class CheckoutController < ApplicationController
     company = Company.find(job.company_ids.last)
     additional_params = {:job => job, :plan => plan, :company => company}
     order = PayPal::GetOrder::new(additional_params)::get_order(params[:order_id])
-    if order
-      redirect_to jobs_path and return
+    if order.present?
+      respond_to do |format|
+        format.html { redirect_to jobs_path,  notice: 'PalPal payment success!' }
+      end
     else
       respond_to do |format|
         format.html { render :show, :id => job_id, notice: 'PayPal payment failed!' }

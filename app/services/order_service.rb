@@ -18,10 +18,12 @@ class OrderService
       @order.amount = data[:amount]
       @order.job_id = data[:job_id]
       @order.credit_card = CreditCard.last
+      @order.plan = data[:plan]
       if @order.save!
         @order.update(status: :paid)
         set_subscribe_job(@order.job_id)
       end
+      @order
     rescue => error
       return false
     end
@@ -46,6 +48,7 @@ class OrderService
         @order.update(status: :paid)
         set_subscribe_job(@order.job_id)
       end
+      @order
     rescue => error
       return false
     end
