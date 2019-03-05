@@ -158,6 +158,7 @@
   <% if @resume.groups.present? %>
   <hr>
     <h3 class="margin-bottom-15">Groups</h3>
+
       <% @resume.groups.each do |g| %>
         <ul class="list-1">
           <li>Title: <%= g.title %></li>
@@ -175,6 +176,7 @@
 
         <p><%= g.description %></p>
       <% end %>
+        
   <% end %>
 
 
