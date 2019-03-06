@@ -45,14 +45,14 @@
     </div>
   </td>
   <td>
-    <% if @plan.present? %>
+    <% if job.orders.present? %>
       <% if job.subscribed? %>
         <span>active</span>
       <% else %>
         <span>expired</span>
       <% end %>
     <% else %>
-      <span>inactive-pending for payment</span>
+      <span>inactive</span>
     <% end %>
   </td>
   <td><%= job.created_at.strftime("%B %d, %Y") %></td>
