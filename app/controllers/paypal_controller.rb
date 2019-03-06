@@ -8,6 +8,7 @@ class PaypalController < ApplicationController
     @plan = @job.plan
     @company = Company.find(@job.company_ids.last)
     currency_iso_code = params[:currency]
+    
     @payment = PayPal::SDK::REST::Payment.new({
                    :intent =>  "sale",
                    :payer =>  {
