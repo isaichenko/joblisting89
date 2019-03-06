@@ -1,6 +1,4 @@
 require 'paypal-sdk-rest'
-include PayPal::SDK::REST
-include PayPal::SDK::Core::Logging
 
 class PaypalController < ApplicationController
 
@@ -10,7 +8,7 @@ class PaypalController < ApplicationController
     @plan = @job.plan
     @company = Company.find(@job.company_ids.last)
     currency_iso_code = params[:currency]
-    @payment = Payment.new({
+    @payment = PayPal::SDK::REST::Payment.new({
                    :intent =>  "sale",
                    :payer =>  {
                        :payment_method =>  "paypal"
