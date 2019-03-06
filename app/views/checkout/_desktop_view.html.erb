@@ -6,7 +6,7 @@
     </div>
   </div>
 
-  <div id="payment-plan" data-amount="<%= plan.price %>"></div>
+  <div id="payment-plan" data-amount="<%= plan.price %>" data-currency="<%= plan.currency.iso_code %>"></div>
   <div id="job-payment-plan" data-id="<%= job.id %>"></div>
   <div class="eight columns" style="text-align:center">
 
@@ -33,35 +33,82 @@
 
 
 <script>
-    paypal.Buttons({
+    // paypal.Buttons({
+    //     style: {
+    //         layout: 'horizontal',
+    //         size: 'small',
+    //         color:  'blue',
+    //         shape:  'pill',
+    //         label:  'pay',
+    //         height: 40,
+    //         tagline: 'false'
+    //     },
+    //     createOrder: function(data, actions) {
+    //         return actions.order.create({
+    //             purchase_units: [{
+    //                 amount: {
+    //                     value: $('#payment-plan').data('amount')
+    //                 }
+    //             }]
+    //         });
+    //     },
+    //     onApprove: function(data, actions) {
+    //         formData = new FormData;
+    //         formData.append('order_id', data.orderID);
+    //         formData.append('job_id', $('#job-payment-plan').data('id'));
+    //         return actions.order.capture().then(function(details) {
+    //             return fetch('/checkout/paypal_pay', {
+    //                 method: 'post',
+    //                 body: formData
+    //             });
+    //         });
+    //     },
+    //     onCancel: function(data, actions) {
+    //         console.log('close window popup paypal', data);
+    //         actions.redirect();
+    //     }
+    // }).render('#paypal-button-container');
+
+
+
+    paypal.Button.render({
         style: {
-            layout: 'horizontal',
-            size: 'small',
-            color:  'blue',
-            shape:  'pill',
-            label:  'pay',
-            height: 40,
-            tagline: 'false'
-        },
-        createOrder: function(data, actions) {
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: $('#payment-plan').data('amount')
-                    }
-                }]
-            });
-        },
-        onApprove: function(data, actions) {
-            formData = new FormData;
-            formData.append('order_id', data.orderID);
-            formData.append('job_id', $('#job-payment-plan').data('id'));
-            return actions.order.capture().then(function(details) {
-                return fetch('/checkout/paypal_pay', {
-                    method: 'post',
-                    body: formData
+                    layout: 'horizontal',
+                    size: 'small',
+                    color:  'blue',
+                    shape:  'pill',
+                    label:  'pay',
+                    height: 40,
+                    tagline: 'false'
+                },
+        env: 'sandbox',
+        commit: true,
+        payment: function() {
+            var CREATE_URL = "<%= paypal_checkout_url %>";
+            var data = {
+                job_id: $('#job-payment-plan').data('id'),
+                currency: $('#payment-plan').data('currency')
+            };
+            return paypal.request.post(CREATE_URL, data)
+                .then(function(res) {
+                    return res.paymentID;
                 });
-            });
+        },
+        onAuthorize: function(data, actions) {
+            var EXECUTE_URL = "<%= paypal_execute_url %>";
+            var data = {
+                job_id: $('#job-payment-plan').data('id'),
+                paymentID: data.paymentID,
+                payerID: data.payerID
+            };
+            return paypal.request.post(EXECUTE_URL, data)
+                .then(function (data) {
+                    if (data.result){
+                        window.location='/jobs'
+                    }else{
+                        alert(data.msg);
+                    }
+                });
         }
-    }).render('#paypal-button-container');
+    }, '#paypal-button-container');
 </script>
