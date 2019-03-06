@@ -22,9 +22,48 @@ test: &default
   # http_proxy: http://proxy-ipaddress:3129/
 
 development:
-  <<: *default
+
+  # Credentials for REST APIs
+  client_id: AVtilH6BRVmd0RONCFISuG_4t2wdQtBjnqoFN1n8IqE_oxP7WHDDSSke4V9AI19c09A_f1C5lbw3qljj
+  client_secret: EAXOEzST5wUy0OAqtgfwVrQTlnEuDblcfPkvtsvBYuFLz1Do6cvIVlNftxweOCYmx9oH_oLCn6vwueX_
+
+  # Mode can be 'live' or 'sandbox'
+  mode: sandbox
+
+  # Credentials for Classic APIs
+  app_id: joblisting
+  username: vasyutinwebdev-facilitator_api1.gmail.com
+  password: KJ8BF2Y8WTW3W9Y9
+  signature: Ap3sPGZCsD.bcspiEoTLsIgAYzcaAXJTs8yVvgU8v3ox0aO-62f7Pxbk
+  # # With Certificate
+  # cert_path: "config/cert_key.pem"
+  sandbox_email_address: vasyutinwebdev-facilitator@gmail.com
+
+  # # IP Address
+  # ip_address: 127.0.0.1
+  # # HTTP Proxy
+  # http_proxy: http://proxy-ipaddress:3129/
 
 production:
-  <<: *default
-  mode: live
+
+  # Credentials for REST APIs
+  client_id: AVtilH6BRVmd0RONCFISuG_4t2wdQtBjnqoFN1n8IqE_oxP7WHDDSSke4V9AI19c09A_f1C5lbw3qljj
+  client_secret: EAXOEzST5wUy0OAqtgfwVrQTlnEuDblcfPkvtsvBYuFLz1Do6cvIVlNftxweOCYmx9oH_oLCn6vwueX_
+
+  # Mode can be 'live' or 'sandbox'
+  mode: sandbox
+
+  # Credentials for Classic APIs
+  app_id: joblisting
+  username: vasyutinwebdev-facilitator_api1.gmail.com
+  password: KJ8BF2Y8WTW3W9Y9
+  signature: Ap3sPGZCsD.bcspiEoTLsIgAYzcaAXJTs8yVvgU8v3ox0aO-62f7Pxbk
+  # # With Certificate
+  # cert_path: "config/cert_key.pem"
+  sandbox_email_address: vasyutinwebdev-facilitator@gmail.com
+
+  # # IP Address
+  # ip_address: 127.0.0.1
+  # # HTTP Proxy
+  # http_proxy: http://proxy-ipaddress:3129/
 
