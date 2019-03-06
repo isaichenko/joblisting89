@@ -38,7 +38,7 @@ class CheckoutController < ApplicationController
   end
 
   def paypal_pay
-    job_id = request.referer.split('/').last
+    job_id = params[:job_id]
     job = Job.find(job_id)
     plan = job.plan
     company = Company.find(job.company_ids.last)
@@ -46,11 +46,13 @@ class CheckoutController < ApplicationController
     order = PayPal::GetOrder::new(additional_params)::get_order(params[:order_id])
     if order.present?
       respond_to do |format|
-        format.html { redirect_to jobs_path,  notice: 'PalPal payment success!' }
+        format.js {
+          render json:{order: order}
+        }
       end
     else
       respond_to do |format|
-        format.html { render :show, :id => job_id, notice: 'PayPal payment failed!' }
+        format.js { render :show, :id => job_id, notice: 'PayPal payment failed!' }
       end
     end
   end

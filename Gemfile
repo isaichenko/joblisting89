@@ -63,6 +63,7 @@ gem 'activemerchant'
 
 gem 'braintreehttp', '~> 0.5.0'
 gem 'paypal-checkout-sdk', '~> 1.0', '>= 1.0.1'
+gem 'paypal-sdk-rest'
 
 gem 'stripe', '~> 4.0.3'
 gem 'oauth2', '>= 1.4.1'

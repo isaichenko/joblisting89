@@ -39,6 +39,9 @@ Rails.application.routes.draw do
     end
   end
 
+  post '/paypal_checkout' => 'paypal#checkout'
+  post '/paypal_execute' =>  'paypal#execute'
+
   resources :transactions do
   end
 
