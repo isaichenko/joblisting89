@@ -88,7 +88,7 @@ class PagesController < ApplicationController
       end
     end
     #@all_salaries = @all_salaries.page params[:page]
-    @all_salaries = Kaminari.paginate_array(@all_salaries).page(params[:page])per(5)
+    @all_salaries = Kaminari.paginate_array(@all_salaries).page(params[:page]).per(5)
   end
 
   def find_resume; end
