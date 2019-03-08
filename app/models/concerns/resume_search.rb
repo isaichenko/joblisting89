@@ -12,11 +12,11 @@ module ResumeSearch
   }.freeze
 
   SORT_PARAMS = {
-    'relevance' => { updated_at: :asc },
-    'last_updated' => { updated_at: :desc }
+    'last_updated' => { updated_at: :desc },
+    'relevance' => { updated_at: :asc }
   }.freeze
 
-  DEFAULT_SORT = 'relevance'.freeze
+  DEFAULT_SORT = 'last_updated'.freeze
 
   included do
     searchkick

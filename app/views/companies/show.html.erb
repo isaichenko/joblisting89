@@ -55,15 +55,18 @@
       <div class="clearfix"></div>
     </div>
 
-    <h5>About us:</h5>
-    <p class="margin-reset">
-      <%= @company.about %>
-    </p>
+    <% if @company.why_join_us.present? %>
+      <h5>About us:</h5>
+      <p class="margin-reset">
+        <%= @company.about %>
+      </p>
+    <% end %>
 
     <br>
-    <h5>Why join us:</h5>
-    <p><%= @company.why_join_us %></p>
-
+    <% if @company.why_join_us.present? %>
+      <h5>Why join us:</h5>
+      <p><%= @company.why_join_us %></p>
+    <% end %>
 
     <!--
     <h5>Photos:</h5>

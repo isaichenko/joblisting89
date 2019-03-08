@@ -5,7 +5,7 @@
 
     <div class="sixteen columns">
       <% if current_user.has_roles?(:superadmin) %>
-        <h2><span class="text-primary"><%= @company %></span>'s Jobs List</h2>
+        <h2><%= @company %>'s Jobs List</h2>
       <% else %>
         <h2><i class="fa fa-list"></i> Your Jobs List</h2>
       <% end %>

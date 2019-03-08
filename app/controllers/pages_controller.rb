@@ -46,14 +46,14 @@ class PagesController < ApplicationController
         if Resume.first.present?
           @all_resumes = Resume.search(query, Resume.prepare_search(search_params))
         else
-          @all_resumes = Resume.all
+          @all_resumes = Resume.all.order("updated_at DESC")
         end
       @filter_active = true
     else
       if Resume.first.present?
         @all_resumes = Resume.search('*', Resume.prepare_search(search_params))
       else
-        @all_resumes = Resume.all
+        @all_resumes = Resume.all.order("updated_at ASC")
       end
     end
   end
