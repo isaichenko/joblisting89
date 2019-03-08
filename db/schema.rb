@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181008142759) do
+ActiveRecord::Schema.define(version: 20190306174719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,27 @@ ActiveRecord::Schema.define(version: 20181008142759) do
     t.index ["user_id"], name: "index_companies_on_user_id"
   end
 
+  create_table "credit_cards", force: :cascade do |t|
+    t.string "digits", null: false
+    t.string "brand", null: false
+    t.integer "month", null: false
+    t.integer "year", null: false
+    t.string "stripe_id", null: false
+    t.string "paypal_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "is_default", default: false
+  end
+
+  create_table "currencies", force: :cascade do |t|
+    t.string "iso_code"
+    t.string "name"
+    t.string "symbol"
+    t.boolean "symbol_first"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "educations", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
@@ -201,6 +222,9 @@ ActiveRecord::Schema.define(version: 20181008142759) do
     t.bigint "education_id"
     t.bigint "user_id"
     t.boolean "spotlight", default: false
+    t.integer "plan_id"
+    t.boolean "is_subscribe_payment_plan", default: false
+    t.integer "status"
     t.index ["education_id"], name: "index_jobs_on_education_id"
     t.index ["job_area_id"], name: "index_jobs_on_job_area_id"
     t.index ["job_type_id"], name: "index_jobs_on_job_type_id"
@@ -230,6 +254,26 @@ ActiveRecord::Schema.define(version: 20181008142759) do
     t.index ["resume_id"], name: "index_militaries_on_resume_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.string "username"
+    t.string "email"
+    t.datetime "subscription_date"
+    t.string "job_title"
+    t.string "plan_name"
+    t.string "payment_method"
+    t.string "plan_status"
+    t.float "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "company_id"
+    t.string "company_name"
+    t.integer "plan_id"
+    t.integer "job_id"
+    t.bigint "credit_card_id"
+    t.integer "status"
+    t.index ["credit_card_id"], name: "index_orders_on_credit_card_id"
+  end
+
   create_table "patents", force: :cascade do |t|
     t.string "patent_number"
     t.string "title"
@@ -248,6 +292,19 @@ ActiveRecord::Schema.define(version: 20181008142759) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["company_id"], name: "index_photos_on_company_id"
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.string "name"
+    t.datetime "duration"
+    t.float "price"
+    t.string "currency"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "payment_gateway"
+    t.integer "duration_days"
+    t.bigint "currency_id"
+    t.index ["currency_id"], name: "index_plans_on_currency_id"
   end
 
   create_table "publications", force: :cascade do |t|
@@ -386,8 +443,10 @@ ActiveRecord::Schema.define(version: 20181008142759) do
   add_foreign_key "jobs", "users"
   add_foreign_key "keywords", "users"
   add_foreign_key "militaries", "resumes"
+  add_foreign_key "orders", "credit_cards"
   add_foreign_key "patents", "resumes"
   add_foreign_key "photos", "companies"
+  add_foreign_key "plans", "currencies"
   add_foreign_key "publications", "resumes"
   add_foreign_key "resumes", "users"
   add_foreign_key "reviews", "companies"

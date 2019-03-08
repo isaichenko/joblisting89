@@ -1,0 +1,41 @@
+<%= form_with(model: plan, local: true) do |form| %>
+  <% if plan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(plan.errors.count, "error") %> prohibited this plan from being saved:</h2>
+
+      <ul>
+      <% plan.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form">
+    <div class="field">
+      <%= form.label :name %>
+      <%= form.text_field :name, id: :plan_name %>
+    </div>
+
+    <div class="field">
+      <%= form.label :duration_days %>
+      <%= form.number_field :duration_days, id: :plan_duration_days %>
+    </div>
+
+    <div class="field">
+      <%= form.label :price %>
+      <%= form.text_field :price, id: :plan_price %>
+    </div>
+
+    <div class="field">
+      <%= form.label :currency %>
+      <%= form.collection_select(:currency_id, Currency.all, :id, :iso_code, {selected: form.object.currency_id}, class: 'chosen-select-no-single') %>
+    </div>
+  </div>
+  <br>
+  <div class="form">
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  </div>
+
+<% end %>

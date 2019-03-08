@@ -1,0 +1,35 @@
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="photo-bg header-image-recruiter">
+  <div class="container">
+    <div class="sixteen columns">
+      <h2>Checkout</h2>
+    </div>
+  </div>
+</div>
+<script src="https://www.paypal.com/sdk/js?client-id=<%= ENV['PAYPAL_CLIENT_ID'] %>"></script>
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
+
+<scirpt src="https://www.paypalobjects.com/api/checkout.js"></scirpt>
+<div class="container">
+
+  <div class="row" style="text-align: center">
+    <p>
+      You have chosen "<%= @plan.name %>" to post '<%= @job.title %>'
+    </p>
+    <p>
+      To proceed to checkout out, choose your preferable payment method
+    </p>
+  </div>
+
+
+
+  <% unless mobile_device? %>
+    <%= render "desktop_view", plan: @plan, job: @job %>
+
+  <% else %>
+    <%= render "mobile_show", plan: @plan, job: @job %>
+  <% end %>
+
+</div>

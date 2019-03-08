@@ -100,6 +100,15 @@ module ApplicationHelper
   #    'header-image-non-login'
   #  end
   #end
+  #
+
+  def mobile_device?
+    if session[:mobile_override]
+      session[:mobile_override] == '1'
+    else
+      (request.user_agent =~ /Mobile|webOS/) && (request.user_agent !~ /iPad/)
+    end
+  end
 
   private
 

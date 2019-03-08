@@ -1,18 +1,21 @@
 <% if all_resume.user.status == 'active' %>
-  <li>
-    <%= link_to resume_path(all_resume) do %>
+
+    <%= link_to resume_path(all_resume), class: "listing freelance" do %>
       <% if all_resume.profile_pic.present? %>
-        <%# image_tag all_resume.profile_pic %>
-        <%= image_tag all_resume.profile_pic, style: "height: 130px;" %>
+<!--<<<<<<< HEAD
+        <%# image_tag all_resume.profile_pic, style: "height: 130px;" %>
+      <%# else %>
+        <%# image_tag 'resumes-list-avatar-01.png' %>
+======= -->
+        <%= image_tag all_resume.profile_pic, style: "height: 130 px; width: 130px; margin-right: 20px; border-radius: 10px;"  %>
       <% else %>
-        <%= image_tag 'resumes-list-avatar-01.png' %>
+        <%= image_tag ('resumes-list-avatar-01.png'), width: '100%', style: "height: 100%; margin-right: 20px; border-radius: 10px;" %>
       <% end %>
     <div class="resumes-list-content">
       <h4><%= all_resume.first_name %> <%= all_resume.last_name %> <span><%= all_resume.desired_job_title %></span></h4>
       <span><i class="fa fa-university"></i> <%= all_resume.degree %></span>
       <span><i class="fa fa-map-marker"></i> <%= all_resume.city %></span>
       <span><i class="fa fa-money"></i> $<%= all_resume.desired_salary_per_month %> / month</span>
-      <p>Over 8000 hours on oDesk (only Drupal related). Highly motivated, goal-oriented, hands-on senior software engineer with extensive technical skills and over 15 years of experience in software development</p>
 
       <div class="skills">
         <% all_resume.skills.each do |skill| %>
@@ -24,9 +27,5 @@
     </div>
     <% end %>
     <div class="clearfix"></div>
-  </li>
-<% end %>
 
-<!--
-        
--->
+<% end %>

@@ -359,6 +359,9 @@ select.change-action {
 table.manage-table th {
   padding-left: 20px;
 }
+.manage-plan-table tr > td{
+  text-align: center;
+}
 
 table.manage-table th:first-child {
   padding-left: 20px;
@@ -383,5 +386,57 @@ table.manage-table th {
   }
   .nav-mobile {
     display: block;
+  }
+}
+
+
+.custom-small-dialog{
+  background: #fff;
+  padding: 30px 40px 35px 40px;
+  text-align: left;
+  max-width: 610px;
+  margin: 40px auto;
+  position: relative;
+  box-sizing:border-box;
+}
+
+
+
+.custom-small-dialog h3 {
+  margin-bottom: 20px;
+}
+
+.custom-small-dialog span.line {padding-top: 7px;}
+
+.my-mfp-zoom-in .zoom-anim-dialog {
+  opacity: 0;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  -ms-transform: scale(0.8);
+  -o-transform: scale(0.8);
+  transform: scale(0.8);
+}
+
+.mobile-payments{
+  .button.green{
+    font-size: 18px;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    border-radius: 21px;
+    width: 85%;
+    height: 42px;
+    margin-top: 20px;
+  }
+  #paypal-button-container{
+    .paypal-button-container{
+      .paypal-button-text{
+        display: none;
+      }
+    }
+
   }
 }

@@ -5,9 +5,66 @@
   <td><%= job.job_area.title %></td>
   <td><%= link_to "Show (#{applied_count(job)})", job_applicants_path(job.id), class: "button" %></td>
   <td><%= link_to "Show (#{not_aplied_count(job)})", job_invites_path(job.id), class: "button" %></td>
+  <td>
+    <a href="#small-dialog<%= job.id %>" class="open-popup-link button color">Show</a>
+    <% @plan = Plan.find_by(:id => job.plan_id) %>
+    <% @order = Order.find_by(:job_id => job.id) %>
+
+    <div id="small-dialog<%= job.id %>" class="white-popup mfp-hide custom-small-dialog">
+
+      <h2 style="text-align: ce">Transaction Detail</h2>
+
+      <% if @order.present? %>
+        <h4>Payment date:</h4>
+        <p><%= @order.created_at.to_date %></p>
+
+        <h4>Payment method:</h4>
+        <p><%= @order.payment_method.titleize %></p>
+
+        <h4>Credit Card:</h4>
+        <% if @order.credit_card.present? %>
+          <p> <%= "#{@order.credit_card.brand} xxxx#{@order.credit_card.digits}" %></p>
+        <% else %>
+          <p>-</p>
+        <% end %>
+        <h4>Plan Status:</h4>
+        <% unless job.subscribed? %>
+          <p>Expired</p>
+        <% else %>
+          <p>Active</p>
+        <% end %>
+        <% if @plan.present? %>
+          <% unless job.subscribed? %>
+            <h4>Action:</h4>
+            <%= link_to "Repost", edit_job_path(job.id), class: "button" %>
+          <% end  %>
+        <% end %>
+      <%  else %>
+        <p>No payment has been done for this listing</p>
+      <% end %>
+    </div>
+  </td>
+  <td>
+    <% if job.orders.present? %>
+      <% if job.subscribed? %>
+        <span>active</span>
+      <% else %>
+        <span>expired</span>
+      <% end %>
+    <% else %>
+      <span>inactive</span>
+    <% end %>
+  </td>
   <td><%= job.created_at.strftime("%B %d, %Y") %></td>
   <td class="action">
     <%= link_to '', edit_job_path(job), class: 'fa fa-edit fa-lg index-icons' %>
     <%= link_to '', job_path(job), method: :delete, class: 'fa fa-trash fa-lg index-icons-tresh', data: { confirm: 'Are you sure?' } %>
   </td>
 </tr>
+<script type="text/javascript">
+    $('.open-popup-link').magnificPopup({
+        type:'inline',
+        midClick: true // Allow opening popup on middle mouse click. Always set it to true if you don't provide alternative source in href.
+    });
+
+</script>

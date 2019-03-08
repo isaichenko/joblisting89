@@ -58,3 +58,13 @@ gem 'select2-rails'
 #social share
 gem 'social-share-button'
 gem 'acts_as_follower', github: 'tcocca/acts_as_follower', branch: 'master'
+gem 'mini_racer'
+gem 'activemerchant'
+
+gem 'braintreehttp', '~> 0.5.0'
+gem 'paypal-checkout-sdk', '~> 1.0', '>= 1.0.1'
+gem 'paypal-sdk-rest'
+
+gem 'stripe', '~> 4.0.3'
+gem 'oauth2', '>= 1.4.1'
+gem "sentry-raven"

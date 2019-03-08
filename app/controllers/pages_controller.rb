@@ -20,7 +20,6 @@ class PagesController < ApplicationController
         @all_jobs = Job.all
       end
     end
-    #binding.pry
   end
 
   def allcompanies
@@ -98,6 +97,11 @@ class PagesController < ApplicationController
   def settings
     @job_types = JobType.all
     @job_areas = JobArea.all
+  end
+
+
+  def plans
+    @plans = Plan.all
   end
 
   def manage_job_stats

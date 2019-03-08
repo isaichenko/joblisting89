@@ -1,0 +1,60 @@
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="photo-bg header-image-admin">
+  <div class="container">
+
+    <div class="sixteen columns">
+      <h2>Manage Plans</h2>
+      <nav id="breadcrumbs">
+        <ul>
+          <li>You are here:</li>
+          <li><%= link_to "Home", root_path %></li>
+          <li>Plans Dashboard</li>
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+</div>
+
+
+
+<div class="container">
+
+  <!-- Table -->
+  <div class="sixteen columns">
+
+    <p id="notice"><%= notice %></p>
+    <table class="manage-table resumes responsive-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Duration Days</th>
+          <th>Price</th>
+          <th>Current</th>
+          <th>Created Date</th>
+          <th colspan="3">Action</th>
+        </tr>
+      </thead>
+
+      <tbody class="manage-plan-table">
+        <% @plans.each do |plan| %>
+          <tr>
+            <td><%= plan.name %></td>
+            <td><%= plan.duration_days %></td>
+            <td><%= plan.price %></td>
+            <td><%= plan.currency.try(:iso_code) %></td>
+            <td><%= plan.created_at.to_date %></td>
+            <td><%= link_to 'Show', plan %></td>
+            <td><%= link_to 'Edit', edit_plan_path(plan) %></td>
+            <td><%= link_to 'Destroy', plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+  <%= link_to 'New Plan', new_plan_path, class: "button green" %>
+  </div>
+</div>

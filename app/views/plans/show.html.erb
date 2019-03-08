@@ -1,0 +1,68 @@
+<!-- Titlebar
+================================================== -->
+<div id="titlebar" class="photo-bg header-image-jobseeker">
+  <div class="container">
+
+    <div class="sixteen columns">
+      <h2>Plan Details</h2>
+      <nav id="breadcrumbs">
+        <ul>
+          <li>You are here:</li>
+          <li><%= link_to 'Home', root_path %></li>
+          <li>Plan</li>
+        </ul>
+      </nav>
+    </div>
+
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Table -->
+  <div class="sixteen columns">
+
+
+    <p id="notice"><%= notice %></p>
+    <table class="manage-table resumes responsive-table">
+      <tbody>
+      <tr>
+        <th scope="row">Name:</th>
+        <td><%= @plan.name %></td>
+      </tr>
+      <tr>
+        <th scope="row">Duration Days:</th>
+        <td><%= "#{@plan.duration_days} days" %></td>
+      </tr>
+      <tr>
+        <th scope="row">Duration:</th>
+        <td><%= @plan.duration.to_date %></td>
+      </tr>
+      <tr>
+        <th scope="row">Price:</th>
+        <td> <%= @plan.price %></td>
+      </tr>
+      <tr>
+        <th scope="row">Currency:</th>
+        <td> <%= @plan.currency.try(:iso_code) %></td>
+      </tr>
+      <tr>
+        <th scope="row">Created Date:</th>
+        <td> <%= @plan.created_at.to_date %></td>
+      </tr>
+      <tr>
+        <th scope="row">Updated Date:</th>
+        <td> <%= @plan.updated_at.to_date %></td>
+      </tr>
+
+      </tbody>
+    </table>
+
+  <div class="row" style="text-align: center; margin-top: 20px">
+    <%= link_to 'Edit', edit_plan_path(@plan), class: 'button green' %>
+    <%= link_to 'Back', plans_path, class: 'button green' %>
+  </div>
+
+
+  </div>
+</div>

@@ -92,7 +92,13 @@
           <%= form.date_field :expiry_date, class: 'search-field' %>
           <p class="note">Deadline for new applicants.</p>
         </div>
-
+        <% unless job.subscribed? %>
+          <div class="form">
+            <h5>Listing Plan</h5>
+            <%- array = Plan.all.map{|plan| [plan.name, plan.id] }%>
+            <%= form.select :plan_id, options_for_select(array, nil), {:prompt => "Choose a plan that suits your need"}, class: "form-control", id: "payment_plan_recruiter" %>
+          </div>
+        <% end %>
         <div class="form-group">
           <%= form.submit "Submit", class: 'button big margin-top-5' %>
         </div>
@@ -126,6 +132,31 @@
     return $result;
   }
 });
+
+  $("#payment_plan_recruiter").select2({
+      tags: true,
+      createTag: function (params) {
+          return {
+              id: params.term,
+              text: params.term,
+              newOption: true
+          }
+      },
+      templateResult: function (data) {
+          var $result = $("<span></span>");
+
+          $result.text(data.text);
+
+          if (data.newOption) {
+              $result.append(" <em>(new)</em>");
+          }
+
+          return $result;
+      }
+  });
+
+
+
 </script>
 
 <style type="text/css">

@@ -3,7 +3,7 @@ class JobsController < ApplicationController
 
   def index
     if user_signed_in?
-      @jobs = Job.posts_by(current_user)
+      @jobs = Job.posts_by(current_user).order('created_at DESC')
     else
       redirect_to root_path, notice: 'You do not have permission for this action!'
     end
@@ -89,8 +89,9 @@ class JobsController < ApplicationController
         if !JobTitle.where(title: @job.title).present?
           JobTitle.create(title: @job.title, status: false, user_id: current_user.id)
         end
-        format.html { redirect_to jobs_path, notice: 'Your Job was created.' }
-
+        format.html {
+          redirect_to controller: 'checkout', action: 'show', id: @job.id
+        }
         current_user.companies.first.followers.each do |user|
           CompanyMailer.new_job_posted_by_company(user.email,@job, current_user.companies.first.title).deliver_now
         end
@@ -108,13 +109,18 @@ class JobsController < ApplicationController
   end
 
   def update
+    subscribe_job = @job
     respond_to do |format|
       if @job.update(job_params)
         # send the new job titlew for admin approval
         if !JobTitle.where(title: @job.title).present?
           JobTitle.create(title: @job.title, status: false, user_id: current_user.id)
         end
-        format.html { redirect_to jobs_path, notice: 'The Job was successfully updated.' }
+        if subscribe_job.subscribed?
+          format.html { redirect_to jobs_path, notice: 'The Job was successfully updated.' }
+        else
+          format.html { redirect_to controller: 'checkout', action: 'show', id: @job.id}
+        end
       else
         format.html { render :edit }
       end
@@ -186,6 +192,8 @@ class JobsController < ApplicationController
                                   :job_area_id,
                                   :education_id,
                                   :expiry_date,
-                                  :user_id)
+                                  :user_id,
+                                  :plan_id
+                                  )
     end
 end

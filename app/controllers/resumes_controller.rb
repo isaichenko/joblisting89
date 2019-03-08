@@ -76,9 +76,10 @@ class ResumesController < ApplicationController
   end
 
   def destroy
-    if @resume.user_id == current_user.id
+    # if @resume.user_id == current_user.id #User have not ability to destroy 
+    if current_user.has_roles?(:superadmin)
       @resume.destroy
-      redirect_to resumes_url, notice: 'Resume was successfully destroyed.'
+      redirect_to root_path, notice: 'Resume was successfully destroyed.'
     else
       redirect_to resumes_path, notice: 'You do not have permission for this action!'
     end
