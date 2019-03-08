@@ -1,7 +1,9 @@
 <%- s = all_salary.calc_salary %>
+<% if s[1] > 0 %>
 <tr style="text-align: center;">
   <td><%= all_salary.title %></td>
 	<td><%= s[0] %></td>
 	<td><%= s[1] %></td>
 	<td><%= s[2] %></td>
 </tr>
+<% end %>
