@@ -80,7 +80,11 @@
 			<% @recent_jobs.each do |job| %>
 				<%= link_to job, class: "listing #{job.job_type.title}" do %>
 					<div class="listing-logo">
-						<%= image_tag "job-list-logo-01.png", alt: "" %>
+            <% if job.first_company.logo? %>
+              <%= image_tag job.first_company.logo.url %>
+            <% else %>
+						  <%= image_tag "job-list-logo-01.png", alt: "" %>
+            <% end %>
 					</div>
 					<div class="listing-title">
 						<h4><%= job.title %> <span class="listing-type"><%= job.job_type.title %></span></h4>
