@@ -8,7 +8,8 @@
     <title>ListingApp</title>
     <%= csrf_meta_tags %>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
+    <meta name="verifyownership" 
+     content="797344bd9a2c7b98e5fea8962c0015ff"/>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_link_tag 'colors/green.css', id: 'colors' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -17,7 +18,7 @@
     <% if current_page?(allcompanies_path) || current_page?(allresumes_path) || current_page?(alljobs_path) || current_page?(manage_jobseeker_path) || current_page?(manage_recruiter_path) %>
       <meta name="turbolinks-cache-control" content="no-cache">
     <% end %>
-
+    
   </head>
 
   <body>
