@@ -26,7 +26,7 @@ module JobSearch
         fields: [:q],
         where: where_condition(params),
         order: get_order(params[:sort_by]),
-        body_options: { aggs: aggs },
+        #body_options: { aggs: aggs },
         aggs: {
           title: { limit: 15 },
           'education.title': {},

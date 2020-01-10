@@ -29,8 +29,8 @@ class Job < ApplicationRecord
 
   scope :subscribed, -> {where(is_subscribe_payment_plan: true)}
 
-  include Elasticsearch::Model
-  include Elasticsearch::Model::Callbacks
+  #include Elasticsearch::Model
+  #include Elasticsearch::Model::Callbacks
 
   include JobSearch
 

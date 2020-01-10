@@ -72,6 +72,6 @@ gem 'stripe', '~> 4.0.3'
 gem 'oauth2', '>= 1.4.1'
 gem "sentry-raven"
 
-gem 'bonsai-elasticsearch-rails', '~> 7'
-gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails', branch: 'master'
-gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails', branch: 'master'
+#gem 'bonsai-elasticsearch-rails', '~> 7'
+#gem 'elasticsearch-model', github: 'elastic/elasticsearch-rails', branch: 'master'
+#gem 'elasticsearch-rails', github: 'elastic/elasticsearch-rails', branch: 'master'
