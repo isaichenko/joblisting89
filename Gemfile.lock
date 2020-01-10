@@ -180,7 +180,7 @@ GEM
     mime-types (3.2.2)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2018.0812)
-    mini_magick (4.9.3)
+    mini_magick (4.9.4)
     mini_mime (1.0.1)
     mini_portile2 (2.4.0)
     mini_racer (0.2.4)
@@ -353,7 +353,7 @@ DEPENDENCIES
   kaminari (~> 1.1, >= 1.1.1)
   letter_opener
   listen (>= 3.0.5, < 3.2)
-  mini_magick (~> 4.8)
+  mini_magick (~> 4.9)
   mini_racer
   oauth2 (>= 1.4.1)
   omniauth (~> 1.8, >= 1.8.1)
