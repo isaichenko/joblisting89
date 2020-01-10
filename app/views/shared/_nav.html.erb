@@ -14,7 +14,11 @@
       <!-- Logo -->
       <div id="logo">
         <%# link_to image_tag("logo.png", alt: "Work Scout"), root_path %>
-        <h1><%= link_to image_tag("logo.svg", alt: "Work Scout"), root_path %></h1>
+        <% if current_page?(root_path) || current_page?(find_resume_path) || current_page?(find_company_path) %>
+        <h1><%= link_to image_tag("logo-new-white.svg", alt: "Work Scout", style: "width: 200px;"), root_path %></h1>
+        <% else %>
+        <h1><%= link_to image_tag("logo-new.svg", alt: "Work Scout", style: "width: 200px;"), root_path %></h1>
+        <% end %>
       </div>
       <!-- Menu -->
       <nav id="navigation" class="menu">

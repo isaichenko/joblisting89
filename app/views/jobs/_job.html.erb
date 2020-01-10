@@ -55,7 +55,7 @@
       <span>inactive</span>
     <% end %>
   </td>
-  <td><%= job.created_at.strftime("%B %d, %Y") %></td>
+  <td><%= job.updated_at.strftime("%B %d, %Y") %></td>
   <td class="action">
     <%= link_to '', edit_job_path(job), class: 'fa fa-edit fa-lg index-icons' %>
     <%= link_to '', job_path(job), method: :delete, class: 'fa fa-trash fa-lg index-icons-tresh', data: { confirm: 'Are you sure?' } %>

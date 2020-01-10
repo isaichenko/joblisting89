@@ -48,7 +48,7 @@ class JobTitle < ApplicationRecord
     
     total = total_min + total_max + total_salaries_from_job_seeker
     
-    if total.present?
+    if total.compact.present?
       avg = total.sum/total.size
     else
       avg = 0
