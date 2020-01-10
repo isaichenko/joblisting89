@@ -1,15 +1,4 @@
 GIT
-  remote: https://github.com/elastic/elasticsearch-rails.git
-  revision: baea670d24b5c42ee994b880db9491b31da4598b
-  branch: master
-  specs:
-    elasticsearch-model (7.0.0)
-      activesupport (> 3)
-      elasticsearch (> 1)
-      hashie
-    elasticsearch-rails (7.0.0)
-
-GIT
   remote: https://github.com/galetahub/ckeditor.git
   revision: 61e56ceafa1cc2d975d25e2b7eef1cb5e40caabc
   specs:
@@ -95,9 +84,6 @@ GEM
     bcrypt (3.1.12)
     benchmark-ips (2.7.2)
     bindex (0.5.0)
-    bonsai-elasticsearch-rails (7.0.1)
-      elasticsearch-model (< 8)
-      elasticsearch-rails (< 8)
     bootstrap (4.3.1)
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
@@ -366,7 +352,6 @@ DEPENDENCIES
   activemerchant
   acts_as_follower!
   ancestry
-  bonsai-elasticsearch-rails (~> 7)
   bootstrap (~> 4.1, >= 4.1.1)
   braintreehttp (~> 0.5.0)
   byebug
@@ -378,8 +363,6 @@ DEPENDENCIES
   derailed
   devise (~> 4.4, >= 4.4.3)
   dotenv-rails (~> 2.4)
-  elasticsearch-model!
-  elasticsearch-rails!
   figaro
   font-awesome-rails (~> 4.7, >= 4.7.0.4)
   gritter (~> 1.2)
