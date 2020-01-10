@@ -305,7 +305,8 @@ select.change-action {
 /* images */
 
 .header-image-non-login {
-  background-image: url(banner-home-01.jpg);
+  background-image: url("https://joblisting89.s3.amazonaws.com/images/banner-home-01.jpg");
+  //background-image: url(banner-home-01.jpg);
   /*background-image: url(bg/purty_wood.png);*/
 }
 
