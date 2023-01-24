@@ -152,5 +152,5 @@ Resume.create!(first_name: "Bill", last_name: "Roger", user_id: 1, status: 1)
 
 WorkExperience.create!(job_title: "RoR Developer", resume_id: 1)
 
-#=begin
+=end
 
