@@ -9,7 +9,7 @@ end
 gem 'rails', '~> 5.1.5'
 gem 'pg'
 #gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 4.3'
 # add for boostrap modal
 #gem 'bootstrap-sass', '~> 4.1', '>= 4.1.1'
 
