@@ -12,3 +12,6 @@
 `heroku pg:reset` - clear DataBase;
 `heroku run rails db:migrate` - Migration files;
 `heroku run rails db:seed` - To implement seeds to DataBase.
+
+##ElasticSearch
+https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-elasticsearch-on-ubuntu-20-04

@@ -1,26 +1,18 @@
-User.create!(name:"test", email: "test@test.com", password: "123123", password_confirmation: "123123", interface: 0)
-User.create!(name:"test2", email: "test2@test.com", password: "123123", password_confirmation: "123123", interface: 0)
-User.create!(name:"test3", email: "test3@test.com", password: "123123", password_confirmation: "123123", interface: 1)
-User.create!(name:"test4", email: "test4@test.com", password: "123123", password_confirmation: "123123", interface: 1)
-User.create!(name:"test5", email: "test5@test.com", password: "123123", password_confirmation: "123123", interface: 1)
-#
-User.create!(name:"test6", email: "test6@test.com", password: "123123", password_confirmation: "123123", interface: 0)
-User.create!(name:"test7", email: "test7@test.com", password: "123123", password_confirmation: "123123", interface: 0)
-User.create!(name:"test8", email: "test8@test.com", password: "123123", password_confirmation: "123123", interface: 1)
-User.create!(name:"test9", email: "test9@test.com", password: "123123", password_confirmation: "123123", interface: 0)
-User.create!(name:"test10", email: "test10@test.com", password: "123123", password_confirmation: "123123", interface: 0)
-
-#
 User.create!(name:"admin", email: "admin@jobfound.com", password: "123123", password_confirmation: "123123", interface: nil, role: 'superadmin')
-User.create!(name:"recruiter2", email: "recruiter2@gmail.com", password: "123123", password_confirmation: "123123", interface: 0)
+#User.create!(name:"recruiter2", email: "recruiter2@gmail.com", password: "123123", password_confirmation: "123123", interface: 0)
 
-#
+Currency.create(iso_code: "USD", name: "Dollar", symbol: "$", symbol_first: true)
+
+Plan.create(name: "Basic",
+            duration: Time.now + 30.days,
+            price: 10.0,
+            duration_days: 30, 
+            currency_id: 1)
 
 JobTitle.create(title:'Control System Programmer', user_id: 2)
 JobTitle.create(title:'Finance Manager', user_id: 7)
 JobTitle.create(title:'Piping Engineer', user_id: 1)
 
-#
 Category.create(name:'Service')
 Category.create(name:'Payment')
 Category.create(name:'Job_Seeker')
@@ -29,6 +21,17 @@ Category.create(name:'Recruiter')
 Tag.create(name:'Interesting')
 Tag.create(name:'Popular')
 Tag.create(name:'Important')
+
+User.create!(name:"test", email: "test@test.com", password: "123123", password_confirmation: "123123", interface: 0)
+User.create!(name:"test2", email: "test2@test.com", password: "123123", password_confirmation: "123123", interface: 0)
+User.create!(name:"test3", email: "test3@test.com", password: "123123", password_confirmation: "123123", interface: 1)
+User.create!(name:"test4", email: "test4@test.com", password: "123123", password_confirmation: "123123", interface: 1)
+User.create!(name:"test5", email: "test5@test.com", password: "123123", password_confirmation: "123123", interface: 1)
+User.create!(name:"test6", email: "test6@test.com", password: "123123", password_confirmation: "123123", interface: 0)
+User.create!(name:"test7", email: "test7@test.com", password: "123123", password_confirmation: "123123", interface: 0)
+User.create!(name:"test8", email: "test8@test.com", password: "123123", password_confirmation: "123123", interface: 1)
+User.create!(name:"test9", email: "test9@test.com", password: "123123", password_confirmation: "123123", interface: 0)
+User.create!(name:"test10", email: "test10@test.com", password: "123123", password_confirmation: "123123", interface: 0)
 
 JobArea.create!(title: "Engineering")
 JobArea.create!(title: "Sales and Marketing")
@@ -56,27 +59,35 @@ Education.create!(title: "Bachelor's")
 Education.create!(title: "Master's")
 Education.create!(title: "Doctorate")
 
-Job.create!(title: "Process Engineer", job_type_id: 1, job_area_id: 1, salary_min: 5000, salary_max: 5500, hires: 1, description: "Some description", email: "seed@example.com", address: "Some Address", experience: 3, education_id: 1, user_id: 1, expiry_date: Time.now + 30.days, plan: 2)
-Job.create!(title: "Technologist", job_type_id: 2, job_area_id: 2, salary_min: 2000, salary_max: 2500, hires: 2, description: "Some description", email: "seed@example.com", address: "Some Address", experience: 1, education_id: 2, user_id: 1, expiry_date: Time.now + 30.days)
-Job.create!(title: "Superintendant", job_type_id: 3, job_area_id: 3, salary_min: 2500, salary_max: 3500, hires: 1, description: "Some description", email: "seed@example.com", address: "Some Address", experience: 2, education_id: 3, user_id: 1, expiry_date: Time.now + 30.days)
-Job.create!(title: "Workshop Supervisor", job_type_id: 4, job_area_id: 4, salary_min: 1500, salary_max: 3500, hires: 1, description: "Some description", email: "seed@example.com", address: "Some Address", experience: 4, education_id: 4, user_id: 2, expiry_date: Time.now + 30.days)
-Job.create!(title: "Senior Process Engineer", job_type_id: 5, job_area_id: 5, salary_min: 8500, salary_max: 95000, hires: 3, description: "Some description", email: "seed@example.com", address: "Some Address", experience: 1, education_id: 5, user_id: 2, expiry_date: Time.now + 30.days)
-Job.create!(title: "Process Control Specialist", job_type_id: 1, job_area_id: 1, salary_min: 450, salary_max: 500, hires: 1, description: "Some description", email: "seed@example.com", address: "Some Address", experience: 1, education_id: 2, user_id: 2, expiry_date: Time.now + 30.days)
-Job.create!(title: "Computer System Engineer", job_type_id: 1, job_area_id: 1, salary_min: 2500, salary_max: 3500, hires: 1, description: "Some description", email: "seed@example.com", address: "Some Address", experience: 2, education_id: 3, user_id: 2, expiry_date: Time.now + 30.days)
-Job.create!(title: "Senior Piping Engineer", job_type_id: 1, job_area_id: 1, salary_min: 6500, salary_max: 75000, hires: 2, description: "Some description", email: "seed@example.com", address: "Some Address", experience: 4, education_id: 4, user_id: 2, expiry_date: Time.now + 30.days)
-Job.create!(title: "Senior Ruby on Rails", job_type_id: 1, job_area_id: 1, salary_min: 14500, salary_max: 15000, hires: 1, description: "Some description", email: "seed@example.com", address: "Some Address", experience: 3, education_id: 5, user_id: 2, expiry_date: Time.now + 30.days)
-Job.create!(title: "Finance Manager", job_type_id: 1, job_area_id: 3, salary_min: 9000, salary_max: 10000, hires: 1, description: "Taking care of all the finances activities", email: "", address: "", experience: 5, education_id: 3, user_id: 7, expiry_date: Time.now + 30.days)
+Job.create!(title: "Process Engineer", 
+            job_type_id: 1, 
+            job_area_id: 1, 
+            salary_min: 5000, 
+            salary_max: 5500, 
+            hires: 1, 
+            description: "Some description", 
+            email: "seed@example.com", 
+            address: "Some Address", 
+            experience: 3, 
+            education_id: 1, 
+            user_id: 1, 
+            expiry_date: Time.now + 30.days,
+            plan_id: 1)
+Job.create!(title: "Technologist", job_type_id: 2, job_area_id: 2, salary_min: 2000, salary_max: 2500, hires: 2, description: "Some description", email: "seed@example.com", address: "Some Address", experience: 1, education_id: 2, user_id: 1, expiry_date: Time.now + 30.days, plan_id: 1)
+Job.create!(title: "Superintendant", job_type_id: 3, job_area_id: 3, salary_min: 2500, salary_max: 3500, hires: 1, description: "Some description", email: "seed@example.com", address: "Some Address", experience: 2, education_id: 3, user_id: 1, expiry_date: Time.now + 30.days, plan_id: 1)
+Job.create!(title: "Workshop Supervisor", job_type_id: 4, job_area_id: 4, salary_min: 1500, salary_max: 3500, hires: 1, description: "Some description", email: "seed@example.com", address: "Some Address", experience: 4, education_id: 4, user_id: 2, expiry_date: Time.now + 30.days, plan_id: 1)
+Job.create!(title: "Senior Process Engineer", job_type_id: 5, job_area_id: 5, salary_min: 8500, salary_max: 95000, hires: 3, description: "Some description", email: "seed@example.com", address: "Some Address", experience: 1, education_id: 5, user_id: 2, expiry_date: Time.now + 30.days, plan_id: 1)
+Job.create!(title: "Process Control Specialist", job_type_id: 1, job_area_id: 1, salary_min: 450, salary_max: 500, hires: 1, description: "Some description", email: "seed@example.com", address: "Some Address", experience: 1, education_id: 2, user_id: 2, expiry_date: Time.now + 30.days, plan_id: 1)
+Job.create!(title: "Computer System Engineer", job_type_id: 1, job_area_id: 1, salary_min: 2500, salary_max: 3500, hires: 1, description: "Some description", email: "seed@example.com", address: "Some Address", experience: 2, education_id: 3, user_id: 2, expiry_date: Time.now + 30.days, plan_id: 1)
+Job.create!(title: "Senior Piping Engineer", job_type_id: 1, job_area_id: 1, salary_min: 6500, salary_max: 75000, hires: 2, description: "Some description", email: "seed@example.com", address: "Some Address", experience: 4, education_id: 4, user_id: 2, expiry_date: Time.now + 30.days, plan_id: 1)
+Job.create!(title: "Senior Ruby on Rails", job_type_id: 1, job_area_id: 1, salary_min: 14500, salary_max: 15000, hires: 1, description: "Some description", email: "seed@example.com", address: "Some Address", experience: 3, education_id: 5, user_id: 2, expiry_date: Time.now + 30.days, plan_id: 1)
+Job.create!(title: "Finance Manager", job_type_id: 1, job_area_id: 3, salary_min: 9000, salary_max: 10000, hires: 1, description: "Taking care of all the finances activities", email: "", address: "", experience: 5, education_id: 3, user_id: 7, expiry_date: Time.now + 30.days, plan_id: 1)
 
 Company.create!(title: "Amazon", hires_per_year: 5, name: "Bill", phone: "1234567899", country: "USA", city: "Boston", postal_code: "12345", payment_info: "PayPal", about: "We are Great company", why_join_us: "Because we Great!", website: "google.com", industry: "Some Industry", number_of_employee: 150, user_id: 1)
 Company.create!(title: "Goopiping", hires_per_year: 15, name: "Smith", phone: "1234567899", country: "Canada", city: "Toronto", postal_code: "12345", payment_info: "PayPal", about: "We are Great company", why_join_us: "Because we Great!", website: "camp.com", industry: "Some Industry", number_of_employee: 50, user_id: 2)
 Company.create!(title: "Nobu", hires_per_year: 25, name: "Jack", phone: "1234567899", country: "Some Coutry", city: "Some City", postal_code: "12345", payment_info: "PayPal", about: "We are Great company", why_join_us: "Because we Great!", website: "bong.com", industry: "Some Industry", number_of_employee: 15, user_id: 3)
 Company.create!(title: "Pecka Pte Ltd", hires_per_year: 1, name: "", phone: "", country: "", city: "", postal_code: "12345", payment_info: "", about: "", why_join_us: "", website: "", industry: "Water Industry", number_of_employee: 2000, user_id: 7)
 
-Resume.create!(first_name: "Bill", last_name: "Roger", user_id: 1, status: 1)
-
-WorkExperience.create!(job_title: "RoR Developer", resume_id: 1)
-
-#=begin
 Resume.create!(first_name: "Mike", last_name: "Tison", country: "Ukraine", city: "Poltava", contact_information: "taison@gmail.com",
   phone: "0991231212", status: "public_resume", degree: "Master", school: "Technical", field_of_study: "Electromechanicl",
   education_country: "Ukraine", education_city: "Poltava", education_start_date: "2002-02-01", education_end_date: "2007-06-01",
@@ -129,5 +140,12 @@ Resume.create!(first_name: "Some name", last_name: "Good", country: "Poland", ci
 Blog.create!(title: "Why you should work in the oil and gas sector", content: "Many interesting leters")
 Blog.create!(title: "Second Post", content: "Many interesting leters")
 Blog.create!(title: "One More Post", content: "Many interesting leters")
+=begin
 
-#=end
+Resume.create!(first_name: "Bill", last_name: "Roger", user_id: 1, status: 1)
+
+WorkExperience.create!(job_title: "RoR Developer", resume_id: 1)
+
+#=begin
+
+=end

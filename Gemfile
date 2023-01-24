@@ -59,6 +59,7 @@ gem 'petergate', '~> 1.8', '>= 1.8.1'
 
 #ckeditor
 gem 'ckeditor', github: 'galetahub/ckeditor'
+gem 'ckeditor_rails', github: 'tsechingho/ckeditor-rails'
 #select2
 gem 'select2-rails'
 #social share
