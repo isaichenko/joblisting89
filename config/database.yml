@@ -35,6 +35,8 @@ development:
   adapter: postgresql
   encoding: unicode
   database: ListingApp_development
+  username: analist
+  password: analist
   host: localhost
   pool: 5
 #>>>>>>> 99bd1534bfbda91f5d62f11e90ffd218b2e754b2

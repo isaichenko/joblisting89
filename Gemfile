@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby "2.7.5"
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -6,7 +7,8 @@ git_source(:github) do |repo_name|
 end
 
 gem 'rails', '~> 5.1.5'
-gem 'pg', '>= 0.18', '< 2.0'
+gem 'pg'
+#gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.7'
 # add for boostrap modal
 #gem 'bootstrap-sass', '~> 4.1', '>= 4.1.1'

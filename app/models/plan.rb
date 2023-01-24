@@ -9,7 +9,7 @@ class Plan < ApplicationRecord
   enum status: {
       draft: 0,
       expired: 1,
-      actibe: 2
+      active: 2
   }
 
   validates :name, :duration_days, :price, :currency, :presence => { :message => 'cannot be blank' }
